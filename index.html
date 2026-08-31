@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Расписание">
+<meta name="theme-color" content="#f3f4f1">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%230f6e63'/%3E%3Crect x='30' y='44' width='120' height='96' rx='10' fill='%23ffffff'/%3E%3Crect x='30' y='44' width='120' height='22' rx='10' fill='%234a3f8f'/%3E%3Crect x='44' y='80' width='30' height='10' rx='5' fill='%230f6e63'/%3E%3Crect x='84' y='80' width='52' height='10' rx='5' fill='%23c9cfcb'/%3E%3Crect x='44' y='102' width='30' height='10' rx='5' fill='%234a3f8f'/%3E%3Crect x='84' y='102' width='52' height='10' rx='5' fill='%23c9cfcb'/%3E%3Crect x='44' y='124' width='30' height='10' rx='5' fill='%230f6e63'/%3E%3Crect x='84' y='124' width='52' height='10' rx='5' fill='%23c9cfcb'/%3E%3C/svg%3E">
+<title>Сводное расписание — Саша и Ваня</title>
+<style>
+  :root{
+    --paper:#f3f4f1;
+    --card:#ffffff;
+    --ink:#1b211f;
+    --muted:#6d7773;
+    --line:#dfe3df;
+    --sasha:#0f6e63;
+    --sasha-bg:#e6f2f0;
+    --vanya:#4a3f8f;
+    --vanya-bg:#ecebf7;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:15px;
+    line-height:1.4;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:calc(24px + env(safe-area-inset-top)) 16px 56px}
+  header h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+  header p{margin:0;color:var(--muted);font-size:14px}
+  .who{display:flex;gap:10px;margin:16px 0 26px;flex-wrap:wrap}
+  .who span{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;font-size:13.5px;font-weight:600;
+  }
+  .who .s{background:var(--sasha-bg);color:var(--sasha)}
+  .who .v{background:var(--vanya-bg);color:var(--vanya)}
+
+  .day{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+  .day > h2{
+    margin:0;padding:12px 16px;font-size:17px;
+    border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  }
+  .day > h2 small{font-weight:400;font-size:13px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:8px 10px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+  thead th{border-top:0;font-size:12px;font-weight:600;color:var(--muted);padding-top:10px;padding-bottom:8px}
+  thead th.s{color:var(--sasha)}
+  thead th.v{color:var(--vanya)}
+  td.num{width:26px;color:var(--muted);font-size:13px}
+  td.time{width:78px;color:var(--muted);font-size:12.5px;white-space:nowrap}
+  td.les{font-size:14px}
+  td.les .t{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+  td.s{background:rgba(15,110,99,.045)}
+  td.v{background:rgba(74,63,143,.045)}
+  .meal{color:var(--muted)}
+  .extra{font-style:italic}
+  .none{color:#b6bdb9}
+
+  .notes{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .notes h2{font-size:16px;margin:0 0 8px}
+  .notes ul{margin:0;padding-left:18px}
+  .notes li{margin-bottom:5px;font-size:14px}
+
+  @media (max-width:600px){
+    body{font-size:14px}
+    .wrap{padding:16px 10px 40px}
+    th,td{padding:7px 6px}
+    td.time{width:62px;font-size:11.5px}
+    td.les{font-size:13px}
+    td.les .t{font-size:11.5px}
+  }
+  @media print{
+    body{background:#fff}
+    .day{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Сводное расписание на неделю</h1>
+    <p>Оба возвращаются сами. Утром Ваня едет по району, Сашу можно отвезти в центр или отправить транспортом.</p>
+  </header>
+  <div class="who">
+    <span class="s">Саша · 7 кл. · школа 1574, 1-я Миусская, 4 · туда авто или транспорт, обратно сам · с 8:30</span>
+    <span class="v">Ваня · 10«Г» · школа 2098, Базовская, 15/13с4 · транспорт · с 8:25</span>
+  </div>
+
+  <!-- ПОНЕДЕЛЬНИК -->
+  <section class="day">
+    <h2>Понедельник <small>Саша: выезд 7:30 или выход 7:20, дома ~16:25 · Ваня: выход 7:50, дома ~16:40</small></h2>
+    <table>
+      <thead><tr><th></th><th>Время</th><th class="s">Саша, 7 кл.</th><th>Время</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="time">8:30–9:10</td><td class="les s">Разговоры о важном<span class="t">Спирина И.К. · 435</span></td><td class="time">8:25–9:10</td><td class="les v">ВД Разговоры о важном<span class="t">Ульянова Г.М.</span></td></tr>
+        <tr><td class="num">2</td><td class="time">9:20–10:00</td><td class="les s">Русский язык<span class="t">Спирина И.К. · 435</span></td><td class="time">9:25–10:10</td><td class="les v">География<span class="t">Сафьянов В.М.</span></td></tr>
+        <tr><td class="num">3</td><td class="time">10:20–11:00</td><td class="les s">Русский язык<span class="t">Спирина И.К. · 435</span></td><td class="time">10:25–11:10</td><td class="les v">Физика<span class="t">Пивоварова Н.В.</span></td></tr>
+        <tr><td class="num">4</td><td class="time">11:20–12:00</td><td class="les s">История<span class="t">Суменкова С.В. · 448</span></td><td class="time">11:25–12:10</td><td class="les v">Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">5</td><td class="time">12:10–12:50</td><td class="les s">Геометрия<span class="t">Копьев Д.В. · 428</span></td><td class="time">12:25–13:10</td><td class="les v">Обществознание<span class="t">Ульянова Г.М.</span></td></tr>
+        <tr><td class="num">6</td><td class="time">13:10–13:50</td><td class="les s">Геометрия<span class="t">Копьев Д.В. · 428</span></td><td class="time">13:25–14:10</td><td class="les v">Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">7</td><td class="time">14:00–14:40</td><td class="les s meal">Обед<span class="t">435</span></td><td class="time">14:25–15:10</td><td class="les v">Информатика<span class="t">Бойкова И.В. / Кочнев В.А.</span></td></tr>
+        <tr><td class="num">8</td><td class="time">14:50–15:30</td><td class="les s">Литература<span class="t">Спирина И.К. · 435</span></td><td class="time">15:25–16:10</td><td class="les v">Информатика<span class="t">Бойкова И.В. / Кочнев В.А.</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ВТОРНИК -->
+  <section class="day">
+    <h2>Вторник <small>Саша: выезд 7:30 или выход 7:20, дома ~16:25 · Ваня: выход 7:50, дома ~16:40</small></h2>
+    <table>
+      <thead><tr><th></th><th>Время</th><th class="s">Саша, 7 кл.</th><th>Время</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="time">8:30–9:10</td><td class="les s">Технология<span class="t">Аркушин М.М. · 232</span></td><td class="time">8:25–9:10</td><td class="les v">Биология<span class="t">Силаева Е.А.</span></td></tr>
+        <tr><td class="num">2</td><td class="time">9:20–10:00</td><td class="les s">Физика<span class="t">Аркушин М.М. · 232</span></td><td class="time">9:25–10:10</td><td class="les v">Физика<span class="t">Пивоварова Н.В.</span></td></tr>
+        <tr><td class="num">3</td><td class="time">10:20–11:00</td><td class="les s">Алгебра<span class="t">Порошин Б.А. · 431</span></td><td class="time">10:25–11:10</td><td class="les v">История<span class="t">Ульянова Г.М.</span></td></tr>
+        <tr><td class="num">4</td><td class="time">11:20–12:00</td><td class="les s">Физическая культура<span class="t">Семин Д.М. · 215</span></td><td class="time">11:25–12:10</td><td class="les v">Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">5</td><td class="time">12:10–12:50</td><td class="les s">Английский язык<span class="t">Ведерникова О.Н. (1) 340 / Вилисова А.В. (2) 162</span></td><td class="time">12:25–13:10</td><td class="les v">Английский язык<span class="t">Гаджиева Э.Г. / Джумагалиева А.С.</span></td></tr>
+        <tr><td class="num">6</td><td class="time">13:10–13:50</td><td class="les s">Алгебра<span class="t">Порошин Б.А. · 432</span></td><td class="time">13:25–14:10</td><td class="les v">Индивидуальный проект<span class="t">Пивоварова Н.В.</span></td></tr>
+        <tr><td class="num">7</td><td class="time">14:00–14:40</td><td class="les s meal">Обед<span class="t">435</span></td><td class="time">14:25–15:10</td><td class="les v">Физкультура<span class="t">Глазырин П.Н.</span></td></tr>
+        <tr><td class="num">8</td><td class="time">14:50–15:30</td><td class="les s">География<span class="t">Салтовская Т.С. · 332</span></td><td class="time">15:25–16:10</td><td class="les v extra">ВД Проектная и исследовательская деятельность<span class="t">Пивоварова Н.В.</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- СРЕДА -->
+  <section class="day">
+    <h2>Среда <small>Саша: выезд 7:30 или выход 7:20, кружок до 16:20, дома ~17:15 · Ваня: выход 7:50, дома ~16:40</small></h2>
+    <table>
+      <thead><tr><th></th><th>Время</th><th class="s">Саша, 7 кл.</th><th>Время</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="time">8:30–9:10</td><td class="les s">Физика<span class="t">Аркушин М.М. · 332</span></td><td class="time">8:25–9:10</td><td class="les v">Геометрия<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">2</td><td class="time">9:20–10:00</td><td class="les s">Физическая культура<span class="t">Семин Д.М. · 245</span></td><td class="time">9:25–10:10</td><td class="les v">Обществознание<span class="t">Ульянова Г.М.</span></td></tr>
+        <tr><td class="num">3</td><td class="time">10:20–11:00</td><td class="les s">Алгебра<span class="t">Порошин Б.А. · 322</span></td><td class="time">10:25–11:10</td><td class="les v">Русский язык<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">4</td><td class="time">11:20–12:00</td><td class="les s">Алгебра<span class="t">Порошин Б.А. · 322</span></td><td class="time">11:25–12:10</td><td class="les v">Русский язык<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">5</td><td class="time">12:10–12:50</td><td class="les s meal">Обед<span class="t">435</span></td><td class="time">12:25–13:10</td><td class="les v">Физика<span class="t">Пивоварова Н.В.</span></td></tr>
+        <tr><td class="num">6</td><td class="time">13:10–13:50</td><td class="les s">История<span class="t">Суменкова С.В. · 448</span></td><td class="time">13:25–14:10</td><td class="les v">История<span class="t">Ульянова Г.М.</span></td></tr>
+        <tr><td class="num">7</td><td class="time">14:00–14:40</td><td class="les s">Вероятность и статистика<span class="t">Порошин Б.А. · 322</span></td><td class="time">14:25–15:10</td><td class="les v extra">ВД Робототехника<span class="t">Каретников А.В.</span></td></tr>
+        <tr><td class="num">8</td><td class="time">14:50–15:30</td><td class="les s">Физико-математический практикум<span class="t">Аркушин М.М. (1) / Аркушина А.А. (2) · 332</span></td><td class="time">15:25–16:10</td><td class="les v">ОБЗР<span class="t">Носков О.И.</span></td></tr>
+        <tr><td class="num">9</td><td class="time">15:40–16:20</td><td class="les s extra">Кружок по физике<span class="t">Аркушин М.М. (1) 332 / Ивашечкин А.А. (2) 328</span></td><td class="time"></td><td class="les none">—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ЧЕТВЕРГ -->
+  <section class="day">
+    <h2>Четверг <small>Саша: выезд 7:30 или выход 7:20, дома ~16:25 · Ваня: выход 7:50, дома ~15:40</small></h2>
+    <table>
+      <thead><tr><th></th><th>Время</th><th class="s">Саша, 7 кл.</th><th>Время</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="time">8:30–9:10</td><td class="les s">Английский (гр. 2) / Технология (гр. 1)<span class="t">Вилисова А.В. 162 / Абдуллаев М.Ф. 237</span></td><td class="time">8:25–9:10</td><td class="les v">Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">2</td><td class="time">9:20–10:00</td><td class="les s">Английский (гр. 1) / Технология (гр. 2)<span class="t">Ведерникова О.Н. 340 / Абдуллаев М.Ф. 237</span></td><td class="time">9:25–10:10</td><td class="les v">Английский язык<span class="t">Гаджиева Э.Г. / Джумагалиева А.С.</span></td></tr>
+        <tr><td class="num">3</td><td class="time">10:20–11:00</td><td class="les s">Русский язык<span class="t">Спирина И.К. · 435</span></td><td class="time">10:25–11:10</td><td class="les v extra">ВД Осмысленное чтение<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">4</td><td class="time">11:20–12:00</td><td class="les s">Физика<span class="t">Аркушин М.М. · 332</span></td><td class="time">11:25–12:10</td><td class="les v">Информатика<span class="t">Бойкова И.В. / Кочнев В.А.</span></td></tr>
+        <tr><td class="num">5</td><td class="time">12:10–12:50</td><td class="les s">Геометрия<span class="t">Копьев Д.В. · 448</span></td><td class="time">12:25–13:10</td><td class="les v">Литература<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">6</td><td class="time">13:10–13:50</td><td class="les s meal">Обед<span class="t">435</span></td><td class="time">13:25–14:10</td><td class="les v">Литература<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">7</td><td class="time">14:00–14:40</td><td class="les s">Математический практикум<span class="t">Копьев Д.В. (1) 448 / Порошин Б.А. (2) 445</span></td><td class="time">14:25–15:10</td><td class="les v">Химия<span class="t">Сиротин В.Г.</span></td></tr>
+        <tr><td class="num">8</td><td class="time">14:50–15:30</td><td class="les s">Практикум по решению задач по математике<span class="t">Копьев Д.В. (1) 448 / Порошин Б.А. (2) 445</span></td><td class="time"></td><td class="les none">—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ПЯТНИЦА -->
+  <section class="day">
+    <h2>Пятница <small>Саша: выезд 7:30 или выход 7:20, дома ~16:25 · Ваня: выход 7:50, дома ~16:40</small></h2>
+    <table>
+      <thead><tr><th></th><th>Время</th><th class="s">Саша, 7 кл.</th><th>Время</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="time">8:30–9:10</td><td class="les s">Биология<span class="t">Болдырева Н.В. · 131</span></td><td class="time">8:25–9:10</td><td class="les v">Технологии современного производства<span class="t">Каретников А.В. / Кочнев В.А.</span></td></tr>
+        <tr><td class="num">2</td><td class="time">9:20–10:00</td><td class="les s">История<span class="t">Суменкова С.В. · 448</span></td><td class="time">9:25–10:10</td><td class="les v">Литература<span class="t">Белова Е.А.</span></td></tr>
+        <tr><td class="num">3</td><td class="time">10:20–11:00</td><td class="les s">Русский язык<span class="t">Спирина И.К. · 435</span></td><td class="time">10:25–11:10</td><td class="les v">Физика<span class="t">Пивоварова Н.В.</span></td></tr>
+        <tr><td class="num">4</td><td class="time">11:20–12:00</td><td class="les s">Английский (гр. 1) / Информатика (гр. 2)<span class="t">Ведерникова О.Н. 340 / Абдуллаев М.Ф. 237</span></td><td class="time">11:25–12:10</td><td class="les v">Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">5</td><td class="time">12:10–12:50</td><td class="les s">География<span class="t">Салтовская Т.С. · 332</span></td><td class="time">12:25–13:10</td><td class="les v">Инженерия космических систем<span class="t">Гоптарь Е.А.</span></td></tr>
+        <tr><td class="num">6</td><td class="time">13:10–13:50</td><td class="les s">Английский (гр. 2) / Информатика (гр. 1)<span class="t">Вилисова А.В. 337 / Абдуллаев М.Ф. 237</span></td><td class="time">13:25–14:10</td><td class="les v">Вероятность и статистика<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">7</td><td class="time">14:00–14:40</td><td class="les s meal">Обед<span class="t">Помазков А.А. · 131</span></td><td class="time">14:25–15:10</td><td class="les v">Геометрия<span class="t">Жикунова Е.В.</span></td></tr>
+        <tr><td class="num">8</td><td class="time">14:50–15:30</td><td class="les s">Литература<span class="t">Спирина И.К. · 435</span></td><td class="time">15:25–16:10</td><td class="les v extra">ВД Робототехника<span class="t">Каретников А.В.</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="notes">
+    <h2>Как добираются</h2>
+    <ul>
+      <li>Ваня, школа 2098: 8 минут пешком до остановки «Улица Ивана Сусанина», автобус 191 до «Базовская улица, 17», 4 минуты пешком — 28 минут дверь в дверь, 75 ₽. Выход в 7:50. Равный по времени дубль — МЦД-3 от Грачёвской, а пешком целиком 2,38 км за 30 минут.</li>
+      <li>Саша, школа 1574, транспортом: пешком до остановки, автобус 672 до Селигерской, метро до Петровско-Разумовской, переход на серую ветку до Менделеевской, 10 минут пешком — 52 минуты, 112 ₽, около 20 минут пешком за поездку. Выход в 7:20.</li>
+      <li>Саша, машиной утром: 27 минут днём, но в пик по Дмитровскому шоссе 35–50 — выезд в 7:30 с запасом. Выигрыш против транспорта около 20 минут.</li>
+      <li>Обратно Саша едет сам тем же маршрутом в обратную сторону: после 15:30 дома примерно в 16:25, в среду после кружка — около 17:15. Пересадка одна, но с переходом на Петровско-Разумовской.</li>
+      <li>Ваня дома около 16:40 в понедельник, вторник, среду и пятницу; в четверг около 15:40.</li>
+      <li>По будням, кроме среды, оба возвращаются почти одновременно — 16:25 и 16:40. В среду Саша приходит последним, ближе к 17:15.</li>
+      <li>Физкультура: у Саши вторник и среда, у Вани вторник. Форму собирать в понедельник вечером.</li>
+      <li>Время 8-го урока у Вани в расписании не указано — поставил по шагу звонков (15:25–16:10), стоит уточнить в школе.</li>
+      <li>У Саши деление на группы (1/2) по английскому, технологии, информатике и практикумам — оставил оба варианта, отметьте нужную группу.</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
