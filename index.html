@@ -89,7 +89,34 @@
   .cal-day .dv{width:5px;height:5px;border-radius:50%;background:var(--vanya)}
   .cal-day.has-reg{cursor:pointer}
   .cal-day .regflag{position:absolute;top:1px;right:3px;font-size:9px;line-height:1}
+  .regline{padding:8px 0 8px 10px;margin-bottom:8px}
+  .regline:last-child{margin-bottom:0}
+  .regline-top{font-size:13.5px}
+  .regline-bot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px}
+  .regchip{padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700}
+  .regwhen{font-size:12px;color:var(--muted)}
+  .regwhen.hot{color:#fff;background:#a9432f;padding:2px 8px;border-radius:999px;font-weight:700}
+  .regtour{font-size:12px;color:var(--muted)}
+  .famlegend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .famchip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit}
+  .famchip.all{border-color:var(--ink)}
+  .famchip.all.on{background:var(--ink);color:#fff}
+  .olink{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+  .syncnote{font-size:13px;margin:0 0 6px;color:var(--muted)}
+  .syncnote.ok{color:#0f6e63}
+  .syncnote.warn{color:#a9432f;font-weight:600}
+  .synclist{margin:0;padding-left:18px}
+  .synclist li{font-size:13px;margin-bottom:8px}
+  .syncwas{color:var(--muted);font-size:12.5px}
+  .syncnow{color:#a9432f;font-size:12.5px;font-weight:600}
+  .syncstamp{font-size:11.5px;color:var(--muted);margin:8px 0 0}
+  .famdot{display:inline-block;width:8px;height:8px;border-radius:2px}
+  .orange{display:inline-block;margin:2px 0 4px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:var(--olymp-bg);color:var(--olymp)}
   .regbadge{display:inline-block;margin:2px 0 4px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:#fdeceb;color:#a9432f}
+  .regbadge.now{background:#a9432f;color:#fff}
+  .regwarn{font-size:12px;color:#a9432f;margin-top:3px}
+  .famrow{padding-left:10px}
+  .regrow{background:repeating-linear-gradient(45deg,#fdeceb 0 6px,transparent 6px 12px)}
 
   /* ---- upcoming alert ---- */
   .alertSlot:empty{display:none}
@@ -172,11 +199,11 @@
     <div class="wrap">
       <header>
         <h1>Расписание на неделю</h1>
-        <p>Саша — 7 кл., школа 1574 · Ваня — 10«Г», школа 2098</p>
+        <p>Саша — 7«А», школа 1574 · Ваня — 10«Г», школа 2098</p>
       </header>
       <div class="alertSlot"></div>
       <div class="who">
-        <span class="s">Саша · 7 кл. · школа 1574, 1-я Миусская, 4</span>
+        <span class="s">Саша · 7«А» · школа 1574, 1-я Миусская, 4</span>
         <span class="v">Ваня · 10«Г» · школа 2098, Базовская, 15/13с4</span>
       </div>
 
@@ -184,7 +211,7 @@
   <section class="day">
     <h2>Понедельник</h2>
     <table>
-      <thead><tr><th></th><th class="s">Саша, 7 кл.</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <thead><tr><th></th><th class="s">Саша, 7«А»</th><th class="v">Ваня, 10 кл.</th></tr></thead>
       <tbody>
         <tr><td class="num">1</td><td class="les s"><span class="tm">8:30–9:10</span>Разговоры о важном<span class="t">Спирина И.К. · 435</span></td><td class="les v"><span class="tm">8:25–9:10</span>Разговоры о важном<span class="t">Ульянова Г.М.</span></td></tr>
         <tr><td class="num">2</td><td class="les s"><span class="tm">9:20–10:00</span>Русский язык<span class="t">Спирина И.К. · 435</span></td><td class="les v"><span class="tm">9:25–10:10</span>География<span class="t">Сафьянов В.М.</span></td></tr>
@@ -202,7 +229,7 @@
   <section class="day">
     <h2>Вторник</h2>
     <table>
-      <thead><tr><th></th><th class="s">Саша, 7 кл.</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <thead><tr><th></th><th class="s">Саша, 7«А»</th><th class="v">Ваня, 10 кл.</th></tr></thead>
       <tbody>
         <tr><td class="num">1</td><td class="les s"><span class="tm">8:30–9:10</span>Технология<span class="t">Аркушин М.М. · 232</span></td><td class="les v"><span class="tm">8:25–9:10</span>Биология<span class="t">Силаева Е.А.</span></td></tr>
         <tr><td class="num">2</td><td class="les s"><span class="tm">9:20–10:00</span>Физика<span class="t">Аркушин М.М. · 232</span></td><td class="les v"><span class="tm">9:25–10:10</span>Физика<span class="t">Пивоварова Н.В.</span></td></tr>
@@ -220,7 +247,7 @@
   <section class="day">
     <h2>Среда</h2>
     <table>
-      <thead><tr><th></th><th class="s">Саша, 7 кл.</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <thead><tr><th></th><th class="s">Саша, 7«А»</th><th class="v">Ваня, 10 кл.</th></tr></thead>
       <tbody>
         <tr><td class="num">1</td><td class="les s"><span class="tm">8:30–9:10</span>Физика<span class="t">Аркушин М.М. · 332</span></td><td class="les v"><span class="tm">8:25–9:10</span>Геометрия<span class="t">Жикунова Е.В.</span></td></tr>
         <tr><td class="num">2</td><td class="les s"><span class="tm">9:20–10:00</span>Физическая культура<span class="t">Семин Д.М. · 245</span></td><td class="les v"><span class="tm">9:25–10:10</span>Обществознание<span class="t">Ульянова Г.М.</span></td></tr>
@@ -239,7 +266,7 @@
   <section class="day">
     <h2>Четверг</h2>
     <table>
-      <thead><tr><th></th><th class="s">Саша, 7 кл.</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <thead><tr><th></th><th class="s">Саша, 7«А»</th><th class="v">Ваня, 10 кл.</th></tr></thead>
       <tbody>
         <tr><td class="num">1</td><td class="les s"><span class="tm">8:30–9:10</span>Физика<span class="t">Аркушин М.М. · 448</span></td><td class="les v"><span class="tm">8:25–9:10</span>Алгебра<span class="t">Жикунова Е.В.</span></td></tr>
         <tr><td class="num">2</td><td class="les s"><span class="tm">9:20–10:00</span>Английский язык<span class="t">Вилисова А.В. · 162</span></td><td class="les v"><span class="tm">9:25–10:10</span>Английский язык<span class="t">Гаджиева Э.Г. / Джумагалиева А.С.</span></td></tr>
@@ -257,7 +284,7 @@
   <section class="day">
     <h2>Пятница</h2>
     <table>
-      <thead><tr><th></th><th class="s">Саша, 7 кл.</th><th class="v">Ваня, 10 кл.</th></tr></thead>
+      <thead><tr><th></th><th class="s">Саша, 7«А»</th><th class="v">Ваня, 10 кл.</th></tr></thead>
       <tbody>
         <tr><td class="num">1</td><td class="les s"><span class="tm">8:30–9:10</span>Биология<span class="t">Болдырева Н.В. · 131</span></td><td class="les v"><span class="tm">8:25–9:10</span>Технологии современного производства<span class="t">Каретников А.В. / Кочнев В.А.</span></td></tr>
         <tr><td class="num">2</td><td class="les s"><span class="tm">9:20–10:00</span>История<span class="t">Суменкова С.В. · 448</span></td><td class="les v"><span class="tm">9:25–10:10</span>Литература<span class="t">Белова Е.А.</span></td></tr>
@@ -303,6 +330,8 @@
         <span><i class="lv"></i>Ваня</span>
         <span>⏰ последний день регистрации</span>
       </div>
+      <div class="famlegend" id="famLegend"></div>
+      <div id="regSummary"></div>
     </div>
   </section>
 
@@ -316,6 +345,8 @@
 
       <div id="allList"></div>
 
+      <div id="syncBlock"></div>
+      <button class="icsbtn" id="syncNow">🔄 Проверить таблицу сейчас</button>
       <button class="icsbtn" id="icsBtn">📅 Добавить все даты в календарь</button>
       <p class="icshint">Скачается файл с событиями и напоминанием за сутки (в 9:00 накануне). Откройте его — календарь предложит добавить всё разом. Сделать это нужно один раз на каждом телефоне.</p>
 
@@ -356,52 +387,131 @@
   });
 
   // ---- olympiad data ----
+  var SHEET_ID = '1h6t7tKFzuKd_amxP7gMy-eTwuQLrafVCwA7BVCu-RBw';
+  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv';
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/';
+
+  // fam — семейство олимпиады: цвет в календаре и ссылка по умолчанию
+  var FAM = {
+    vsosh:    {label:'ВсОШ',              fg:'#b45309', bg:'#f7e8cd', url:'https://vos.olimpiada.ru/'},
+    rosatom:  {label:'Росатом (МИФИ)',    fg:'#0e7490', bg:'#d6ecf2', url:null},
+    phystech: {label:'Физтех (МФТИ)',     fg:'#be123c', bg:'#fadfe6', url:'https://olimpiada.ru/activity/394'},
+    turgorod: {label:'Турнир Городов',    fg:'#4d7c0f', bg:'#e6efd3', url:'https://olimpiada.ru/activity/5'},
+    turlomo:  {label:'Турнир Ломоносова', fg:'#7c3aed', bg:'#eae0fc', url:'https://olimpiada.ru/activity/4'},
+    formula:  {label:'Формула Единства',  fg:'#0f766e', bg:'#d5ebe8', url:null},
+    mosh:     {label:'МОШ',               fg:'#b91c1c', bg:'#f9dcdc', url:'https://mos.olimpiada.ru/'},
+    step:     {label:'Шаг в будущее',     fg:'#1d4ed8', bg:'#dde6fb', url:'https://olymp.bmstu.ru/'},
+    barsik:   {label:'Барсик',            fg:'#a21caf', bg:'#f4dcf3', url:'https://olimpiada.ru/activity/57'}
+  };
+
   var EVENTS = [
-    {date:'2026-09-23', title:'ВсОШ, астрономия', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» 22–25 сент · обязательно', note:'Первые туры = контрольная!'},
-    {date:'2026-09-30', title:'ВсОШ, физика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» 29 сент – 2 окт · обязательно', note:'Первые туры = контрольная!'},
-    {date:'2026-10-03', title:'Физтех (МФТИ), физика', badge:'топ', kids:['v'], meta:'тур в день регистрации · обязательно', reg:'2026-10-03'},
-    {date:'2026-10-04', title:'Турнир Городов, математика', badge:'топ', kids:['v'], meta:'базовый осенний тур · желательно', note:'Сложная математическая олимпиада'},
-    {date:'2026-10-04', title:'Турнир Ломоносова, математика', badge:'отл', kids:['s','v'], meta:'настоятельно'},
-    {date:'2026-10-04', title:'Турнир Ломоносова, физика', badge:'отл', kids:['s','v'], meta:'настоятельно'},
-    {date:'2026-10-11', title:'Физтех (МФТИ), математика', badge:'отл', kids:['v'], meta:'настоятельно', note:'Относительно несложная из высокоуровневых', reg:'2026-10-10'},
-    {date:'2026-10-13', title:'ВсОШ, математика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» 13–16 окт · обязательно', note:'Первые туры = контрольная!'},
-    {date:'2026-10-15', title:'Формула Единства 3000, математика', badge:'отл', kids:['s','v'], meta:'отборочный этап до 5 ноя · доп'},
-    {date:'2026-11-16', title:'Формула Единства 3000, физика', badge:'доп', kids:['s','v'], meta:'отборочный этап до 29 ноя · доп'},
-    {date:'2026-11-22', title:'Интернет-олимпиада «Барсик», физика', badge:'отл', kids:['s','v'], meta:'первый дистанционный тур до 28 ноя · желательно', note:'Странная, но интересная'}
+    {fam:'vsosh', src:'ВсОШ астро|Физ', date:'2026-09-22', end:'2026-09-25', title:'ВсОШ, астрономия', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'rosatom', src:'Росатом (МИФИ)|Физ', date:'2026-09-27', title:'Росатом (МИФИ), физика', badge:'топ', kids:['s','v'], meta:'очный отборочный тур в Москве · настоятельно', note:'Типичная хорошая олимпиада'},
+    {fam:'vsosh', src:'ВсОШ физ|Физ', url:'https://olimpiada.ru/activity/74', date:'2026-09-29', end:'2026-10-02', title:'ВсОШ, физика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-04', title:'Физтех (МФТИ), физика — I тур', badge:'топ', kids:['v'], meta:'обязательно', reg:'2026-10-03', note:'Типичная хорошая олимпиада'},
+    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-04', title:'Турнир Городов, математика — базовый тур', badge:'топ', kids:['v'], meta:'осенний базовый тур · желательно', note:'Сложная математическая олимпиада'},
+    {fam:'turlomo', src:'Турнир Ломоносова|Мат', date:'2026-10-04', title:'Турнир Ломоносова, математика', badge:'отл', kids:['s','v'], meta:'настоятельно', note:'Интересное состязание по всем предметам'},
+    {fam:'turlomo', src:'Турнир Ломоносова|Физ', date:'2026-10-04', title:'Турнир Ломоносова, физика', badge:'отл', kids:['s','v'], meta:'настоятельно', note:'Интересное состязание по всем предметам'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-10-11', title:'Физтех (МФТИ), математика — I тур', badge:'отл', kids:['v'], meta:'настоятельно', reg:'2026-10-10', note:'Относительно несложная из высокоуровневых'},
+    {fam:'vsosh', src:'ВсОШ мат|Мат', date:'2026-10-13', end:'2026-10-16', title:'ВсОШ, математика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'formula', src:'Формула Единства 3000|Мат', date:'2026-10-15', end:'2026-11-05', title:'Формула Единства 3000, математика', badge:'отл', kids:['s','v'], meta:'отборочный этап, решать можно в любой день окна · доп'},
+    {fam:'mosh', src:'МОШ|Физ', date:'2026-10-15', end:'2026-10-22', title:'МОШ, физика — отборочный этап', badge:'топ', kids:['s','v'], meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
+    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-18', title:'Турнир Городов, математика — сложный тур', badge:'топ', kids:['v'], meta:'осенний сложный тур · желательно'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-10-23', end:'2026-10-25', title:'Шаг в будущее (Бауманка), физика — I волна', badge:'отл', kids:['s','v'], meta:'отборочный этап, идёт регистрация · желательно'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-25', title:'Физтех (МФТИ), физика — II тур', badge:'топ', kids:['v'], meta:'если прошёл первый тур', reg:'2026-10-24'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-11-01', title:'Физтех (МФТИ), математика — II тур', badge:'отл', kids:['v'], meta:'если прошёл первый тур', reg:'2026-10-31'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Мат', date:'2026-11-16', end:'2026-11-22', title:'Шаг в будущее (Бауманка), математика', badge:'доп', kids:['s','v'], meta:'отборочный этап, идёт регистрация · доп'},
+    {fam:'formula', src:'Формула Единства 3000|Физ', date:'2026-11-16', end:'2026-11-29', title:'Формула Единства 3000, физика', badge:'доп', kids:['s','v'], meta:'отборочный этап, решать можно в любой день окна · доп'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2026-11-22', end:'2026-11-28', title:'Барсик, физика — I дистанционный тур', badge:'отл', kids:['s','v'], meta:'желательно', note:'Странная, но интересная'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-12-05', end:'2026-12-07', title:'Шаг в будущее (Бауманка), физика — II волна', badge:'отл', kids:['s','v'], meta:'вторая волна отбора · желательно'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-01-17', end:'2027-01-23', title:'Барсик, физика — II дистанционный тур', badge:'отл', kids:['s','v'], meta:'если прошёл первый тур'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2027-02-13', title:'Физтех (МФТИ), физика — финал', badge:'топ', kids:['v'], meta:'если прошёл отборочные туры'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2027-02-14', title:'Физтех (МФТИ), математика — финал', badge:'отл', kids:['v'], meta:'если прошёл отборочные туры'},
+    {fam:'mosh', src:'МОШ|Физ', date:'2027-02-28', title:'МОШ, физика — заключительный этап', badge:'топ', kids:['s','v'], meta:'если прошёл отбор'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-03-13', title:'Барсик, физика — финал', badge:'отл', kids:['s','v'], meta:'если прошёл дистанционные туры'}
   ];
+
   var BY_DATE = {};
+  function pad2(n){ return n < 10 ? '0'+n : ''+n; }
+  function isoToDateEarly(iso){ var p = iso.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
 
   // Олимпиады без точной даты. expect — месяц, в котором ожидается расписание или старт.
   var PENDING = [
-    {title:'Росатом (МИФИ), физика', badge:'топ', kids:['s','v'], expect:'2026-09', when:'расписание ожидается в сентябре', meta:'настоятельно'},
-    {title:'Росатом (МИФИ), математика', badge:'отл', kids:['s','v'], expect:'2026-09', when:'расписание ожидается в сентябре', meta:'настоятельно'},
-    {title:'МОШ, физика', badge:'топ', kids:['s','v'], expect:'2026-10', when:'отборочный этап 15–22 октября', meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
-    {title:'Шаг в будущее (Бауманка), физика', badge:'отл', kids:['s','v'], expect:'2026-10', when:'I волна отбора 23–25 октября', meta:'желательно', note:'II волна — 5–7 декабря'},
-    {title:'Инженерная олимпиада, физика', badge:'топ', kids:['v'], expect:'2026-10', when:'старт ожидается в октябре', meta:'настоятельно', note:'Классные качественные задачи'},
-    {title:'Ломоносов, математика', badge:'топ', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре', meta:'настоятельно'},
-    {title:'Ломоносов, физика', badge:'топ', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре', meta:'желательно'},
-    {title:'Надежда энергетики (МЭИ), физика', badge:'доп', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре', meta:'желательно'},
-    {title:'Надежда энергетики (МЭИ), математика', badge:'доп', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре', meta:'доп'},
-    {title:'Криптография Верченко, математика', badge:'отл', kids:['v'], expect:'2026-10', when:'расписание ожидается в октябре', meta:'доп'},
-    {title:'Шаг в будущее (Бауманка), математика', badge:'доп', kids:['s','v'], expect:'2026-11', when:'отборочный этап 16–22 ноября', meta:'доп'},
-    {title:'ПВГ (Покори Воробьёвы горы, МГУ), математика', badge:'топ', kids:['s','v'], expect:'2026-12', when:'старт в декабре', meta:'доп'},
-    {title:'ПВГ (Покори Воробьёвы горы, МГУ), физика', badge:'топ', kids:['s','v'], expect:'2026-12', when:'старт в декабре', meta:'доп'},
-    {title:'ФСБ, физика', badge:'доп', kids:['v'], expect:'2026-12', when:'следующий тур ожидается в декабре', meta:'желательно'},
-    {title:'ОММО, математика', badge:'отл', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'настоятельно', note:'Не сложная, удобная для поступления'},
-    {title:'ОММО, физика', badge:'доп', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'доп'},
-    {title:'МОШ, математика', badge:'топ', kids:['s','v'], expect:null, when:'расписание пока не объявлено', meta:'обязательно'},
-    {title:'ФСБ, математика', badge:'отл', kids:['v'], expect:null, when:'в этом году не проводится', meta:'—'}
+    {src:'Росатом (МИФИ)|Мат', title:'Росатом (МИФИ), математика', badge:'отл', kids:['s','v'], expect:'2026-09', when:'расписание ожидается в сентябре 2026', meta:'настоятельно'},
+    {src:'Инженерная олимпиада|Физ', title:'Инженерная олимпиада, физика', badge:'топ', kids:['v'], expect:'2026-10', when:'старт ожидается в октябре', meta:'настоятельно', note:'Классные качественные задачи'},
+    {src:'Ломоносов|Мат', url:'https://olimpiada.ru/activity/348', title:'Ломоносов, математика', badge:'топ', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре 2026', meta:'настоятельно'},
+    {src:'Ломоносов|Физ', title:'Ломоносов, физика', badge:'топ', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре 2026', meta:'желательно'},
+    {src:'Надежда энергетики (МЭИ)|Физ', url:'https://olimpiada.ru/activity/5332', title:'Надежда энергетики (МЭИ), физика', badge:'доп', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре 2026', meta:'желательно'},
+    {src:'Надежда энергетики (МЭИ)|Мат', title:'Надежда энергетики (МЭИ), математика', badge:'доп', kids:['s','v'], expect:'2026-10', when:'расписание ожидается в октябре 2026', meta:'доп'},
+    {src:'Криптография Верченко|Мат', title:'Криптография Верченко, математика', badge:'отл', kids:['v'], expect:'2026-10', when:'расписание ожидается в октябре 2026', meta:'доп'},
+    {src:'ПВГ (Покори Воробьёвы горы - МГУ)|Мат', title:'ПВГ (Покори Воробьёвы горы, МГУ), математика', badge:'топ', kids:['s','v'], expect:'2026-12', when:'старт в декабре', meta:'доп'},
+    {src:'ПВГ (Покори Воробьёвы горы - МГУ)|Физ', url:'https://olimpiada.ru/activity/166', title:'ПВГ (Покори Воробьёвы горы, МГУ), физика', badge:'топ', kids:['s','v'], expect:'2026-12', when:'старт в декабре', meta:'доп'},
+    {src:'ФСБ|Физ', title:'ФСБ, физика', badge:'доп', kids:['v'], expect:'2026-12', when:'следующее соревнование ожидается в декабре 2026', meta:'желательно'},
+    {src:'ОММО|Мат', title:'ОММО, математика', badge:'отл', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'настоятельно', note:'Не сложная, удобная для поступления'},
+    {src:'ОММО|Физ', title:'ОММО, физика', badge:'доп', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'доп'},
+    {src:'МОШ|Мат', url:'https://mos.olimpiada.ru/', title:'МОШ, математика', badge:'топ', kids:['s','v'], expect:null, when:'ожидается расписание состязания', meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
+    {src:'ФСБ|Мат', title:'ФСБ, математика', badge:'отл', kids:['v'], expect:null, when:'в этом году олимпиада не проводится', meta:'—'}
   ];
+
+  // Снимок статусов из исходной таблицы на момент последней ручной сверки
+  var SRC_SNAPSHOT = {
+    'ВсОШ астро|Физ':'Школьный этап на платформе «Сириуса» пройдет с 22 по 25 сентября',
+    'ВсОШ физ|Физ':'Школьный этап на платформе «Сириуса» пройдет с 29 сентября по 2 октября',
+    'ВсОШ мат|Мат':'Школьный этап на платформе «Сириуса» пройдет с 13 по 16 октября',
+    'Физтех (МФТИ)|Физ':'Регистрация на I тур открыта до 3 октября, состязание состоится 4 октября',
+    'Физтех (МФТИ)|Мат':'Регистрация на I тур открыта до 10 октября, состязание состоится 11 октября',
+    'Турнир Городов|Мат':'Базовый осенний тур состоится 4 октября',
+    'Турнир Ломоносова|Мат':'Состоится 4 октября',
+    'Турнир Ломоносова|Физ':'Состоится 4 октября',
+    'Интернет олимпиада (aka_Барсик)|Физ':'Первый дистанционный тур пройдет с 22 по 28 ноября',
+    'Росатом (МИФИ)|Физ':'Очный тур в Москве состоится 27 сентября',
+    'Росатом (МИФИ)|Мат':'Расписание следующей олимпиады ожидается в сентябре 2026 года',
+    'МОШ|Физ':'Отборочный этап пройдет с 15 по 22 октября',
+    'МОШ|Мат':'Ожидается расписание состязания',
+    'Шаг в будущее (Бауманка)|Физ':'I волна отбора состоится с 23 по 25 октября. Идет регистрация',
+    'Шаг в будущее (Бауманка)|Мат':'Отборочный этап состоится с 16 по 22 ноября. Идет регистрация',
+    'Формула Единства 3000|Мат':'Отборочный этап пройдет с 15 октября по 5 ноября',
+    'Формула Единства 3000|Физ':'Отборочный этап пройдет с 16 по 29 ноября',
+    'Инженерная олимпиада|Физ':'Следующее соревнование начнется в октябре',
+    'Ломоносов|Физ':'Расписание следующей олимпиады ожидается в октябре 2026 года',
+    'Ломоносов|Мат':'Расписание следующей олимпиады ожидается в октябре 2026 года',
+    'Надежда энергетики (МЭИ)|Физ':'Расписание следующей олимпиады ожидается в октябре 2026 года',
+    'Надежда энергетики (МЭИ)|Мат':'Расписание следующей олимпиады ожидается в октябре 2026 года',
+    'Криптография Верченко|Мат':'Расписание следующей олимпиады ожидается в октябре 2026 года',
+    'ПВГ (Покори Воробьёвы горы - МГУ)|Мат':'Следующее соревнование начнется в декабре',
+    'ПВГ (Покори Воробьёвы горы - МГУ)|Физ':'Следующее соревнование начнется в декабре',
+    'ФСБ|Физ':'Опубликованы итоги; следующее соревнование ожидается в декабре 2026 года',
+    'ФСБ|Мат':'В этом году олимпиада не проводится',
+    'ОММО|Мат':'Расписание следующей олимпиады ожидается в январе 2027 года',
+    'ОММО|Физ':'Расписание следующей олимпиады ожидается в январе 2027 года'
+  };
+
+  function eventUrl(e){ return e.url || (FAM[e.fam] && FAM[e.fam].url) || null; }
+  function titleHtml(e){
+    var u = eventUrl(e);
+    return u ? '<a class="olink" href="' + u + '" target="_blank" rel="noopener">' + e.title + ' ↗</a>' : e.title;
+  }
+
   var PENDING_BY_MONTH = {};
   PENDING.forEach(function(p){
     var key = p.expect || 'none';
     (PENDING_BY_MONTH[key] = PENDING_BY_MONTH[key] || []).push(p);
   });
-  EVENTS.forEach(function(e){ (BY_DATE[e.date] = BY_DATE[e.date] || []).push(e); });
+
+  EVENTS.forEach(function(e){
+    var cur = isoToDateEarly(e.date);
+    var last = isoToDateEarly(e.end || e.date);
+    while (cur <= last){
+      var iso = cur.getFullYear() + '-' + pad2(cur.getMonth()+1) + '-' + pad2(cur.getDate());
+      (BY_DATE[iso] = BY_DATE[iso] || []).push(e);
+      cur = new Date(cur.getTime() + 86400000);
+    }
+  });
   var REG_BY_DATE = {};
   EVENTS.forEach(function(e){ if (e.reg){ (REG_BY_DATE[e.reg] = REG_BY_DATE[e.reg] || []).push(e); } });
 
   var MONTHS = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+  var MONTHS_GEN = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
   var today = new Date();
 
   var calMonths = document.getElementById('calMonths');
@@ -435,11 +545,23 @@
       var num = document.createElement('span');
       num.textContent = d;
       cell.appendChild(num);
-      var dayEvents = BY_DATE[iso];
-      var regHere = REG_BY_DATE[iso];
+      var dayEvents = (BY_DATE[iso] || []).filter(function(e){ return famVisible(e.fam); });
+      if (!dayEvents.length) dayEvents = null;
+      var regHere = (REG_BY_DATE[iso] || []).filter(function(e){ return famVisible(e.fam); });
+      if (!regHere.length) regHere = null;
       var pureReg = regHere ? regHere.filter(function(e){ return e.date !== iso; }) : [];
       if (dayEvents){
         cell.classList.add('has-event');
+        var fams = [];
+        dayEvents.forEach(function(e){ if (fams.indexOf(e.fam) === -1) fams.push(e.fam); });
+        var bgs = fams.map(function(f){ return (FAM[f] || {}).bg || 'var(--olymp-bg)'; });
+        if (bgs.length === 1){
+          cell.style.background = bgs[0];
+        } else {
+          var step = 100 / bgs.length, stops = [];
+          bgs.forEach(function(c, k){ stops.push(c + ' ' + (k*step) + '%', c + ' ' + ((k+1)*step) + '%'); });
+          cell.style.background = 'linear-gradient(135deg,' + stops.join(',') + ')';
+        }
         var row = document.createElement('span');
         row.className = 'drow';
         var hasS = dayEvents.some(function(e){ return e.kids.indexOf('s')>-1; });
@@ -449,9 +571,16 @@
         cell.appendChild(row);
       }
       if (regHere && regHere.length){
+        var regFam = FAM[regHere[0].fam] || {fg:'var(--olymp)', bg:'var(--olymp-bg)'};
+        if (!dayEvents){
+          // день только с дедлайном: полоски цвета своей олимпиады + пунктирная рамка
+          cell.style.backgroundImage = 'repeating-linear-gradient(45deg,' + regFam.bg + ' 0 5px, transparent 5px 10px)';
+        }
+        cell.style.boxShadow = 'inset 0 0 0 2px ' + regFam.fg;
         var flag = document.createElement('span');
         flag.className = 'regflag';
         flag.textContent = '⏰';
+        flag.style.color = regFam.fg;
         cell.appendChild(flag);
         cell.classList.add('has-reg');
       }
@@ -471,7 +600,8 @@
       var html = '<div class="pend-head">Ожидается в этом месяце</div><ul>';
       pend.forEach(function(p){
         var who = p.kids.map(function(k){ return kidName[k]; }).join(' и ');
-        html += '<li><b>' + p.title + '</b> — ' + p.when + ' · ' + who + '</li>';
+        var pu = p.url || '';
+        html += '<li><b>' + (pu ? '<a class="olink" href="'+pu+'" target="_blank" rel="noopener">'+p.title+' ↗</a>' : p.title) + '</b> — ' + p.when + ' · ' + who + '</li>';
       });
       html += '</ul>';
       box.innerHTML = html;
@@ -484,7 +614,7 @@
   function renderMonths(){
     calMonths.innerHTML = '';
     var y = today.getFullYear(), m = today.getMonth();
-    for (var i=0; i<6; i++){
+    for (var i=0; i<9; i++){
       renderMonth(y, m);
       m++; if (m>11){ m=0; y++; }
     }
@@ -499,33 +629,52 @@
 
   function fmtDate(iso){
     var p = iso.split('-');
-    return +p[2] + ' ' + MONTHS[+p[1]-1] + ' ' + p[0];
+    return +p[2] + ' ' + MONTHS_GEN[+p[1]-1] + ' ' + p[0];
+  }
+  function fmtRange(e){
+    if (!e.end || e.end === e.date) return fmtDate(e.date);
+    var a = e.date.split('-'), b = e.end.split('-');
+    if (a[1] === b[1] && a[0] === b[0]){
+      return +a[2] + '–' + (+b[2]) + ' ' + MONTHS_GEN[+a[1]-1] + ' ' + a[0];
+    }
+    return +a[2] + ' ' + MONTHS_GEN[+a[1]-1] + ' – ' + (+b[2]) + ' ' + MONTHS_GEN[+b[1]-1] + ' ' + b[0];
   }
 
   function openSheet(iso, evts, pureReg){
     sheetTitle.textContent = fmtDate(iso);
     sheetBody.innerHTML = '';
     evts.forEach(function(e){
+      var c = FAM[e.fam] || {fg:'var(--olymp)', bg:'var(--olymp-bg)', label:''};
       var row = document.createElement('div');
-      row.className = 'orow';
+      row.className = 'orow famrow';
+      row.style.borderLeft = '4px solid ' + c.fg;
       var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
-      var regHtml = (e.reg === iso) ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>' : '';
+      var regHtml = '';
+      if (e.reg){
+        regHtml = (e.reg === iso)
+          ? '<div class="regbadge now">⏰ Сегодня последний день регистрации</div>'
+          : '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>';
+      }
+      var rangeHtml = (e.end && e.end !== e.date) ? '<div class="orange">📆 Окно проведения: '+fmtRange(e)+'</div>' : '';
       row.innerHTML =
-        '<div><div class="otitle">'+e.title+'<span class="obadge">'+e.badge+'</span></div>' +
-        regHtml +
+        '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span></div>' +
+        regHtml + rangeHtml +
         '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
         (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
         '</div>';
       sheetBody.appendChild(row);
     });
     (pureReg||[]).forEach(function(e){
+      var c = FAM[e.fam] || {fg:'var(--olymp)', bg:'var(--olymp-bg)'};
       var row = document.createElement('div');
-      row.className = 'orow';
+      row.className = 'orow famrow regrow';
+      row.style.borderLeft = '4px dashed ' + c.fg;
       var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
       row.innerHTML =
-        '<div><div class="otitle">'+e.title+'<span class="obadge">'+e.badge+'</span></div>' +
-        '<div class="regbadge">⏰ Последний день регистрации</div>' +
-        '<div class="ometa">'+kidsHtml+'тур — '+fmtDate(e.date)+'</div>' +
+        '<div><div class="regbadge now">⏰ Последний день регистрации</div>' +
+        '<div class="otitle">'+titleHtml(e)+'</div>' +
+        '<div class="ometa">'+kidsHtml+'сам тур — '+fmtRange(e)+'</div>' +
+        '<div class="regwarn">Не зарегистрируетесь сегодня — на тур не пустят</div>' +
         '</div>';
       sheetBody.appendChild(row);
     });
@@ -543,22 +692,36 @@
   function renderAllList(){
     var container = document.getElementById('allList');
     container.innerHTML = '';
-    var dates = Object.keys(BY_DATE).sort();
-    dates.forEach(function(iso){
+    var sorted = EVENTS.filter(function(e){ return famVisible(e.fam); }).sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    var groups = {}, order = [];
+    sorted.forEach(function(e){
+      var key = e.date + '|' + (e.end || e.date);
+      if (!groups[key]){ groups[key] = []; order.push({key:key, e:e}); }
+      groups[key].push(e);
+    });
+    order.forEach(function(g){
       var section = document.createElement('section');
       section.className = 'day';
       var h2 = document.createElement('h2');
-      h2.textContent = fmtDate(iso);
+      h2.textContent = fmtRange(g.e);
+      if (g.e.end && g.e.end !== g.e.date){
+        var small = document.createElement('small');
+        small.textContent = ' окно проведения';
+        small.style.cssText = 'font-weight:400;font-size:12px;color:var(--muted)';
+        h2.appendChild(small);
+      }
       section.appendChild(h2);
       var body = document.createElement('div');
       body.style.padding = '4px 16px 10px';
-      BY_DATE[iso].forEach(function(e){
+      groups[g.key].forEach(function(e){
+        var c = FAM[e.fam] || {fg:'var(--olymp)', bg:'var(--olymp-bg)'};
         var row = document.createElement('div');
-        row.className = 'orow';
+        row.className = 'orow famrow';
+        row.style.borderLeft = '4px solid ' + c.fg;
         var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
-        var regHtml = (e.reg === iso) ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>' : '';
+        var regHtml = e.reg ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>' : '';
         row.innerHTML =
-          '<div><div class="otitle">'+e.title+'<span class="obadge">'+e.badge+'</span></div>' +
+          '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span></div>' +
           regHtml +
           '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
           (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
@@ -599,8 +762,10 @@
       html += '<div class="alert tomorrow"><h3>⏰ Завтра</h3><ul>';
       tomorrow.forEach(function(it){
         var who = it.e.kids.map(function(k){ return kidName[k]; }).join(' и ');
+        var isRange = it.kind === 'tour' && it.e.end && it.e.end !== it.e.date;
         html += '<li><b>' + it.e.title + '</b> — ' + who +
-                (it.kind === 'reg' ? ' · последний день регистрации' : '') + '</li>';
+                (it.kind === 'reg' ? ' · последний день регистрации'
+                 : isRange ? ' · открывается окно до ' + fmtDate(it.e.end) : '') + '</li>';
       });
       html += '</ul></div>';
     }
@@ -609,8 +774,10 @@
       week.forEach(function(w){
         var it = w.it;
         var who = it.e.kids.map(function(k){ return kidName[k]; }).join(' и ');
+        var isRange2 = it.kind === 'tour' && it.e.end && it.e.end !== it.e.date;
         html += '<li>через ' + w.d + ' дн. — <b>' + it.e.title + '</b>, ' + who +
-                (it.kind === 'reg' ? ' · регистрация' : '') + '</li>';
+                (it.kind === 'reg' ? ' · регистрация'
+                 : isRange2 ? ' · окно ' + fmtRange(it.e) : '') + '</li>';
       });
       html += '</ul></div>';
     }
@@ -623,8 +790,8 @@
   function buildICS(){
     var lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//raspisanie//olympiads//RU','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
     var stamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-    function addEvent(uid, iso, summary, desc){
-      var next = new Date(isoToDate(iso).getTime() + 86400000);
+    function addEvent(uid, iso, summary, desc, endIsoIn){
+      var next = new Date(isoToDate(endIsoIn || iso).getTime() + 86400000);
       var endIso = next.getFullYear() + '-' + pad(next.getMonth()+1) + '-' + pad(next.getDate());
       lines.push('BEGIN:VEVENT');
       lines.push('UID:' + uid + '@raspisanie');
@@ -642,7 +809,9 @@
     }
     EVENTS.forEach(function(e, i){
       var who = e.kids.map(function(k){ return kidName[k]; }).join(' и ');
-      addEvent('ev'+i, e.date, e.title + ' (' + who + ')', e.meta + (e.note ? ' — ' + e.note : ''));
+      var desc = e.meta + (e.note ? ' — ' + e.note : '');
+      if (e.end && e.end !== e.date) desc = 'Окно проведения: ' + fmtRange(e) + '. ' + desc;
+      addEvent('ev'+i, e.date, e.title + ' (' + who + ')', desc, e.end);
       if (e.reg && e.reg !== e.date){
         addEvent('reg'+i, e.reg, 'Регистрация: ' + e.title, 'Последний день регистрации. Тур — ' + fmtDate(e.date));
       }
@@ -692,7 +861,7 @@
         row.className = 'orow';
         var kidsHtml = p.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
         row.innerHTML =
-          '<div><div class="otitle">' + p.title + '<span class="obadge">' + p.badge + '</span></div>' +
+          '<div><div class="otitle">' + titleHtml(p) + '<span class="obadge">' + p.badge + '</span></div>' +
           '<div class="ometa">' + kidsHtml + p.when + ' · ' + p.meta + '</div>' +
           (p.note ? '<div class="onote">' + p.note + '</div>' : '') +
           '</div>';
@@ -703,10 +872,195 @@
     });
   }
 
+  var ACTIVE_FAMS = null; // null = показаны все
+
+  function famVisible(f){ return !ACTIVE_FAMS || ACTIVE_FAMS.indexOf(f) > -1; }
+
+  function renderFamLegend(){
+    var el = document.getElementById('famLegend');
+    if (!el) return;
+    var used = [];
+    EVENTS.forEach(function(e){ if (used.indexOf(e.fam) === -1) used.push(e.fam); });
+    el.innerHTML = '';
+    var all = document.createElement('button');
+    all.className = 'famchip all' + (ACTIVE_FAMS ? '' : ' on');
+    all.textContent = 'Все';
+    all.addEventListener('click', function(){ ACTIVE_FAMS = null; refreshFiltered(); });
+    el.appendChild(all);
+    used.forEach(function(f){
+      var c = FAM[f];
+      if (!c) return;
+      var on = famVisible(f);
+      var b = document.createElement('button');
+      b.className = 'famchip' + (on ? ' on' : '');
+      b.style.background = on ? c.bg : 'transparent';
+      b.style.color = on ? c.fg : 'var(--muted)';
+      b.style.borderColor = on ? c.fg : 'var(--line)';
+      b.innerHTML = '<i class="famdot" style="background:' + (on ? c.fg : '#c7cdc8') + '"></i>' + c.label;
+      b.addEventListener('click', function(){
+        if (!ACTIVE_FAMS) ACTIVE_FAMS = used.slice();
+        var i = ACTIVE_FAMS.indexOf(f);
+        if (i > -1) ACTIVE_FAMS.splice(i, 1); else ACTIVE_FAMS.push(f);
+        if (!ACTIVE_FAMS.length || ACTIVE_FAMS.length === used.length) ACTIVE_FAMS = null;
+        refreshFiltered();
+      });
+      el.appendChild(b);
+    });
+  }
+
+  function refreshFiltered(){
+    renderFamLegend();
+    renderMonths();
+    renderRegSummary();
+    renderAllList();
+  }
+
+  function renderRegSummary(){
+    var el = document.getElementById('regSummary');
+    if (!el) return;
+    var withReg = EVENTS.filter(function(e){ return e.reg && famVisible(e.fam); })
+                        .sort(function(a,b){ return a.reg < b.reg ? -1 : 1; });
+    if (!withReg.length){ el.innerHTML = ''; return; }
+    var html = '<div class="cal-card"><div class="cal-month-label">⏰ Регистрация обязательна</div>';
+    withReg.forEach(function(e){
+      var c = FAM[e.fam] || {fg:'var(--olymp)', bg:'var(--olymp-bg)'};
+      var d = daysUntil(e.reg);
+      var state = d < 0 ? 'прошло' : d === 0 ? 'сегодня!' : d === 1 ? 'завтра!' : 'через ' + d + ' дн.';
+      html += '<div class="regline" style="border-left:4px solid '+c.fg+'">' +
+                '<div class="regline-top"><b>' + titleHtml(e) + '</b></div>' +
+                '<div class="regline-bot">' +
+                  '<span class="regchip" style="background:'+c.bg+';color:'+c.fg+'">до ' + fmtDate(e.reg) + '</span>' +
+                  '<span class="regwhen' + (d >= 0 && d <= 1 ? ' hot' : '') + '">' + state + '</span>' +
+                  '<span class="regtour">тур ' + fmtRange(e) + '</span>' +
+                '</div>' +
+              '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  // ---- ежедневная сверка с исходной таблицей ----
+  function parseCSV(text){
+    var rows = [], row = [], cell = '', q = false;
+    for (var i=0; i<text.length; i++){
+      var ch = text[i];
+      if (q){
+        if (ch === '"'){ if (text[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+        else cell += ch;
+      } else {
+        if (ch === '"') q = true;
+        else if (ch === ','){ row.push(cell); cell = ''; }
+        else if (ch === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+        else if (ch !== '\r') cell += ch;
+      }
+    }
+    if (cell.length || row.length){ row.push(cell); rows.push(row); }
+    return rows;
+  }
+
+  function findCol(header, needle){
+    for (var i=0; i<header.length; i++){
+      if ((header[i]||'').toLowerCase().indexOf(needle) === 0) return i;
+    }
+    return -1;
+  }
+
+  function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+  function renderSync(rows, checkedAt, failed){
+    var el = document.getElementById('syncBlock');
+    if (!el) return;
+    var stamp = checkedAt ? new Date(+checkedAt) : null;
+    var when = stamp ? (pad2(stamp.getDate())+'.'+pad2(stamp.getMonth()+1)+'.'+stamp.getFullYear()+' '+pad2(stamp.getHours())+':'+pad2(stamp.getMinutes())) : '—';
+    var html = '<div class="cal-card"><div class="cal-month-label">Сверка с таблицей</div>';
+
+    if (failed || !rows){
+      html += '<p class="syncnote">Не удалось прочитать таблицу из браузера — показаны встроенные данные от последней ручной сверки. ' +
+              '<a class="olink" href="' + SHEET_URL + '" target="_blank" rel="noopener">Открыть таблицу ↗</a></p>';
+    } else {
+      var head = null, iName=-1, iSubj=-1, iStatus=-1, iDate=-1;
+      for (var r=0; r<rows.length && r<12; r++){
+        var test = rows[r].map(function(c){ return (c||'').toLowerCase(); });
+        if (test.some(function(c){ return c.indexOf('олимпиада') === 0; })){
+          head = rows[r];
+          iName = findCol(head, 'олимпиада');
+          iSubj = findCol(head, 'ф/м');
+          iStatus = findCol(head, 'статус');
+          iDate = findCol(head, 'дата этапа');
+          break;
+        }
+      }
+      var diffs = [];
+      if (head && iName > -1 && iSubj > -1 && iStatus > -1){
+        for (var k=0; k<rows.length; k++){
+          var row = rows[k];
+          if (!row || row.length <= iStatus) continue;
+          var key = (row[iName]||'').trim() + '|' + (row[iSubj]||'').trim();
+          if (!(key in SRC_SNAPSHOT)) continue;
+          var now = (row[iStatus]||'').trim().replace(/\s+/g,' ').replace(/\s*→\s*$/,'');
+          var was = SRC_SNAPSHOT[key];
+          if (now && now !== was){
+            diffs.push({name:(row[iName]||'').trim(), subj:(row[iSubj]||'').trim(), was:was, now:now, date:(iDate>-1 ? (row[iDate]||'').trim() : '')});
+          }
+        }
+      }
+      if (!head){
+        html += '<p class="syncnote">Таблица прочитана, но структура изменилась — сверьте вручную. <a class="olink" href="' + SHEET_URL + '" target="_blank" rel="noopener">Открыть ↗</a></p>';
+      } else if (!diffs.length){
+        html += '<p class="syncnote ok">✓ Изменений нет: расписание в таблице совпадает с тем, что показано здесь.</p>';
+      } else {
+        html += '<p class="syncnote warn">Изменилось строк: ' + diffs.length + '. Данные ниже обновлены в таблице, но ещё не перенесены в календарь.</p><ul class="synclist">';
+        diffs.forEach(function(d){
+          html += '<li><b>' + d.name + ' (' + d.subj + ')</b>' +
+                  (d.date && d.date.indexOf('dd.') !== 0 ? ' · дата этапа ' + d.date : '') +
+                  '<div class="syncwas">было: ' + d.was + '</div>' +
+                  '<div class="syncnow">стало: ' + d.now + '</div></li>';
+        });
+        html += '</ul>';
+      }
+    }
+    html += '<p class="syncstamp">Последняя проверка: ' + when + ' · проверяется раз в сутки при открытии</p>';
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function syncSource(force){
+    var lastTs = lsGet('olymp.syncTs');
+    var cached = lsGet('olymp.syncRows');
+    var dayMs = 86400000;
+    var fresh = lastTs && (Date.now() - (+lastTs) < dayMs);
+
+    if (fresh && cached && !force){
+      try { renderSync(JSON.parse(cached), lastTs, false); return; } catch(e){}
+    }
+    if (cached && lastTs){
+      try { renderSync(JSON.parse(cached), lastTs, false); } catch(e){}
+    }
+    fetch(SHEET_CSV + '&t=' + Date.now())
+      .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.text(); })
+      .then(function(txt){
+        var rows = parseCSV(txt);
+        var ts = String(Date.now());
+        lsSet('olymp.syncRows', JSON.stringify(rows));
+        lsSet('olymp.syncTs', ts);
+        renderSync(rows, ts, false);
+      })
+      .catch(function(){
+        if (!cached) renderSync(null, lastTs, true);
+      });
+  }
+
+  var syncBtn = document.getElementById('syncNow');
+  if (syncBtn) syncBtn.addEventListener('click', function(){ syncSource(true); });
+
   buildAlerts();
   renderMonths();
+  renderFamLegend();
+  renderRegSummary();
   renderAllList();
   renderPendingList();
+  syncSource(false);
 </script>
 </body>
 </html>
