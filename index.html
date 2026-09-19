@@ -97,8 +97,10 @@
   .regwhen{font-size:12px;color:var(--muted)}
   .regwhen.hot{color:#fff;background:#a9432f;padding:2px 8px;border-radius:999px;font-weight:700}
   .regtour{font-size:12px;color:var(--muted)}
-  .famlegend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-  .famchip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit}
+  .famlegend{display:flex;flex-wrap:nowrap;gap:5px;margin:10px 0 12px;overflow-x:auto;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .famlegend::-webkit-scrollbar{display:none}
+  .famchip{display:inline-flex;align-items:center;gap:4px;flex:none;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600;line-height:1.5;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;white-space:nowrap}
+  .famchip .famdot{width:6px;height:6px}
   .famchip.all{border-color:var(--ink)}
   .famchip.all.on{background:var(--ink);color:#fff}
   .olink{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
@@ -317,9 +319,8 @@
     <div class="wrap">
       <header>
         <h1>Олимпиады</h1>
-        <p>Листайте вниз по месяцам · точка на дне — своя олимпиада, тап открывает подробности</p>
       </header>
-      <div class="alertSlot"></div>
+      <div class="famlegend" id="famLegend"></div>
 
       <div class="cal-weekdays">
         <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
@@ -330,7 +331,6 @@
         <span><i class="lv"></i>Ваня</span>
         <span>⏰ последний день регистрации</span>
       </div>
-      <div class="famlegend" id="famLegend"></div>
       <div id="regSummary"></div>
     </div>
   </section>
@@ -341,7 +341,6 @@
         <h1>Все олимпиады</h1>
         <p>Физика и математика, по датам</p>
       </header>
-      <div class="alertSlot"></div>
 
       <div id="allList"></div>
 
