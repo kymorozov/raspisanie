@@ -91,6 +91,12 @@
   .cal-day .regflag{position:absolute;top:1px;right:3px;font-size:9px;line-height:1}
   .cal-day .subjmark{position:absolute;top:2px;left:4px;font-size:8.5px;font-weight:800;color:var(--muted);letter-spacing:.4px;line-height:1}
   .subjchip{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;font-size:10.5px;font-weight:700;background:var(--paper);color:var(--muted);vertical-align:1px}
+  .modechip{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;font-size:10.5px;font-weight:700;vertical-align:1px}
+  .modechip.offline{background:#fdeceb;color:#a9432f}
+  .modechip.online{background:#e8eef7;color:#3b5a80}
+  .modechip.school{background:#eaf1e8;color:#3f6b45}
+  .place{font-size:12.5px;color:var(--ink);margin-top:3px;line-height:1.35}
+  .place.regplace{color:#8a5a17}
   .regline{padding:8px 0 8px 10px;margin-bottom:8px}
   .regline:last-child{margin-bottom:0}
   .regline-top{font-size:13.5px}
@@ -406,30 +412,30 @@
   };
 
   var EVENTS = [
-    {fam:'vsosh', src:'ВсОШ астро|Физ', disc:'Астро', date:'2026-09-22', end:'2026-09-25', title:'ВсОШ, астрономия', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
-    {fam:'rosatom', src:'Росатом (МИФИ)|Физ', date:'2026-09-27', title:'Росатом (МИФИ), физика', badge:'топ', kids:['s','v'], meta:'очный отборочный тур в Москве · настоятельно', note:'Типичная хорошая олимпиада'},
-    {fam:'vsosh', src:'ВсОШ физ|Физ', url:'https://olimpiada.ru/activity/74', date:'2026-09-29', end:'2026-10-02', title:'ВсОШ, физика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-04', title:'Физтех (МФТИ), физика — I тур', badge:'топ', kids:['v'], meta:'обязательно', reg:'2026-10-03', note:'Типичная хорошая олимпиада'},
-    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-04', title:'Турнир Городов, математика — базовый тур', badge:'топ', kids:['v'], meta:'осенний базовый тур · желательно', note:'Сложная математическая олимпиада'},
-    {fam:'turlomo', src:'Турнир Ломоносова|Мат', date:'2026-10-04', title:'Турнир Ломоносова, математика', badge:'отл', kids:['s','v'], meta:'настоятельно', note:'Интересное состязание по всем предметам'},
-    {fam:'turlomo', src:'Турнир Ломоносова|Физ', date:'2026-10-04', title:'Турнир Ломоносова, физика', badge:'отл', kids:['s','v'], meta:'настоятельно', note:'Интересное состязание по всем предметам'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-10-11', title:'Физтех (МФТИ), математика — I тур', badge:'отл', kids:['v'], meta:'настоятельно', reg:'2026-10-10', note:'Относительно несложная из высокоуровневых'},
-    {fam:'vsosh', src:'ВсОШ мат|Мат', date:'2026-10-13', end:'2026-10-16', title:'ВсОШ, математика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
-    {fam:'formula', src:'Формула Единства 3000|Мат', date:'2026-10-15', end:'2026-11-05', title:'Формула Единства 3000, математика', badge:'отл', kids:['s','v'], meta:'отборочный этап, решать можно в любой день окна · доп'},
-    {fam:'mosh', src:'МОШ|Физ', date:'2026-10-15', end:'2026-10-22', title:'МОШ, физика — отборочный этап', badge:'топ', kids:['s','v'], meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
-    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-18', title:'Турнир Городов, математика — сложный тур', badge:'топ', kids:['v'], meta:'осенний сложный тур · желательно'},
-    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-10-23', end:'2026-10-25', title:'Шаг в будущее (Бауманка), физика — I волна', badge:'отл', kids:['s','v'], meta:'отборочный этап, идёт регистрация · желательно'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-25', title:'Физтех (МФТИ), физика — II тур', badge:'топ', kids:['v'], meta:'если прошёл первый тур', reg:'2026-10-24'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-11-01', title:'Физтех (МФТИ), математика — II тур', badge:'отл', kids:['v'], meta:'если прошёл первый тур', reg:'2026-10-31'},
-    {fam:'step', src:'Шаг в будущее (Бауманка)|Мат', date:'2026-11-16', end:'2026-11-22', title:'Шаг в будущее (Бауманка), математика', badge:'доп', kids:['s','v'], meta:'отборочный этап, идёт регистрация · доп'},
-    {fam:'formula', src:'Формула Единства 3000|Физ', date:'2026-11-16', end:'2026-11-29', title:'Формула Единства 3000, физика', badge:'доп', kids:['s','v'], meta:'отборочный этап, решать можно в любой день окна · доп'},
-    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2026-11-22', end:'2026-11-28', title:'Барсик, физика — I дистанционный тур', badge:'отл', kids:['s','v'], meta:'желательно', note:'Странная, но интересная'},
-    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-12-05', end:'2026-12-07', title:'Шаг в будущее (Бауманка), физика — II волна', badge:'отл', kids:['s','v'], meta:'вторая волна отбора · желательно'},
-    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-01-17', end:'2027-01-23', title:'Барсик, физика — II дистанционный тур', badge:'отл', kids:['s','v'], meta:'если прошёл первый тур'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2027-02-13', title:'Физтех (МФТИ), физика — финал', badge:'топ', kids:['v'], meta:'если прошёл отборочные туры'},
-    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2027-02-14', title:'Физтех (МФТИ), математика — финал', badge:'отл', kids:['v'], meta:'если прошёл отборочные туры'},
-    {fam:'mosh', src:'МОШ|Физ', date:'2027-02-28', title:'МОШ, физика — заключительный этап', badge:'топ', kids:['s','v'], meta:'если прошёл отбор'},
-    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-03-13', title:'Барсик, физика — финал', badge:'отл', kids:['s','v'], meta:'если прошёл дистанционные туры'}
+    {fam:'vsosh', src:'ВсОШ астро|Физ', disc:'Астро', date:'2026-09-22', end:'2026-09-25', title:'ВсОШ, астрономия', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', mode:'school', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'rosatom', src:'Росатом (МИФИ)|Физ', date:'2026-09-27', title:'Росатом (МИФИ), физика', badge:'топ', kids:['s','v'], meta:'очный отборочный тур · настоятельно', mode:'offline', venue:'НИЯУ МИФИ, Каширское шоссе, 31', time:'время начала публикуют на org.mephi.ru за несколько дней', regnote:'Регистрация на org.mephi.ru до дня тура. Если не получилось — приезжайте заранее, зарегистрируют на месте', doc:'Нужен паспорт, семиклассникам — свидетельство о рождении', note:'Типичная хорошая олимпиада'},
+    {fam:'vsosh', src:'ВсОШ физ|Физ', url:'https://olimpiada.ru/activity/74', date:'2026-09-29', end:'2026-10-02', title:'ВсОШ, физика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', mode:'school', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-04', title:'Физтех (МФТИ), физика — I тур', badge:'топ', kids:['v'], meta:'обязательно', reg:'2026-10-03', regtime:'до 10:00 мск', mode:'online', time:'тур длится 4 астрономических часа', note:'Типичная хорошая олимпиада. У 9–10 классов всего два тура, так что первый пропускать нельзя'},
+    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-04', title:'Турнир Городов, математика — базовый тур', badge:'топ', kids:['v'], meta:'осенний базовый тур · желательно', mode:'offline', venue:'площадку в Москве публикуют на turgor.ru/moscow', time:'начало в 10:00, 5 часов', regnote:'Регистрация на my.turgor.ru, открывается в конце сентября', doc:'С собой — бумага и ручки', note:'Сложная математическая олимпиада'},
+    {fam:'turlomo', src:'Турнир Ломоносова|Мат', date:'2026-10-04', title:'Турнир Ломоносова, математика', badge:'отл', kids:['s','v'], meta:'настоятельно', mode:'online', regnote:'Регистрация обязательна на turlom.olimpiada.ru', note:'Проводится дистанционно. Интересное состязание по всем предметам'},
+    {fam:'turlomo', src:'Турнир Ломоносова|Физ', date:'2026-10-04', title:'Турнир Ломоносова, физика', badge:'отл', kids:['s','v'], meta:'настоятельно', mode:'online', regnote:'Регистрация обязательна на turlom.olimpiada.ru', note:'Проводится дистанционно. Интересное состязание по всем предметам'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-10-11', title:'Физтех (МФТИ), математика — I тур', badge:'отл', kids:['v'], meta:'настоятельно', reg:'2026-10-10', regtime:'до 10:00 мск', mode:'online', time:'тур длится 4 астрономических часа', note:'Относительно несложная из высокоуровневых'},
+    {fam:'vsosh', src:'ВсОШ мат|Мат', date:'2026-10-13', end:'2026-10-16', title:'ВсОШ, математика', badge:'всеросс', kids:['s','v'], meta:'школьный этап на «Сириусе» · обязательно', mode:'school', note:'Первые туры = контрольная! Муниципальный этап 2 ноя – 25 дек'},
+    {fam:'formula', src:'Формула Единства 3000|Мат', date:'2026-10-15', end:'2026-11-05', title:'Формула Единства 3000, математика', badge:'отл', kids:['s','v'], mode:'online', meta:'отборочный этап, решать можно в любой день окна · доп'},
+    {fam:'mosh', src:'МОШ|Физ', date:'2026-10-15', end:'2026-10-22', title:'МОШ, физика — отборочный этап', badge:'топ', kids:['s','v'], mode:'online', meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
+    {fam:'turgorod', src:'Турнир Городов|Мат', date:'2026-10-18', title:'Турнир Городов, математика — сложный тур', badge:'топ', kids:['v'], meta:'осенний сложный тур · желательно', mode:'offline', venue:'площадку в Москве публикуют на turgor.ru/moscow', time:'начало в 10:00, 5 часов', regnote:'Регистрация на my.turgor.ru', doc:'С собой — бумага и ручки', note:'Можно писать независимо от базового тура, засчитывается лучший результат'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-10-23', end:'2026-10-25', title:'Шаг в будущее (Бауманка), физика — I волна', badge:'отл', kids:['s','v'], mode:'online', meta:'отборочный этап, идёт регистрация · желательно'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2026-10-25', title:'Физтех (МФТИ), физика — II тур', badge:'топ', kids:['v'], mode:'online', meta:'если прошёл первый тур', reg:'2026-10-24'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2026-11-01', title:'Физтех (МФТИ), математика — II тур', badge:'отл', kids:['v'], mode:'online', meta:'если прошёл первый тур', reg:'2026-10-31'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Мат', date:'2026-11-16', end:'2026-11-22', title:'Шаг в будущее (Бауманка), математика', badge:'доп', kids:['s','v'], mode:'online', meta:'отборочный этап, идёт регистрация · доп'},
+    {fam:'formula', src:'Формула Единства 3000|Физ', date:'2026-11-16', end:'2026-11-29', title:'Формула Единства 3000, физика', badge:'доп', kids:['s','v'], mode:'online', meta:'отборочный этап, решать можно в любой день окна · доп'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2026-11-22', end:'2026-11-28', title:'Барсик, физика — I дистанционный тур', badge:'отл', kids:['s','v'], mode:'online', meta:'желательно', note:'Странная, но интересная'},
+    {fam:'step', src:'Шаг в будущее (Бауманка)|Физ', url:'https://olimpiada.ru/activity/169', date:'2026-12-05', end:'2026-12-07', title:'Шаг в будущее (Бауманка), физика — II волна', badge:'отл', kids:['s','v'], mode:'online', meta:'вторая волна отбора · желательно'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-01-17', end:'2027-01-23', title:'Барсик, физика — II дистанционный тур', badge:'отл', kids:['s','v'], mode:'online', meta:'если прошёл первый тур'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Физ', date:'2027-02-13', title:'Физтех (МФТИ), физика — финал', badge:'топ', kids:['v'], meta:'если прошёл отборочные туры', mode:'offline', venue:'очно, площадку МФТИ публикуют ближе к дате'},
+    {fam:'phystech', src:'Физтех (МФТИ)|Мат', url:'https://olimpiada.ru/activity/395', date:'2027-02-14', title:'Физтех (МФТИ), математика — финал', badge:'отл', kids:['v'], meta:'если прошёл отборочные туры', mode:'offline', venue:'очно, площадку МФТИ публикуют ближе к дате'},
+    {fam:'mosh', src:'МОШ|Физ', date:'2027-02-28', title:'МОШ, физика — заключительный этап', badge:'топ', kids:['s','v'], meta:'если прошёл отбор', mode:'offline', venue:'очно, площадку публикуют на mos.olimpiada.ru'},
+    {fam:'barsik', src:'Интернет олимпиада (aka_Барсик)|Физ', date:'2027-03-13', title:'Барсик, физика — финал', badge:'отл', kids:['s','v'], meta:'если прошёл дистанционные туры', mode:'offline', venue:'очно, площадку публикуют ближе к дате'}
   ];
 
   var BY_DATE = {};
@@ -450,7 +456,7 @@
     {src:'ФСБ|Физ', title:'ФСБ, физика', badge:'доп', kids:['v'], expect:'2026-12', when:'следующее соревнование ожидается в декабре 2026', meta:'желательно'},
     {src:'ОММО|Мат', title:'ОММО, математика', badge:'отл', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'настоятельно', note:'Не сложная, удобная для поступления'},
     {src:'ОММО|Физ', title:'ОММО, физика', badge:'доп', kids:['v'], expect:'2027-01', when:'расписание ожидается в январе 2027', meta:'доп'},
-    {src:'МОШ|Мат', url:'https://mos.olimpiada.ru/', title:'МОШ, математика', badge:'топ', kids:['s','v'], expect:null, when:'ожидается расписание состязания', meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
+    {src:'МОШ|Мат', url:'https://mos.olimpiada.ru/', title:'МОШ, математика', badge:'топ', kids:['s','v'], expect:null, when:'ожидается расписание состязания', mode:'online', meta:'обязательно', note:'Заключительный сложный, но отборы хорошие'},
     {src:'ФСБ|Мат', title:'ФСБ, математика', badge:'отл', kids:['v'], expect:null, when:'в этом году олимпиада не проводится', meta:'—'}
   ];
 
@@ -497,6 +503,23 @@
   function subjName(x){
     var t = subjOf(x);
     return t === 'Физ' ? 'физика' : t === 'Мат' ? 'математика' : t === 'Астро' ? 'астрономия' : '';
+  }
+
+  var MODE_LABEL = {offline:'очно', online:'дистанционно', school:'в своей школе'};
+
+  function detailsHtml(e){
+    var out = '';
+    if (e.mode === 'offline'){
+      out += '<div class="place"><b>📍 Очно.</b> ' + (e.venue || 'площадка уточняется') + '</div>';
+      if (e.time) out += '<div class="place">🕙 ' + e.time + '</div>';
+    } else if (e.mode === 'school'){
+      out += '<div class="place"><b>🏫 В своей школе</b> — на платформе «Сириус.Курсы», точное время назначает школа</div>';
+    } else if (e.mode === 'online'){
+      out += '<div class="place">💻 Дистанционно' + (e.time ? ' · ' + e.time : '') + '</div>';
+    }
+    if (e.doc) out += '<div class="place">🎒 ' + e.doc + '</div>';
+    if (e.regnote) out += '<div class="place regplace">📝 ' + e.regnote + '</div>';
+    return out;
   }
 
   function eventUrl(e){ return e.url || (FAM[e.fam] && FAM[e.fam].url) || null; }
@@ -676,13 +699,13 @@
       var regHtml = '';
       if (e.reg){
         regHtml = (e.reg === iso)
-          ? '<div class="regbadge now">⏰ Сегодня последний день регистрации</div>'
-          : '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>';
+          ? '<div class="regbadge now">⏰ Сегодня последний день регистрации' + (e.regtime ? ', ' + e.regtime : '') + '</div>'
+          : '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+(e.regtime ? ', ' + e.regtime : '')+'</div>';
       }
       var rangeHtml = (e.end && e.end !== e.date) ? '<div class="orange">📆 Окно проведения: '+fmtRange(e)+'</div>' : '';
       row.innerHTML =
-        '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span></div>' +
-        regHtml + rangeHtml +
+        '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span>'+(e.mode?'<span class="modechip '+e.mode+'">'+MODE_LABEL[e.mode]+'</span>':'')+'</div>' +
+        regHtml + rangeHtml + detailsHtml(e) +
         '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
         (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
         '</div>';
@@ -695,7 +718,7 @@
       row.style.borderLeft = '4px dashed ' + c.fg;
       var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
       row.innerHTML =
-        '<div><div class="regbadge now">⏰ Последний день регистрации</div>' +
+        '<div><div class="regbadge now">⏰ Последний день регистрации' + (e.regtime ? ', ' + e.regtime : '') + '</div>' +
         '<div class="otitle">'+titleHtml(e)+'</div>' +
         '<div class="ometa">'+kidsHtml+'сам тур — '+fmtRange(e)+'</div>' +
         '<div class="regwarn">Не зарегистрируетесь сегодня — на тур не пустят</div>' +
@@ -743,10 +766,10 @@
         row.className = 'orow famrow';
         row.style.borderLeft = '4px solid ' + c.fg;
         var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
-        var regHtml = e.reg ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>' : '';
+        var regHtml = e.reg ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+(e.regtime ? ', ' + e.regtime : '')+'</div>' : '';
         row.innerHTML =
-          '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span></div>' +
-          regHtml +
+          '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span>'+(e.mode?'<span class="modechip '+e.mode+'">'+MODE_LABEL[e.mode]+'</span>':'')+'</div>' +
+          regHtml + detailsHtml(e) +
           '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
           (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
           '</div>';
@@ -814,7 +837,7 @@
   function buildICS(){
     var lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//raspisanie//olympiads//RU','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
     var stamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-    function addEvent(uid, iso, summary, desc, endIsoIn){
+    function addEvent(uid, iso, summary, desc, endIsoIn, loc){
       var next = new Date(isoToDate(endIsoIn || iso).getTime() + 86400000);
       var endIso = next.getFullYear() + '-' + pad(next.getMonth()+1) + '-' + pad(next.getDate());
       lines.push('BEGIN:VEVENT');
@@ -824,6 +847,7 @@
       lines.push('DTEND;VALUE=DATE:' + icsDate(endIso));
       lines.push('SUMMARY:' + summary);
       if (desc) lines.push('DESCRIPTION:' + desc);
+      if (loc) lines.push('LOCATION:' + loc);
       lines.push('BEGIN:VALARM');
       lines.push('TRIGGER:-PT15H');
       lines.push('ACTION:DISPLAY');
@@ -835,7 +859,8 @@
       var who = e.kids.map(function(k){ return kidName[k]; }).join(' и ');
       var desc = e.meta + (e.note ? ' — ' + e.note : '');
       if (e.end && e.end !== e.date) desc = 'Окно проведения: ' + fmtRange(e) + '. ' + desc;
-      addEvent('ev'+i, e.date, e.title + ' (' + who + ')', desc, e.end);
+      if (e.mode === 'offline' && e.venue) desc = desc + ' | Место: ' + e.venue + (e.time ? ' | ' + e.time : '');
+      addEvent('ev'+i, e.date, e.title + ' (' + who + ')', desc, e.end, (e.mode === 'offline' ? e.venue : ''));
       if (e.reg && e.reg !== e.date){
         addEvent('reg'+i, e.reg, 'Регистрация: ' + e.title, 'Последний день регистрации. Тур — ' + fmtDate(e.date));
       }
