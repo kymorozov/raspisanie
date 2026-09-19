@@ -89,6 +89,8 @@
   .cal-day .dv{width:5px;height:5px;border-radius:50%;background:var(--vanya)}
   .cal-day.has-reg{cursor:pointer}
   .cal-day .regflag{position:absolute;top:1px;right:3px;font-size:9px;line-height:1}
+  .cal-day .subjmark{position:absolute;top:2px;left:4px;font-size:8.5px;font-weight:800;color:var(--muted);letter-spacing:.4px;line-height:1}
+  .subjchip{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;font-size:10.5px;font-weight:700;background:var(--paper);color:var(--muted);vertical-align:1px}
   .regline{padding:8px 0 8px 10px;margin-bottom:8px}
   .regline:last-child{margin-bottom:0}
   .regline-top{font-size:13.5px}
@@ -330,6 +332,7 @@
         <span><i class="ls"></i>Саша</span>
         <span><i class="lv"></i>Ваня</span>
         <span>⏰ последний день регистрации</span>
+        <span><b>Ф</b>&nbsp;/&nbsp;<b>М</b> — физика / математика</span>
       </div>
       <div id="regSummary"></div>
     </div>
@@ -485,6 +488,11 @@
     'ОММО|Физ':'Расписание следующей олимпиады ожидается в январе 2027 года'
   };
 
+  // дисциплина берётся из ключа исходной таблицы: ...|Физ или ...|Мат
+  function subjOf(x){ return (x.src || '').split('|')[1] || ''; }
+  function subjLetter(x){ var t = subjOf(x); return t === 'Физ' ? 'Ф' : t === 'Мат' ? 'М' : ''; }
+  function subjName(x){ var t = subjOf(x); return t === 'Физ' ? 'физика' : t === 'Мат' ? 'математика' : ''; }
+
   function eventUrl(e){ return e.url || (FAM[e.fam] && FAM[e.fam].url) || null; }
   function titleHtml(e){
     var u = eventUrl(e);
@@ -560,6 +568,17 @@
           var step = 100 / bgs.length, stops = [];
           bgs.forEach(function(c, k){ stops.push(c + ' ' + (k*step) + '%', c + ' ' + ((k+1)*step) + '%'); });
           cell.style.background = 'linear-gradient(135deg,' + stops.join(',') + ')';
+        }
+        var letters = [];
+        dayEvents.forEach(function(e){
+          var L = subjLetter(e);
+          if (L && letters.indexOf(L) === -1) letters.push(L);
+        });
+        if (letters.length){
+          var sm = document.createElement('span');
+          sm.className = 'subjmark';
+          sm.textContent = letters.sort().reverse().join('');
+          cell.appendChild(sm);
         }
         var row = document.createElement('span');
         row.className = 'drow';
@@ -656,7 +675,7 @@
       }
       var rangeHtml = (e.end && e.end !== e.date) ? '<div class="orange">📆 Окно проведения: '+fmtRange(e)+'</div>' : '';
       row.innerHTML =
-        '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span></div>' +
+        '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span></div>' +
         regHtml + rangeHtml +
         '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
         (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
@@ -720,7 +739,7 @@
         var kidsHtml = e.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
         var regHtml = e.reg ? '<div class="regbadge">⏰ Регистрация до '+fmtDate(e.reg)+'</div>' : '';
         row.innerHTML =
-          '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span></div>' +
+          '<div><div class="otitle">'+titleHtml(e)+'<span class="obadge" style="background:'+c.bg+';color:'+c.fg+'">'+e.badge+'</span><span class="subjchip">'+subjName(e)+'</span></div>' +
           regHtml +
           '<div class="ometa">'+kidsHtml+e.meta+'</div>' +
           (e.note ? '<div class="onote">'+e.note+'</div>' : '') +
@@ -860,7 +879,7 @@
         row.className = 'orow';
         var kidsHtml = p.kids.map(function(k){ return '<span class="kid '+k+'">'+kidName[k]+'</span>'; }).join('');
         row.innerHTML =
-          '<div><div class="otitle">' + titleHtml(p) + '<span class="obadge">' + p.badge + '</span></div>' +
+          '<div><div class="otitle">' + titleHtml(p) + '<span class="obadge">' + p.badge + '</span><span class="subjchip">' + subjName(p) + '</span></div>' +
           '<div class="ometa">' + kidsHtml + p.when + ' · ' + p.meta + '</div>' +
           (p.note ? '<div class="onote">' + p.note + '</div>' : '') +
           '</div>';
