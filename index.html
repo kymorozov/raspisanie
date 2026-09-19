@@ -36,8 +36,8 @@
   }
 
   /* ---- pager / swipe screens ---- */
-  .pager{display:flex;width:100%;height:100dvh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .screen{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-snap-align:start}
+  .pager{display:flex;width:100%;max-width:100%;height:100dvh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .screen{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-snap-align:start;overscroll-behavior-x:contain}
   .wrap{max-width:900px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 16px 64px}
   header h1{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
   header p{margin:0;color:var(--muted);font-size:14px}
@@ -78,8 +78,8 @@
   /* ---- calendar screen ---- */
   .cal-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px}
   .cal-month-label{font-weight:700;font-size:15px;text-transform:capitalize;margin-bottom:10px;position:sticky;top:0;background:var(--card);padding:2px 0}
-  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:11px;color:var(--muted);margin-bottom:4px}
-  .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+  .cal-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;font-size:11px;color:var(--muted);margin-bottom:4px;max-width:100%}
+  .cal-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;max-width:100%}
   .cal-day{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;font-size:13px;position:relative;background:transparent;border:none;color:var(--ink);font-family:inherit}
   .cal-day.empty{visibility:hidden}
   .cal-day.has-event{cursor:pointer;font-weight:700;background:var(--olymp-bg)}
@@ -99,13 +99,12 @@
   .regwhen{font-size:12px;color:var(--muted)}
   .regwhen.hot{color:#fff;background:#a9432f;padding:2px 8px;border-radius:999px;font-weight:700}
   .regtour{font-size:12px;color:var(--muted)}
-  .famlegend{display:flex;flex-wrap:nowrap;gap:5px;margin:10px 0 12px;overflow-x:auto;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .famlegend::-webkit-scrollbar{display:none}
-  .famchip{display:inline-flex;align-items:center;gap:4px;flex:none;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600;line-height:1.5;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;white-space:nowrap}
+  .famlegend{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 12px;padding-bottom:1px}
+  .famchip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:600;line-height:1.5;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;white-space:nowrap;max-width:100%}
   .famchip .famdot{width:6px;height:6px}
   .famchip.all{border-color:var(--ink)}
   .famchip.all.on{background:var(--ink);color:#fff}
-  .olink{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+  .olink{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;overflow-wrap:anywhere}
   .syncnote{font-size:13px;margin:0 0 6px;color:var(--muted)}
   .syncnote.ok{color:#0f6e63}
   .syncnote.warn{color:#a9432f;font-weight:600}
