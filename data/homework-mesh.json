@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T13:12:24.487Z",
+  "updatedAt": "2026-09-26T16:51:16.734Z",
   "range": {
     "from": "2026-09-12",
     "to": "2026-10-17"
@@ -7,7 +7,7 @@
   "status": {
     "ok": false,
     "error": "network",
-    "message": "Нет соединения с school.mos.ru: UND_ERR_CONNECT_TIMEOUT",
+    "message": "Нет соединения с school.mos.ru: TimeoutError",
     "tokenExp": "2026-09-27T09:55:04.000Z",
     "lastGood": null,
     "source": "mac"
