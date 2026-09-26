@@ -463,7 +463,6 @@
       <div class="cal-card" id="hwSettings">
         <div class="cal-month-label">Подключения</div>
         <div id="hwMeshInfo"></div>
-        <button class="icsbtn" id="hwMeshNow">🔄 Обновить из МЭШ сейчас</button>
         <details class="opending">
           <summary>Ключ GitHub — чтобы загружать фото с этого телефона</summary>
           <div class="setrow">
@@ -476,7 +475,7 @@
             <ol>
               <li>github.com → аватар → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li>
               <li>Repository access: Only select repositories → <b>raspisanie</b>.</li>
-              <li>Permissions: <b>Contents — Read and write</b> и <b>Actions — Read and write</b> (второе — для кнопки «Обновить из МЭШ»).</li>
+              <li>Permissions → Repository permissions → <b>Contents — Read and write</b>.</li>
               <li>Срок — год. Скопируйте ключ и вставьте сюда.</li>
             </ol>
           </div>
@@ -1388,7 +1387,9 @@
     if (s.error === 'not_configured')
       return '<div class="hwstatus">МЭШ ещё не подключён — пока видны только задания с листочков</div>';
     if (s.error === 'token_expired')
-      return '<div class="hwstatus bad">Токен МЭШ истёк' + (s.lastGood ? ' — задания из МЭШ на ' + fmtStamp(s.lastGood) : '') + '. Обновите секрет MESH_TOKEN</div>';
+      return '<div class="hwstatus bad">Токен МЭШ истёк' + (s.lastGood ? ' — задания из МЭШ на ' + fmtStamp(s.lastGood) : '') + '. Запустите установку на MacBook ещё раз со свежим токеном</div>';
+    if (s.error === 'network')
+      return '<div class="hwstatus bad">Нет связи с МЭШ' + (s.lastGood ? ' — задания на ' + fmtStamp(s.lastGood) : '') + '. Программа попробует снова в следующий раз</div>';
     return '<div class="hwstatus bad">МЭШ: не удалось обновить' + (s.message ? ' (' + esc(s.message) + ')' : '') + '</div>';
   }
 
@@ -1431,8 +1432,12 @@
     if (it.photos && it.photos.length){
       h += '<div class="hwthumbs">';
       it.photos.forEach(function(p){
-        var u = /^https?:/.test(p) ? p : rawUrl(p);
-        h += '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '" loading="lazy" alt="Фото задания"></a>';
+        // сначала с самого сайта; только что добавленное фото, которого на сайте ещё нет, — с GitHub
+        var abs = /^https?:/.test(p);
+        var u = abs ? p : p, alt = abs ? '' : rawUrl(p);
+        h += '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '"' +
+             (alt ? ' data-alt="' + esc(alt) + '" onerror="if(this.dataset.alt){this.src=this.dataset.alt;this.parentNode.href=this.dataset.alt;this.removeAttribute(\'data-alt\')}"' : '') +
+             ' loading="lazy" alt="Фото задания"></a>';
       });
       h += '</div>';
     }
@@ -1545,7 +1550,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('.hwstatusSlot'), function(el){ el.innerHTML = meshStatusHtml(false); });
     var info = document.getElementById('hwMeshInfo');
     if (info) info.innerHTML = meshStatusHtml(true) +
-      '<p class="sethelp">Робот на GitHub забирает задания из МЭШ каждый день в 19:10. Токен МЭШ живёт ограниченное время — когда он истечёт, здесь появится предупреждение, а GitHub пришлёт письмо.</p>';
+      '<p class="sethelp">Задания из МЭШ забирает программа на MacBook — в 7:40 и 19:10, пока Mac включён; если он спал, то при пробуждении. Она же каждый раз продлевает токен МЭШ. Если Mac был выключен больше суток, токен истечёт — программа покажет уведомление, и нужно будет запустить установку ещё раз со свежим токеном.</p>';
     var st = document.getElementById('ghTokenState');
     if (st) st.textContent = ghToken() ? 'Ключ сохранён на этом телефоне ✓' : 'Ключ не задан — фото с этого телефона загрузить не получится.';
   }
@@ -1764,19 +1769,6 @@
         ? 'Ключ читает репозиторий, но не может записывать — нужно право Contents: Read and write'
         : 'Ключ сохранён на этом телефоне ✓';
     }, function(e){ st.textContent = e.message; });
-  });
-  document.getElementById('hwMeshNow').addEventListener('click', function(){
-    var b = this;
-    if (!ghToken()){ alert('Для запуска нужен ключ GitHub с правом Actions: Read and write — задайте его ниже'); return; }
-    b.disabled = true;
-    ghRequest('POST', '/actions/workflows/mesh-sync.yml/dispatches', {ref:GH.branch})
-      .then(function(){
-        b.textContent = '⏳ Запущено — обновится через 1–2 минуты';
-        setTimeout(function(){ loadHomework().then(function(){ b.disabled = false; b.textContent = '🔄 Обновить из МЭШ сейчас'; }); }, 100000);
-      }, function(e){
-        b.disabled = false;
-        alert(e.status === 403 ? 'У ключа нет права Actions: Read and write' : e.message);
-      });
   });
 
   loadHwCache();
