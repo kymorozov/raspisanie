@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-09-26T10:16:44.566Z",
+  "updatedAt": "2026-09-26T10:27:06.512Z",
   "range": {
     "from": "2026-09-12",
     "to": "2026-10-17"
   },
   "status": {
     "ok": false,
-    "error": "error",
-    "message": "fetch failed",
+    "error": "network",
+    "message": "Нет соединения с school.mos.ru: UND_ERR_CONNECT_TIMEOUT — Connect Timeout Error (attempted addresses: 94.79.51.185:443, 94.79.51.184:443, 94.79.51.186:443, timeout: 10000ms)",
     "tokenExp": "2026-09-27T09:55:04.000Z",
     "lastGood": null
   },
