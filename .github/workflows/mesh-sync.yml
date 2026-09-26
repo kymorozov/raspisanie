@@ -1,14 +1,9 @@
 name: МЭШ — домашние задания
 
+# Ежедневный запуск выключен: school.mos.ru не принимает соединения
+# с зарубежных серверов GitHub. Остался только ручной запуск.
 on:
-  schedule:
-    - cron: '10 16 * * *'   # каждый день в 19:10 по Москве, когда учителя уже выложили ДЗ
-  workflow_dispatch:         # ручной запуск: вкладка Actions или кнопка в приложении
-  push:                      # запуск после правок самого робота
-    branches: [main]
-    paths:
-      - 'scripts/mesh-sync.mjs'
-      - '.github/workflows/mesh-sync.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
