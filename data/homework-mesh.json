@@ -1,0 +1,9 @@
+{
+  "updatedAt": null,
+  "status": {
+    "ok": false,
+    "error": "not_configured",
+    "message": "МЭШ ещё не подключён"
+  },
+  "items": []
+}

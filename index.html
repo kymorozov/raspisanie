@@ -181,6 +181,63 @@
   .sheet-head button{border:none;background:var(--paper);width:28px;height:28px;border-radius:50%;font-size:15px;line-height:1;color:var(--ink)}
   .sheet .orow:first-of-type{border-top:0}
 
+
+  /* ---- домашние задания ---- */
+  [hidden]{display:none !important}
+  .hwtop{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+  .addbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;border:none;background:var(--ink);color:#fff;font-family:inherit;font-size:13px;font-weight:600}
+  .hwstatus{font-size:12px;color:var(--muted);margin:0 0 10px;line-height:1.4}
+  .hwstatus.ok{color:#0f6e63}
+  .hwstatus.bad{color:#a9432f;font-weight:600}
+  .hwstatus .warn{color:#a9432f}
+  .cal-day.has-hw{cursor:pointer;background:#e8eef6;font-weight:700}
+  .cal-day.has-hw.overdue{background:#fdeceb}
+  .cal-day.has-hw.alldone{background:#eef2ef;color:var(--muted);font-weight:400}
+  .cal-day .hwcount{position:absolute;top:2px;left:4px;font-size:9px;font-weight:800;color:#3b5a80;line-height:1}
+  .cal-day.overdue .hwcount{color:#a9432f}
+  .cal-day.alldone .hwcount{color:#0f6e63}
+  .cal-day .hwcam{position:absolute;top:1px;right:3px;font-size:9px;line-height:1}
+  .hwbody{padding:2px 16px 10px}
+  .hwrow{padding-left:10px}
+  .hwrow.isdone{opacity:.5}
+  .hwrow.isdone .hwsubj{text-decoration:line-through}
+  .hwsubj{font-weight:700}
+  .hwtext{font-size:13.5px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:3px;line-height:1.42}
+  .hwtext a,.hwmat a{color:inherit;overflow-wrap:anywhere}
+  .hwmat{font-size:12.5px;margin-top:3px}
+  .srcchip{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;font-size:10.5px;font-weight:700;vertical-align:1px}
+  .srcchip.mesh{background:#e8eef7;color:#3b5a80}
+  .srcchip.photo{background:#f6ecd6;color:#8a5a17}
+  .hwthumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .hwthumbs img{width:88px;height:88px;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block;background:var(--paper)}
+  .hwactions{display:flex;gap:16px;align-items:center;margin-top:7px;font-size:12.5px}
+  .donebox{display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+  .donebox input{width:18px;height:18px;margin:0}
+  .linkbtn{border:none;background:none;padding:0;color:#a9432f;font-family:inherit;font-size:12.5px;text-decoration:underline}
+  .guess{color:#8a5a17}
+  .hwpast summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted);padding:6px 0 10px}
+  .hwempty{font-size:13.5px;color:var(--muted);margin:0}
+  .fld{display:block;margin:12px 0 0;font-size:13px;font-weight:600}
+  .fld .hint{font-weight:400;color:var(--muted)}
+  .fld select,.fld textarea,.fld input[type=date],.fld input[type=text],.fld input[type=password]{display:block;width:100%;margin-top:5px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:16px;background:#fff;color:var(--ink)}
+  .fld input[type=file]{display:block;margin-top:6px;font-size:14px;max-width:100%}
+  .seg{display:flex;margin-top:5px;border:1px solid var(--line);border-radius:999px;overflow:hidden;width:max-content}
+  .seg button{border:none;background:transparent;padding:7px 18px;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted)}
+  .seg button.on.s{background:var(--sasha-bg);color:var(--sasha)}
+  .seg button.on.v{background:var(--vanya-bg);color:var(--vanya)}
+  .primary{display:block;width:100%;margin-top:16px;padding:12px;border:none;border-radius:10px;background:var(--ink);color:#fff;font-family:inherit;font-size:15px;font-weight:700}
+  .primary:disabled{opacity:.5}
+  .formmsg{font-size:13px;margin:8px 0 0;min-height:1.2em}
+  .formmsg.bad{color:#a9432f}
+  .formmsg.ok{color:#0f6e63}
+  .thumbwrap{position:relative}
+  .thumbwrap button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:12px;line-height:22px;padding:0}
+  .setrow{display:flex;gap:6px;margin-top:8px}
+  .setrow input{flex:1;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:16px;font-family:inherit}
+  .smallbtn{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-family:inherit;font-size:13px;font-weight:600;color:var(--ink)}
+  .sethelp{font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.45}
+  .sethelp ol{margin:4px 0 0;padding-left:18px}
+  .sethelp code{font-size:12px;background:var(--paper);padding:0 4px;border-radius:4px}
   @media (max-width:600px){
     body{font-size:14px}
     .wrap{padding:16px 10px 60px}
@@ -365,12 +422,77 @@
     </div>
   </section>
 
+  <section class="screen" id="screen-3">
+    <div class="wrap">
+      <header>
+        <h1>Домашние задания</h1>
+      </header>
+      <div class="famlegend hwfilter" id="hwFilterCal"></div>
+      <div class="hwtop">
+        <button class="addbtn" data-hwadd>📷 Добавить с листочка</button>
+      </div>
+      <div class="hwstatusSlot"></div>
+
+      <div class="cal-weekdays">
+        <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+      </div>
+      <div id="hwMonths"></div>
+      <div class="legend">
+        <span><i class="ls"></i>Саша</span>
+        <span><i class="lv"></i>Ваня</span>
+        <span>число — сколько не сделано</span>
+        <span>📷 с листочка</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-4">
+    <div class="wrap">
+      <header>
+        <h1>Все домашние задания</h1>
+        <p>По сроку сдачи</p>
+      </header>
+      <div class="famlegend hwfilter" id="hwFilterList"></div>
+      <div class="hwtop">
+        <button class="addbtn" data-hwadd>📷 Добавить с листочка</button>
+      </div>
+      <div class="hwstatusSlot"></div>
+
+      <div id="hwList"></div>
+
+      <div class="cal-card" id="hwSettings">
+        <div class="cal-month-label">Подключения</div>
+        <div id="hwMeshInfo"></div>
+        <button class="icsbtn" id="hwMeshNow">🔄 Обновить из МЭШ сейчас</button>
+        <details class="opending">
+          <summary>Ключ GitHub — чтобы загружать фото с этого телефона</summary>
+          <div class="setrow">
+            <input type="password" id="ghTokenInput" placeholder="github_pat_…" autocomplete="off">
+            <button class="smallbtn" id="ghTokenSave">Сохранить</button>
+          </div>
+          <p class="sethelp" id="ghTokenState"></p>
+          <div class="sethelp">
+            Ключ хранится только на этом телефоне. Как получить:
+            <ol>
+              <li>github.com → аватар → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li>
+              <li>Repository access: Only select repositories → <b>raspisanie</b>.</li>
+              <li>Permissions: <b>Contents — Read and write</b> и <b>Actions — Read and write</b> (второе — для кнопки «Обновить из МЭШ»).</li>
+              <li>Срок — год. Скопируйте ключ и вставьте сюда.</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <div class="dots" id="dots">
   <button class="active" data-i="0" aria-label="Расписание"></button>
   <button data-i="1" aria-label="Календарь олимпиад"></button>
   <button data-i="2" aria-label="Список олимпиад"></button>
+  <button data-i="3" aria-label="Календарь домашних заданий"></button>
+  <button data-i="4" aria-label="Список домашних заданий"></button>
 </div>
 
 <div class="backdrop" id="backdrop"></div>
@@ -380,6 +502,35 @@
     <button id="sheetClose" aria-label="Закрыть">✕</button>
   </div>
   <div id="sheetBody"></div>
+</div>
+
+<div class="sheet" id="hwSheet">
+  <div class="sheet-head">
+    <h3>Задание с листочка</h3>
+    <button id="hwFormClose" aria-label="Закрыть">✕</button>
+  </div>
+  <label class="fld">Фото <span class="hint">— можно несколько, камера или галерея</span>
+    <input type="file" id="hwPhotos" accept="image/*" multiple>
+  </label>
+  <div class="hwthumbs" id="hwPreview"></div>
+  <div class="fld">Кому
+    <div class="seg" id="hwKidSeg"><button type="button" data-k="s" class="s">Саша</button><button type="button" data-k="v" class="v">Ваня</button></div>
+  </div>
+  <label class="fld">Предмет
+    <select id="hwSubject"></select>
+    <input type="text" id="hwSubjectOther" placeholder="Название предмета" hidden>
+  </label>
+  <label class="fld">Сдать к <span class="hint" id="hwDueHint"></span>
+    <input type="date" id="hwDue">
+  </label>
+  <label class="fld">Что задано <span class="hint">— необязательно, если всё видно на фото</span>
+    <textarea id="hwText" rows="3"></textarea>
+  </label>
+  <div class="fld" id="hwTokenInline" hidden>Ключ GitHub <span class="hint">— нужен один раз на этом телефоне, инструкция внизу списка ДЗ</span>
+    <input type="password" id="hwTokenInlineInput" placeholder="github_pat_…" autocomplete="off">
+  </div>
+  <button class="primary" id="hwSave">Сохранить для всех</button>
+  <p class="formmsg" id="hwFormMsg"></p>
 </div>
 
 <script>
@@ -1114,6 +1265,523 @@
   renderAllList();
   renderPendingList();
   syncSource(false);
+
+  // =====================================================================
+  //  Домашние задания: МЭШ (робот раз в сутки) + фото с листочков
+  // =====================================================================
+  var GH = {owner:'kymorozov', repo:'raspisanie', branch:'main'};
+  var HW = {mesh:null, manual:null};
+  var HW_KID = null;             // фильтр: null — все, 's' — Саша, 'v' — Ваня
+  var HW_KID_COLOR = {s:'var(--sasha)', v:'var(--vanya)'};
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function safeUrl(u){ return /^https?:\/\//i.test(String(u || '')) ? String(u) : null; }
+  function linkify(escaped){
+    return escaped.replace(/(https?:\/\/[^\s<]+)/g, function(u){
+      return '<a href="' + u + '" target="_blank" rel="noopener">' + u + '</a>';
+    });
+  }
+  function isoOf(d){ return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate()); }
+  function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  var TODAY_ISO = isoOf(today);
+  var TOMORROW_ISO = isoOf(addDays(today, 1));
+  var WD_FULL = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+
+  function fmtDayHead(iso){
+    var d = isoToDateEarly(iso);
+    var rel = iso === TODAY_ISO ? ' · сегодня' : iso === TOMORROW_ISO ? ' · завтра' : '';
+    return WD_FULL[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS_GEN[d.getMonth()] + rel;
+  }
+  function fmtShort(iso){ var d = isoToDateEarly(iso); return d.getDate() + ' ' + MONTHS_GEN[d.getMonth()]; }
+  function fmtStamp(s){
+    var d = new Date(s);
+    if (isNaN(d)) return '';
+    return d.getDate() + ' ' + MONTHS_GEN[d.getMonth()] + ' в ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+  }
+  function rawUrl(path){ return 'https://raw.githubusercontent.com/' + GH.owner + '/' + GH.repo + '/' + GH.branch + '/' + path; }
+  function ghToken(){ return (lsGet('gh.token') || '').trim(); }
+
+  // ---- отметка «сделано» хранится на своём телефоне ----
+  function doneMap(){ try { return JSON.parse(lsGet('hw.done') || '{}'); } catch(e){ return {}; } }
+  function isDone(it){ var m = doneMap(); return (it.id in m) ? !!m[it.id] : !!it.done; }
+  function setDone(id, v){ var m = doneMap(); m[id] = !!v; lsSet('hw.done', JSON.stringify(m)); }
+
+  function hwAll(){
+    var a = [];
+    [HW.mesh, HW.manual].forEach(function(src){
+      if (src && src.items) src.items.forEach(function(i){ if (i && i.due && i.kid) a.push(i); });
+    });
+    return a;
+  }
+  function hwVisible(){ return hwAll().filter(function(i){ return !HW_KID || i.kid === HW_KID; }); }
+  function sortHw(a, b){
+    return a.due.localeCompare(b.due) || a.kid.localeCompare(b.kid) || String(a.subject).localeCompare(String(b.subject), 'ru');
+  }
+
+  // ---- предметы и дни уроков берём из таблицы расписания на первом экране ----
+  var SUBJ_DAYS = {s:{}, v:{}};
+  (function(){
+    var secs = document.querySelectorAll('#screen-0 section.day');
+    Array.prototype.forEach.call(secs, function(sec, idx){
+      Array.prototype.forEach.call(sec.querySelectorAll('td.les'), function(td){
+        var kid = td.classList.contains('s') ? 's' : td.classList.contains('v') ? 'v' : null;
+        if (!kid || td.classList.contains('meal') || td.classList.contains('none')) return;
+        var name = '';
+        Array.prototype.forEach.call(td.childNodes, function(n){ if (n.nodeType === 3) name += n.textContent; });
+        name = name.trim();
+        if (!name) return;
+        (SUBJ_DAYS[kid][name] = SUBJ_DAYS[kid][name] || {})[idx + 1] = true; // 1 = понедельник
+      });
+    });
+  })();
+  function nextLessonIso(kid, subj){
+    var days = SUBJ_DAYS[kid] && SUBJ_DAYS[kid][subj];
+    for (var k = 1; k <= 14; k++){
+      var d = addDays(today, k);
+      if (days ? days[d.getDay()] : (d.getDay() >= 1 && d.getDay() <= 5)) return isoOf(d);
+    }
+    return TOMORROW_ISO;
+  }
+
+  // ---- загрузка данных из репозитория ----
+  function fetchRepoJson(path){
+    var headers = {Accept:'application/vnd.github.raw+json'};
+    var t = ghToken();
+    if (t) headers.Authorization = 'Bearer ' + t;
+    var bust = 't=' + Date.now();
+    return fetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo + '/contents/' + path + '?ref=' + GH.branch + '&' + bust, {headers:headers, cache:'no-store'})
+      .then(function(r){ if (r.status === 404) return null; if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
+      .catch(function(){ return fetch(rawUrl(path) + '?' + bust, {cache:'no-store'}).then(function(r){ if (r.status === 404) return null; if (!r.ok) throw 0; return r.json(); }); })
+      .catch(function(){ return fetch(path + '?' + bust, {cache:'no-store'}).then(function(r){ if (!r.ok) throw 0; return r.json(); }); })
+      .catch(function(){ return undefined; }); // undefined = нет сети, null = файла нет
+  }
+  function loadHwCache(){
+    try { HW.mesh = JSON.parse(lsGet('hw.cache.mesh') || 'null'); } catch(e){}
+    try { HW.manual = JSON.parse(lsGet('hw.cache.manual') || 'null'); } catch(e){}
+  }
+  function loadHomework(){
+    return Promise.all([fetchRepoJson('data/homework-mesh.json'), fetchRepoJson('data/homework-manual.json')])
+      .then(function(r){
+        if (r[0] !== undefined){ HW.mesh = r[0]; lsSet('hw.cache.mesh', JSON.stringify(r[0])); }
+        if (r[1] !== undefined){ HW.manual = r[1]; lsSet('hw.cache.manual', JSON.stringify(r[1])); }
+        renderHwAll();
+      });
+  }
+
+  // ---- статус МЭШ ----
+  function meshStatusHtml(long){
+    if (!HW.mesh) return '<div class="hwstatus">МЭШ: данных пока нет</div>';
+    var s = HW.mesh.status || {};
+    if (s.ok){
+      var warn = '';
+      if (s.tokenExp){
+        var d = (new Date(s.tokenExp) - Date.now()) / 864e5;
+        if (d < 3) warn = ' · <span class="warn">токен истекает ' + (d < 1 ? 'сегодня' : 'через ' + Math.ceil(d) + ' дн.') + '</span>';
+        else if (long) warn = ' · токен действует до ' + fmtShort(isoOf(new Date(s.tokenExp)));
+      }
+      return '<div class="hwstatus ok">МЭШ обновлён ' + fmtStamp(HW.mesh.updatedAt) + warn + '</div>';
+    }
+    if (s.error === 'not_configured')
+      return '<div class="hwstatus">МЭШ ещё не подключён — пока видны только задания с листочков</div>';
+    if (s.error === 'token_expired')
+      return '<div class="hwstatus bad">Токен МЭШ истёк' + (s.lastGood ? ' — задания из МЭШ на ' + fmtStamp(s.lastGood) : '') + '. Обновите секрет MESH_TOKEN</div>';
+    return '<div class="hwstatus bad">МЭШ: не удалось обновить' + (s.message ? ' (' + esc(s.message) + ')' : '') + '</div>';
+  }
+
+  // ---- фильтр ----
+  function renderHwFilters(){
+    ['hwFilterCal','hwFilterList'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = '';
+      [[null,'Все'],['s','Саша'],['v','Ваня']].forEach(function(p){
+        var b = document.createElement('button');
+        var on = HW_KID === p[0];
+        b.className = 'famchip' + (p[0] ? '' : ' all') + (on ? ' on' : '');
+        if (p[0]){
+          b.style.background = on ? (p[0] === 's' ? 'var(--sasha-bg)' : 'var(--vanya-bg)') : 'transparent';
+          b.style.color = on ? HW_KID_COLOR[p[0]] : 'var(--muted)';
+          b.style.borderColor = on ? HW_KID_COLOR[p[0]] : 'var(--line)';
+          b.innerHTML = '<i class="famdot" style="background:' + (on ? HW_KID_COLOR[p[0]] : '#c7cdc8') + '"></i>' + p[1];
+        } else {
+          b.textContent = p[1];
+        }
+        b.addEventListener('click', function(){ HW_KID = p[0]; renderHwAll(); });
+        el.appendChild(b);
+      });
+    });
+  }
+
+  // ---- карточка задания ----
+  function hwRowHtml(it){
+    var done = isDone(it);
+    var h = '<div class="orow famrow hwrow' + (done ? ' isdone' : '') + '" data-id="' + esc(it.id) + '" style="border-left:4px solid ' + HW_KID_COLOR[it.kid] + '"><div style="min-width:0;flex:1">';
+    h += '<div class="otitle"><span class="hwsubj">' + esc(it.subject || 'Без предмета') + '</span>' +
+         '<span class="kid ' + it.kid + '" style="margin-left:6px">' + kidName[it.kid] + '</span>' +
+         (it.src === 'photo' ? '<span class="srcchip photo">📷 листочек</span>' : '<span class="srcchip mesh">МЭШ</span>') + '</div>';
+    if (it.text) h += '<div class="hwtext">' + linkify(esc(it.text)) + '</div>';
+    (it.materials || []).forEach(function(m){
+      var u = safeUrl(m.url);
+      h += '<div class="hwmat">📎 ' + (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(m.title) + '</a>' : esc(m.title) + ' <span style="color:var(--muted)">— в приложении МЭШ</span>') + '</div>';
+    });
+    if (it.photos && it.photos.length){
+      h += '<div class="hwthumbs">';
+      it.photos.forEach(function(p){
+        var u = /^https?:/.test(p) ? p : rawUrl(p);
+        h += '<a href="' + esc(u) + '" target="_blank" rel="noopener"><img src="' + esc(u) + '" loading="lazy" alt="Фото задания"></a>';
+      });
+      h += '</div>';
+    }
+    var meta = [];
+    if (it.assigned) meta.push('задано ' + fmtShort(it.assigned));
+    if (it.dueGuess) meta.push('<span class="guess">срок на листочке не указан — поставлен ближайший урок</span>');
+    if (meta.length) h += '<div class="ometa">' + meta.join(' · ') + '</div>';
+    h += '<div class="hwactions"><label class="donebox"><input type="checkbox" data-done="' + esc(it.id) + '"' + (done ? ' checked' : '') + '> сделано</label>';
+    if (it.src === 'photo') h += '<button class="linkbtn" data-del="' + esc(it.id) + '">удалить</button>';
+    h += '</div></div></div>';
+    return h;
+  }
+
+  function bindHwRows(root){
+    Array.prototype.forEach.call(root.querySelectorAll('[data-done]'), function(cb){
+      cb.addEventListener('change', function(){
+        setDone(cb.getAttribute('data-done'), cb.checked);
+        var row = cb.closest('.hwrow');
+        if (row) row.classList.toggle('isdone', cb.checked);
+        renderHwMonths();
+        if (!document.getElementById('hwList').contains(cb)) renderHwList();
+      });
+    });
+    Array.prototype.forEach.call(root.querySelectorAll('[data-del]'), function(btn){
+      btn.addEventListener('click', function(){ deletePhotoHw(btn.getAttribute('data-del'), btn); });
+    });
+  }
+
+  // ---- календарь ----
+  function renderHwMonths(){
+    var box = document.getElementById('hwMonths');
+    if (!box) return;
+    box.innerHTML = '';
+    var byDue = {};
+    hwVisible().forEach(function(i){ (byDue[i.due] = byDue[i.due] || []).push(i); });
+    var y = today.getFullYear(), m = today.getMonth();
+    for (var k = 0; k < 2; k++){
+      box.appendChild(hwMonthCard(y, m, byDue));
+      m++; if (m > 11){ m = 0; y++; }
+    }
+  }
+  function hwMonthCard(y, m, byDue){
+    var card = document.createElement('div');
+    card.className = 'cal-card';
+    card.innerHTML = '<div class="cal-month-label">' + MONTHS[m] + ' ' + y + '</div>';
+    var grid = document.createElement('div');
+    grid.className = 'cal-days';
+    var off = (new Date(y, m, 1).getDay() + 6) % 7;
+    for (var i = 0; i < off; i++){ var e = document.createElement('div'); e.className = 'cal-day empty'; grid.appendChild(e); }
+    var n = new Date(y, m + 1, 0).getDate();
+    for (var d = 1; d <= n; d++){
+      var iso = y + '-' + pad2(m + 1) + '-' + pad2(d);
+      var cell = document.createElement('button');
+      cell.className = 'cal-day';
+      if (iso === TODAY_ISO) cell.classList.add('today');
+      cell.innerHTML = '<span>' + d + '</span>';
+      var list = byDue[iso];
+      if (list){
+        var left = list.filter(function(x){ return !isDone(x); }).length;
+        cell.classList.add('has-hw');
+        if (!left) cell.classList.add('alldone');
+        else if (iso < TODAY_ISO) cell.classList.add('overdue');
+        cell.insertAdjacentHTML('beforeend', '<span class="hwcount">' + (left ? left : '✓') + '</span>');
+        if (list.some(function(x){ return x.src === 'photo'; })) cell.insertAdjacentHTML('beforeend', '<span class="hwcam">📷</span>');
+        var dots = '<span class="drow">';
+        if (list.some(function(x){ return x.kid === 's'; })) dots += '<i class="ds"></i>';
+        if (list.some(function(x){ return x.kid === 'v'; })) dots += '<i class="dv"></i>';
+        cell.insertAdjacentHTML('beforeend', dots + '</span>');
+        cell.addEventListener('click', (function(iso){ return function(){ openHwDay(iso); }; })(iso));
+      }
+      grid.appendChild(cell);
+    }
+    card.appendChild(grid);
+    return card;
+  }
+  function openHwDay(iso){
+    var list = hwVisible().filter(function(i){ return i.due === iso; }).sort(sortHw);
+    sheetTitle.textContent = fmtDayHead(iso);
+    sheetBody.innerHTML = list.length ? list.map(hwRowHtml).join('') : '<p class="hwempty">На этот день заданий нет</p>';
+    bindHwRows(sheetBody);
+    sheet.classList.add('open');
+    backdrop.classList.add('open');
+  }
+
+  // ---- список ----
+  function hwGroupHtml(items){
+    var groups = {}, order = [];
+    items.forEach(function(i){ if (!groups[i.due]){ groups[i.due] = []; order.push(i.due); } groups[i.due].push(i); });
+    return order.map(function(iso){
+      return '<section class="day"><h2>' + fmtDayHead(iso) + '</h2><div class="hwbody">' + groups[iso].map(hwRowHtml).join('') + '</div></section>';
+    }).join('');
+  }
+  function renderHwList(){
+    var box = document.getElementById('hwList');
+    if (!box) return;
+    var items = hwVisible().sort(sortHw);
+    var up = items.filter(function(i){ return i.due >= TODAY_ISO; });
+    var past = items.filter(function(i){ return i.due < TODAY_ISO; }).reverse();
+    var html = up.length ? hwGroupHtml(up)
+      : '<div class="cal-card"><p class="hwempty">На ближайшие дни заданий нет' + (HW.mesh && HW.mesh.status && HW.mesh.status.ok ? '' : ' — МЭШ пока не подключён, добавьте задание с листочка') + '.</p></div>';
+    if (past.length){
+      var notDone = past.filter(function(i){ return !isDone(i); }).length;
+      html += '<details class="hwpast"><summary>Прошедшие · ' + past.length + (notDone ? ', не отмечено ' + notDone : '') + '</summary>' + hwGroupHtml(past) + '</details>';
+    }
+    box.innerHTML = html;
+    bindHwRows(box);
+  }
+
+  function renderHwStatus(){
+    Array.prototype.forEach.call(document.querySelectorAll('.hwstatusSlot'), function(el){ el.innerHTML = meshStatusHtml(false); });
+    var info = document.getElementById('hwMeshInfo');
+    if (info) info.innerHTML = meshStatusHtml(true) +
+      '<p class="sethelp">Робот на GitHub забирает задания из МЭШ каждый день в 19:10. Токен МЭШ живёт ограниченное время — когда он истечёт, здесь появится предупреждение, а GitHub пришлёт письмо.</p>';
+    var st = document.getElementById('ghTokenState');
+    if (st) st.textContent = ghToken() ? 'Ключ сохранён на этом телефоне ✓' : 'Ключ не задан — фото с этого телефона загрузить не получится.';
+  }
+
+  function renderHwAll(){
+    renderHwFilters();
+    renderHwStatus();
+    renderHwMonths();
+    renderHwList();
+  }
+
+  // ---- работа с GitHub ----
+  function utf8ToB64(str){
+    var bytes = new TextEncoder().encode(str), bin = '';
+    for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+  function b64ToUtf8(b64){
+    var bin = atob(String(b64).replace(/\s/g, '')), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  function ghRequest(method, path, body){
+    var t = ghToken();
+    if (!t) return Promise.reject(Object.assign(new Error('Нужен ключ GitHub'), {status:0}));
+    var url = 'https://api.github.com/repos/' + GH.owner + '/' + GH.repo + path;
+    if (method === 'GET') url += (url.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now();
+    var headers = {Authorization:'Bearer ' + t, Accept:'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28'};
+    if (body) headers['Content-Type'] = 'application/json';
+    return fetch(url, {method:method, headers:headers, body: body ? JSON.stringify(body) : undefined, cache:'no-store'})
+      .then(function(r){
+        if (r.ok) return r.status === 204 ? null : r.json();
+        var msg = r.status === 401 ? 'Ключ GitHub не подходит или истёк'
+          : (r.status === 403 || r.status === 404) ? 'У ключа нет доступа к репозиторию raspisanie — проверьте права'
+          : 'GitHub ответил ошибкой ' + r.status;
+        throw Object.assign(new Error(msg), {status:r.status});
+      });
+  }
+  function updateManualJson(mutate, message){
+    var path = 'data/homework-manual.json';
+    function attempt(n){
+      return ghRequest('GET', '/contents/' + path + '?ref=' + GH.branch)
+        .then(function(j){ return {sha:j.sha, data:JSON.parse(b64ToUtf8(j.content))}; },
+              function(e){ if (e.status === 404) return {sha:null, data:{items:[]}}; throw e; })
+        .then(function(cur){
+          var data = cur.data || {items:[]};
+          data.items = data.items || [];
+          mutate(data);
+          data.updatedAt = new Date().toISOString();
+          var body = {message:message, content:utf8ToB64(JSON.stringify(data, null, 2) + '\n'), branch:GH.branch};
+          if (cur.sha) body.sha = cur.sha;
+          return ghRequest('PUT', '/contents/' + path, body).then(function(){ return data; });
+        })
+        .catch(function(e){ if ((e.status === 409 || e.status === 422) && n < 2) return attempt(n + 1); throw e; });
+    }
+    return attempt(0);
+  }
+
+  // ---- форма «с листочка» ----
+  var hwSheet = document.getElementById('hwSheet');
+  var hwForm = {kid:'s', photos:[], dueTouched:false};
+  function setFormMsg(text, cls){ var el = document.getElementById('hwFormMsg'); el.textContent = text || ''; el.className = 'formmsg' + (cls ? ' ' + cls : ''); }
+  function fillSubjects(){
+    var sel = document.getElementById('hwSubject');
+    var names = Object.keys(SUBJ_DAYS[hwForm.kid] || {}).sort(function(a, b){ return a.localeCompare(b, 'ru'); });
+    sel.innerHTML = '<option value="">Выберите предмет</option>' +
+      names.map(function(n){ return '<option>' + esc(n) + '</option>'; }).join('') +
+      '<option value="__other">Другой предмет…</option>';
+    document.getElementById('hwSubjectOther').hidden = true;
+  }
+  function updateDue(){
+    var sel = document.getElementById('hwSubject');
+    var hint = document.getElementById('hwDueHint');
+    if (hwForm.dueTouched) return;
+    var subj = sel.value && sel.value !== '__other' ? sel.value : null;
+    document.getElementById('hwDue').value = subj ? nextLessonIso(hwForm.kid, subj) : TOMORROW_ISO;
+    hint.textContent = subj ? '— ближайший урок по расписанию' : '';
+  }
+  function setKid(k){
+    hwForm.kid = k;
+    Array.prototype.forEach.call(document.querySelectorAll('#hwKidSeg button'), function(b){ b.classList.toggle('on', b.getAttribute('data-k') === k); });
+    fillSubjects();
+    updateDue();
+  }
+  function renderPreview(){
+    var box = document.getElementById('hwPreview');
+    box.innerHTML = hwForm.photos.map(function(p, i){
+      return '<div class="thumbwrap"><img src="' + p.dataUrl + '" alt=""><button type="button" data-rm="' + i + '" aria-label="Убрать">✕</button></div>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('[data-rm]'), function(b){
+      b.addEventListener('click', function(){ hwForm.photos.splice(+b.getAttribute('data-rm'), 1); renderPreview(); });
+    });
+  }
+  function compressImage(file){
+    return new Promise(function(resolve, reject){
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function(){
+        var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+        w = Math.round(w * k); h = Math.round(h * k);
+        var c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        var dataUrl = c.toDataURL('image/jpeg', 0.82);
+        URL.revokeObjectURL(url);
+        resolve({dataUrl:dataUrl, b64:dataUrl.split(',')[1]});
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error('Не удалось открыть фото ' + file.name)); };
+      img.src = url;
+    });
+  }
+  function openHwForm(){
+    hwForm = {kid: HW_KID || 's', photos:[], dueTouched:false};
+    document.getElementById('hwPhotos').value = '';
+    document.getElementById('hwText').value = '';
+    document.getElementById('hwSubjectOther').value = '';
+    document.getElementById('hwTokenInline').hidden = !!ghToken();
+    document.getElementById('hwSave').disabled = false;
+    setFormMsg('');
+    renderPreview();
+    setKid(hwForm.kid);
+    closeSheet();
+    hwSheet.classList.add('open');
+    backdrop.classList.add('open');
+  }
+  function closeHwForm(){ hwSheet.classList.remove('open'); backdrop.classList.remove('open'); }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-hwadd]'), function(b){ b.addEventListener('click', openHwForm); });
+  document.getElementById('hwFormClose').addEventListener('click', closeHwForm);
+  backdrop.addEventListener('click', closeHwForm);
+  Array.prototype.forEach.call(document.querySelectorAll('#hwKidSeg button'), function(b){
+    b.addEventListener('click', function(){ setKid(b.getAttribute('data-k')); });
+  });
+  document.getElementById('hwSubject').addEventListener('change', function(e){
+    document.getElementById('hwSubjectOther').hidden = e.target.value !== '__other';
+    updateDue();
+  });
+  document.getElementById('hwDue').addEventListener('input', function(){ hwForm.dueTouched = true; document.getElementById('hwDueHint').textContent = ''; });
+  document.getElementById('hwPhotos').addEventListener('change', function(e){
+    var files = Array.prototype.slice.call(e.target.files || []);
+    if (!files.length) return;
+    setFormMsg('Обрабатываю фото…');
+    Promise.all(files.map(compressImage)).then(function(res){
+      hwForm.photos = hwForm.photos.concat(res);
+      renderPreview();
+      setFormMsg('');
+      e.target.value = '';
+    }, function(err){ setFormMsg(err.message, 'bad'); });
+  });
+
+  document.getElementById('hwSave').addEventListener('click', function(){
+    var sel = document.getElementById('hwSubject');
+    var subject = sel.value === '__other' ? document.getElementById('hwSubjectOther').value.trim() : sel.value;
+    var due = document.getElementById('hwDue').value;
+    var text = document.getElementById('hwText').value.trim();
+    var inlineTok = document.getElementById('hwTokenInlineInput').value.trim();
+    if (inlineTok){ lsSet('gh.token', inlineTok); document.getElementById('hwTokenInline').hidden = true; }
+    if (!subject) return setFormMsg('Выберите предмет', 'bad');
+    if (!due) return setFormMsg('Укажите, к какому дню сдать', 'bad');
+    if (!hwForm.photos.length && !text) return setFormMsg('Добавьте фото или напишите, что задано', 'bad');
+    if (!ghToken()){ document.getElementById('hwTokenInline').hidden = false; return setFormMsg('Вставьте ключ GitHub — без него задание не сохранится для всех', 'bad'); }
+
+    var btn = this;
+    btn.disabled = true;
+    var id = 'p' + Date.now().toString(36);
+    var paths = hwForm.photos.map(function(_, i){ return 'hw/' + due + '-' + hwForm.kid + '-' + id + '-' + (i + 1) + '.jpg'; });
+    var chain = Promise.resolve();
+    hwForm.photos.forEach(function(p, i){
+      chain = chain.then(function(){
+        setFormMsg('Загружаю фото ' + (i + 1) + ' из ' + hwForm.photos.length + '…');
+        return ghRequest('PUT', '/contents/' + paths[i], {message:'ДЗ с листочка: фото', content:p.b64, branch:GH.branch});
+      });
+    });
+    var entry = {id:id, src:'photo', kid:hwForm.kid, subject:subject, due:due, assigned:TODAY_ISO, text:text, photos:paths, createdAt:new Date().toISOString()};
+    chain.then(function(){
+      setFormMsg('Сохраняю задание…');
+      return updateManualJson(function(d){ d.items.push(entry); }, 'ДЗ с листочка: ' + subject + ', ' + kidName[entry.kid] + ', к ' + due);
+    }).then(function(data){
+      HW.manual = data;
+      lsSet('hw.cache.manual', JSON.stringify(data));
+      renderHwAll();
+      setFormMsg('Готово — задание видно всем', 'ok');
+      setTimeout(closeHwForm, 900);
+    }).catch(function(e){
+      btn.disabled = false;
+      if (e.status === 401){ lsSet('gh.token', ''); document.getElementById('hwTokenInline').hidden = false; }
+      setFormMsg(e.message || 'Не получилось сохранить', 'bad');
+    });
+  });
+
+  function deletePhotoHw(id, btn){
+    if (!confirm('Удалить это задание у всех?')) return;
+    if (!ghToken()){ alert('Чтобы удалять, нужен ключ GitHub — задайте его в «Подключениях» внизу списка ДЗ'); return; }
+    btn.disabled = true;
+    btn.textContent = 'удаляю…';
+    updateManualJson(function(d){ d.items = d.items.filter(function(x){ return x.id !== id; }); }, 'ДЗ с листочка: удалено')
+      .then(function(data){
+        HW.manual = data;
+        lsSet('hw.cache.manual', JSON.stringify(data));
+        closeSheet();
+        renderHwAll();
+      })
+      .catch(function(e){ btn.disabled = false; btn.textContent = 'удалить'; alert(e.message); });
+  }
+
+  // ---- подключения ----
+  document.getElementById('ghTokenSave').addEventListener('click', function(){
+    var v = document.getElementById('ghTokenInput').value.trim();
+    lsSet('gh.token', v);
+    document.getElementById('ghTokenInput').value = '';
+    var st = document.getElementById('ghTokenState');
+    if (!v){ renderHwStatus(); return; }
+    st.textContent = 'Проверяю ключ…';
+    ghRequest('GET', '').then(function(repo){
+      st.textContent = repo && repo.permissions && repo.permissions.push === false
+        ? 'Ключ читает репозиторий, но не может записывать — нужно право Contents: Read and write'
+        : 'Ключ сохранён на этом телефоне ✓';
+    }, function(e){ st.textContent = e.message; });
+  });
+  document.getElementById('hwMeshNow').addEventListener('click', function(){
+    var b = this;
+    if (!ghToken()){ alert('Для запуска нужен ключ GitHub с правом Actions: Read and write — задайте его ниже'); return; }
+    b.disabled = true;
+    ghRequest('POST', '/actions/workflows/mesh-sync.yml/dispatches', {ref:GH.branch})
+      .then(function(){
+        b.textContent = '⏳ Запущено — обновится через 1–2 минуты';
+        setTimeout(function(){ loadHomework().then(function(){ b.disabled = false; b.textContent = '🔄 Обновить из МЭШ сейчас'; }); }, 100000);
+      }, function(e){
+        b.disabled = false;
+        alert(e.status === 403 ? 'У ключа нет права Actions: Read and write' : e.message);
+      });
+  });
+
+  loadHwCache();
+  renderHwAll();
+  loadHomework();
 </script>
 </body>
 </html>
