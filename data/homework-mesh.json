@@ -1,9 +1,15 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-09-26T10:16:44.566Z",
+  "range": {
+    "from": "2026-09-12",
+    "to": "2026-10-17"
+  },
   "status": {
     "ok": false,
-    "error": "not_configured",
-    "message": "МЭШ ещё не подключён"
+    "error": "error",
+    "message": "fetch failed",
+    "tokenExp": "2026-09-27T09:55:04.000Z",
+    "lastGood": null
   },
   "items": []
 }
