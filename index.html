@@ -44,6 +44,7 @@
 
   .dots{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:7px;z-index:40}
   .dots button{width:7px;height:7px;padding:0;border:none;border-radius:50%;background:#c7cdc8;transition:background .2s, width .2s}
+  .dots button.home:not(.active){background:#9aa39d}
   .dots button.active{background:var(--ink);width:18px;border-radius:4px}
 
   .who{display:flex;gap:10px;margin:14px 0 22px;flex-wrap:wrap}
@@ -261,6 +262,45 @@
 <body>
 <div class="pager" id="pager">
 
+  <section class="screen" id="screen-2">
+    <div class="wrap">
+      <header>
+        <h1>Все олимпиады</h1>
+        <p>Физика и математика, по датам</p>
+      </header>
+
+      <div id="allList"></div>
+
+      <div id="syncBlock"></div>
+      <button class="icsbtn" id="syncNow">🔄 Проверить таблицу сейчас</button>
+      <button class="icsbtn" id="icsBtn">📅 Добавить все даты в календарь</button>
+      <p class="icshint">Скачается файл с событиями и напоминанием за сутки (в 9:00 накануне). Откройте его — календарь предложит добавить всё разом. Сделать это нужно один раз на каждом телефоне.</p>
+
+      <div id="pendingList"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-1">
+    <div class="wrap">
+      <header>
+        <h1>Олимпиады</h1>
+      </header>
+      <div class="famlegend" id="famLegend"></div>
+
+      <div class="cal-weekdays">
+        <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+      </div>
+      <div id="calMonths"></div>
+      <div class="legend">
+        <span><i class="ls"></i>Саша</span>
+        <span><i class="lv"></i>Ваня</span>
+        <span>⏰ последний день регистрации</span>
+        <span><b>Ф</b> физика · <b>М</b> математика · <b>А</b> астрономия</span>
+      </div>
+      <div id="regSummary"></div>
+    </div>
+  </section>
+
   <section class="screen" id="screen-0">
     <div class="wrap">
       <header>
@@ -383,45 +423,6 @@
     </div>
   </section>
 
-  <section class="screen" id="screen-1">
-    <div class="wrap">
-      <header>
-        <h1>Олимпиады</h1>
-      </header>
-      <div class="famlegend" id="famLegend"></div>
-
-      <div class="cal-weekdays">
-        <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
-      </div>
-      <div id="calMonths"></div>
-      <div class="legend">
-        <span><i class="ls"></i>Саша</span>
-        <span><i class="lv"></i>Ваня</span>
-        <span>⏰ последний день регистрации</span>
-        <span><b>Ф</b> физика · <b>М</b> математика · <b>А</b> астрономия</span>
-      </div>
-      <div id="regSummary"></div>
-    </div>
-  </section>
-
-  <section class="screen" id="screen-2">
-    <div class="wrap">
-      <header>
-        <h1>Все олимпиады</h1>
-        <p>Физика и математика, по датам</p>
-      </header>
-
-      <div id="allList"></div>
-
-      <div id="syncBlock"></div>
-      <button class="icsbtn" id="syncNow">🔄 Проверить таблицу сейчас</button>
-      <button class="icsbtn" id="icsBtn">📅 Добавить все даты в календарь</button>
-      <p class="icshint">Скачается файл с событиями и напоминанием за сутки (в 9:00 накануне). Откройте его — календарь предложит добавить всё разом. Сделать это нужно один раз на каждом телефоне.</p>
-
-      <div id="pendingList"></div>
-    </div>
-  </section>
-
   <section class="screen" id="screen-3">
     <div class="wrap">
       <header>
@@ -487,9 +488,9 @@
 </div>
 
 <div class="dots" id="dots">
-  <button class="active" data-i="0" aria-label="Расписание"></button>
+  <button data-i="0" aria-label="Список олимпиад"></button>
   <button data-i="1" aria-label="Календарь олимпиад"></button>
-  <button data-i="2" aria-label="Список олимпиад"></button>
+  <button class="active home" data-i="2" aria-label="Расписание"></button>
   <button data-i="3" aria-label="Календарь домашних заданий"></button>
   <button data-i="4" aria-label="Список домашних заданий"></button>
 </div>
@@ -541,6 +542,19 @@
     dots.forEach(function(d){ d.classList.toggle('active', +d.dataset.i === i); });
   }
   pager.addEventListener('scroll', function(){ window.requestAnimationFrame(syncDots); }, {passive:true});
+  var HOME_SCREEN = 2; // слева олимпиады, справа домашние задания
+  var curScreen = HOME_SCREEN;
+  function goHome(){
+    pager.style.scrollBehavior = 'auto';
+    pager.scrollLeft = HOME_SCREEN * pager.clientWidth;
+    curScreen = HOME_SCREEN;
+    syncDots();
+  }
+  goHome();
+  window.requestAnimationFrame(goHome);
+  window.addEventListener('pageshow', function(e){ if (e.persisted) goHome(); });
+  pager.addEventListener('scroll', function(){ curScreen = Math.round(pager.scrollLeft / pager.clientWidth); }, {passive:true});
+  window.addEventListener('resize', function(){ pager.scrollLeft = curScreen * pager.clientWidth; });
   dots.forEach(function(d){
     d.addEventListener('click', function(){
       pager.scrollTo({left: +d.dataset.i * pager.clientWidth, behavior:'smooth'});
