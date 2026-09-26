@@ -67,7 +67,15 @@ async function api(path) {
     'user-agent': 'Mozilla/5.0 (raspisanie homework sync)'
   };
   if (process.env.MESH_PROFILE_ID) headers['profile-id'] = process.env.MESH_PROFILE_ID.trim();
-  const r = await fetch(API + path, { headers });
+  let r;
+  try {
+    r = await fetch(API + path, { headers, signal: AbortSignal.timeout(30000) });
+  } catch (err) {
+    const c = err.cause || {};
+    const e = new Error('Нет соединения с school.mos.ru: ' + (c.code || err.name || 'неизвестно') + (c.message ? ' — ' + c.message : ''));
+    e.code = 'network';
+    throw e;
+  }
   if (r.status === 401 || r.status === 403) {
     const e = new Error('МЭШ отклонил токен (HTTP ' + r.status + ')');
     e.code = 'token_expired';

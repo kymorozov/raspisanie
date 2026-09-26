@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '10 16 * * *'   # каждый день в 19:10 по Москве, когда учителя уже выложили ДЗ
   workflow_dispatch:         # ручной запуск: вкладка Actions или кнопка в приложении
+  push:                      # запуск после правок самого робота
+    branches: [main]
+    paths:
+      - 'scripts/mesh-sync.mjs'
+      - '.github/workflows/mesh-sync.yml'
 
 permissions:
   contents: write
@@ -21,6 +26,13 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+
+      - name: Проверка связи с МЭШ
+        run: |
+          for u in https://school.mos.ru/ https://dnevnik.mos.ru/ https://www.mos.ru/ https://ya.ru/; do
+            printf '%s -> ' "$u"; curl -sS -m 20 -o /dev/null -w '%{http_code} (%{time_total}s)\n' "$u" 2>&1 || true
+          done
+          curl -sS -m 10 https://ipinfo.io/country 2>/dev/null | sed 's/^/Страна сервера: /' || true
 
       - name: Выгрузка из МЭШ
         env:
