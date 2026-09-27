@@ -45,6 +45,54 @@ function hoursLeft(token) {
   return exp ? (new Date(exp) - Date.now()) / 3600e3 : null;
 }
 
+// Свежий токен из Safari: открываем school.mos.ru в фоне, сайт сам
+// обновляет вход (пока сессия mos.ru в Safari жива), читаем cookie aupd_token.
+// Нужно: Safari → Разработка → «Разрешить JavaScript из событий Apple».
+const SAFARI_SCRIPT = `
+set wasRunning to application "Safari" is running
+tell application "Safari"
+  make new document with properties {URL:"https://school.mos.ru/diary/schedules/day"}
+  set w to front window
+  try
+    set miniaturized of w to true
+  end try
+  set c to ""
+  try
+    repeat 25 times
+      delay 2
+      set c to do JavaScript "document.readyState=='complete' ? document.cookie : ''" in current tab of w
+      if c contains "aupd_token=" then exit repeat
+    end repeat
+    delay 3
+    set c to do JavaScript "document.cookie" in current tab of w
+  on error errMsg number errNum
+    try
+      close w
+    end try
+    if not wasRunning then quit
+    error errMsg number errNum
+  end try
+  close w
+  if not wasRunning then quit
+end tell
+return c`;
+
+function safariToken() {
+  if (process.platform !== 'darwin') return Promise.resolve({ ok: false, why: 'не macOS' });
+  return new Promise(resolve => {
+    execFile('/usr/bin/osascript', ['-e', SAFARI_SCRIPT], { timeout: 90000 }, (err, stdout, stderr) => {
+      if (err) {
+        const msg = String(stderr || err.message);
+        if (/-1743|not allowed|не разрешено/i.test(msg)) return resolve({ ok: false, why: 'нет разрешения управлять Safari (Системные настройки → Конфиденциальность → Автоматизация → node → Safari)' });
+        if (/JavaScript/i.test(msg)) return resolve({ ok: false, why: 'в Safari выключено «Разрешить JavaScript из событий Apple» (меню Разработка)' });
+        return resolve({ ok: false, why: 'Safari: ' + msg.replace(/\s+/g, ' ').slice(0, 160) });
+      }
+      const m = String(stdout).match(/(?:^|;\s*)aupd_token=([\w-]+\.[\w-]+\.[\w-]+)/);
+      resolve(m ? { ok: true, token: m[1] } : { ok: false, why: 'в Safari нет входа на school.mos.ru — войдите там один раз' });
+    });
+  });
+}
+
 async function gh(method, p, token, body) {
   const url = `${GH.api}/repos/${GH.owner}/${GH.repo}${p}`;
   const r = await fetch(url, {
@@ -82,14 +130,34 @@ function worthPushing(prev, next) {
 
 async function main() {
   const cfg = readCfg();
-  if (!cfg.meshToken || !cfg.ghToken) {
+  if (!cfg.ghToken) {
     log('Не заданы токены — запустите установку ещё раз');
     notify('Не заданы токены. Запустите установку ещё раз.');
     process.exitCode = 1;
     return;
   }
 
-  // 1. Продлеваем токен (с aupd_refresh_token — даже если он уже истёк)
+  // 0. Берём свежий токен из Safari, если текущий скоро истечёт
+  const force = fs.existsSync(path.join(APP, 'force-safari'));
+  if (force) fs.rmSync(path.join(APP, 'force-safari'), { force: true });
+  const before = hoursLeft(cfg.meshToken);
+  if (force || before === null || before < 14) {
+    const r = await safariToken();
+    const got = r.ok ? hoursLeft(r.token) : null;
+    if (r.ok && got !== null && got > 0 && (before === null || got > before + 0.05)) {
+      cfg.previousToken = cfg.meshToken;
+      cfg.meshToken = r.token;
+      cfg.refreshedAt = new Date().toISOString();
+      writeCfg(cfg);
+      log(`Токен продлён через Safari: действует ещё ${got.toFixed(1)} ч`);
+    } else if (r.ok) {
+      log(`Safari: токен тот же (осталось ${got !== null ? got.toFixed(1) : '?'} ч)`);
+    } else {
+      log('Safari: ' + r.why);
+    }
+  }
+
+  // 1. Продлеваем токен запросом к МЭШ (запасной путь)
   const left = hoursLeft(cfg.meshToken);
   if ((left !== null && left > 0) || cfg.meshRefresh) {
     const r = await refreshToken(cfg.meshToken, cfg.meshRefresh);
@@ -115,7 +183,7 @@ async function main() {
 
   // 3. Выгрузка из МЭШ; если продлённый токен вдруг не принят — пробуем прежний
   const opts = { profileId: cfg.profileId, sasha: cfg.sasha, vanya: cfg.vanya, prev };
-  let out = await buildHomework({ token: cfg.meshToken, ...opts });
+  let out = await buildHomework({ token: cfg.meshToken || '', ...opts });
   if (!out.status.ok && out.status.error === 'token_expired' && cfg.previousToken && hoursLeft(cfg.previousToken) > 0) {
     log('Продлённый токен не принят, возвращаюсь к прежнему');
     out = await buildHomework({ token: cfg.previousToken, ...opts });
@@ -140,11 +208,11 @@ async function main() {
   // 5. Предупреждения
   const finalLeft = hoursLeft(cfg.meshToken);
   if (!out.status.ok && out.status.error === 'token_expired') {
-    notify('Токен МЭШ истёк. Возьмите новый на school.mos.ru и запустите установку ещё раз.');
+    notify('Токен МЭШ истёк. Откройте school.mos.ru в Safari и войдите — программа подхватит вход сама.');
   } else if (!out.status.ok && out.status.error === 'network') {
     notify('Нет связи с МЭШ — попробую в следующий раз.');
   } else if (finalLeft !== null && finalLeft < 14) {
-    notify(`Токен МЭШ истекает через ${Math.max(0, finalLeft).toFixed(0)} ч, а продлить его не удаётся.`);
+    notify(`Токен МЭШ истекает через ${Math.max(0, finalLeft).toFixed(0)} ч. Проверьте, что вы вошли на school.mos.ru в Safari.`);
   }
 }
 

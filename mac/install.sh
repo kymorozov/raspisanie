@@ -67,18 +67,19 @@ fi
 
 exec 3< "$TTY"
 
-say "Токен МЭШ"
-echo "Откройте school.mos.ru в Chrome, войдите, нажмите ⌘⌥I → Application → Cookies → school.mos.ru"
-echo "и скопируйте значение aupd_token. Вставьте его сюда и нажмите Enter (символы не видны — так и должно быть):"
+say "Safari"
+echo "Программа будет сама брать свежий вход в МЭШ из Safari. Для этого один раз:"
+echo "  1) войдите на school.mos.ru в Safari (если ещё не вошли);"
+echo "  2) Safari → Настройки → Дополнения → включите «Показывать функции для веб-разработчиков»;"
+echo "  3) в меню Разработка отметьте «Разрешить JavaScript из событий Apple»."
+echo "Сделали — нажмите Enter."
+IFS= read -r _ <&3 || true
+
+say "Токен МЭШ (необязательно)"
+echo "Можно вставить aupd_token вручную или просто нажать Enter — программа возьмёт его из Safari:"
 IFS= read -rs MESH <&3 || true; echo
 MESH="$(printf '%s' "$MESH" | tr -d '[:space:]"')"
-[ -n "$MESH" ] || fail "Токен МЭШ не введён"
-
-say "Токен продления МЭШ"
-echo "Там же, строкой ниже или выше, — aupd_refresh_token. Скопируйте его значение и вставьте сюда"
-echo "(без него программа не сможет продлевать доступ сама; Enter — пропустить):"
-IFS= read -rs MREF <&3 || true; echo
-MREF="$(printf '%s' "$MREF" | tr -d '[:space:]"')"
+MREF=""
 
 if [ -n "$OLD_GH" ]; then
   say "Ключ GitHub уже сохранён — нажмите Enter, чтобы оставить его, или вставьте новый:"
@@ -95,11 +96,14 @@ GHT="$(printf '%s' "$GHT" | tr -d '[:space:]')"
 MESH="$MESH" MREF="$MREF" GHT="$GHT" GH_API="$GH_API" "$NODE" --input-type=module -e '
   const t = process.env.MESH;
   let hours = null;
+  if (!t) console.log("Токен МЭШ возьму из Safari");
+  else {
   try { const p = JSON.parse(Buffer.from(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"), "base64")); hours = (p.exp*1000 - Date.now())/3600e3; } catch {}
   if (hours === null) { console.log("⚠︎ Токен МЭШ выглядит необычно — проверьте, что скопировали значение целиком"); }
   else if (hours <= 0 && !process.env.MREF) { console.error("✗ Этот токен МЭШ уже истёк — возьмите свежий"); process.exit(2); }
   else if (hours <= 0) console.log("Токен МЭШ истёк — попробую продлить по aupd_refresh_token");
-  else console.log("✓ Токен МЭШ действует ещё " + hours.toFixed(1) + " ч — " + (process.env.MREF ? "программа будет продлевать его сама" : "без aupd_refresh_token продлевать не получится"));
+  else console.log("✓ Токен МЭШ действует ещё " + hours.toFixed(1) + " ч — программа будет обновлять его через Safari");
+  }
   try {
     const r = await fetch(process.env.GH_API + "/repos/kymorozov/raspisanie", { headers: { Authorization: "Bearer " + process.env.GHT, "User-Agent": "raspisanie-install" } });
     if (r.status === 401) { console.error("✗ Ключ GitHub не подходит или истёк"); process.exit(3); }
@@ -114,7 +118,7 @@ umask 077
 MESH="$MESH" MREF="$MREF" GHT="$GHT" "$NODE" -e '
   const fs = require("fs"), p = process.argv[1];
   let c = {}; try { c = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) {}
-  c.meshToken = process.env.MESH; if (process.env.MREF) c.meshRefresh = process.env.MREF; c.ghToken = process.env.GHT; delete c.previousToken;
+  if (process.env.MESH) c.meshToken = process.env.MESH; if (process.env.MREF) c.meshRefresh = process.env.MREF; c.ghToken = process.env.GHT; delete c.previousToken;
   fs.writeFileSync(p, JSON.stringify(c, null, 2), { mode: 0o600 }); fs.chmodSync(p, 0o600);
 ' "$CFG"
 unset MESH MREF GHT OLD_GH
@@ -144,12 +148,14 @@ cat > "$PLIST" <<EOF
 </plist>
 EOF
 
+touch "$APP/force-safari"
 [ -f "$LOG" ] && mv -f "$LOG" "$LOG.old"
 launchctl bootout "gui/$UID_N/$LABEL" 2>/dev/null || true
 launchctl bootstrap "gui/$UID_N" "$PLIST"
 
 say "Первый запуск…"
-for _ in $(seq 1 40); do
+echo "Сейчас ненадолго откроется Safari. Если macOS спросит «node хочет управлять Safari» — нажмите «Разрешить»."
+for _ in $(seq 1 75); do
   sleep 2
   if grep -qE 'Отправлено на сайт|Изменений нет|Сбой|Не заданы' "$LOG" 2>/dev/null; then break; fi
 done
