@@ -547,9 +547,9 @@
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-label="Фото задания">
-  <div class="lb-bar"><button type="button" class="lb-back" id="lbBack">‹ Назад</button><span id="lbCount"></span><button type="button" class="lb-x" id="lbClose" aria-label="Закрыть">✕</button></div>
+  <div class="lb-bar"><span id="lbCount"></span><button type="button" class="lb-x" id="lbClose" aria-label="Закрыть">✕</button></div>
   <div class="lb-body" id="lbBody"><img id="lbImg" alt="Фото задания"></div>
-  <div class="lb-hint">Нажмите на фото, чтобы увеличить · ✕ или «Назад» — вернуться</div>
+  <div class="lb-hint">Нажмите на фото, чтобы увеличить</div>
 </div>
 <script>
   // ---- swipe dot sync ----
@@ -1832,7 +1832,6 @@
     open(imgs.map(function(x){ return x.currentSrc || x.src; }), Math.max(0, imgs.indexOf(a.querySelector('img'))));
   });
   document.getElementById('lbClose').addEventListener('click', function(){ close(false); });
-  document.getElementById('lbBack').addEventListener('click', function(){ close(false); });
   body.addEventListener('click', function(e){
     if (e.target === img) { body.classList.toggle('zoom'); return; }
     if (!body.classList.contains('zoom')) close(false);
