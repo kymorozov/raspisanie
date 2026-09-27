@@ -6,6 +6,7 @@
 //
 // Настройки — в ~/Library/Application Support/raspisanie/config.json
 //   meshToken  — токен МЭШ (программа сама продлевает его)
+//   meshRefresh — cookie aupd_refresh_token, по ней токен продлевается
 //   ghToken    — ключ GitHub с правом Contents: Read and write
 
 import fs from 'node:fs';
@@ -88,19 +89,20 @@ async function main() {
     return;
   }
 
-  // 1. Продлеваем токен, пока он ещё действует
+  // 1. Продлеваем токен (с aupd_refresh_token — даже если он уже истёк)
   const left = hoursLeft(cfg.meshToken);
-  if (left !== null && left > 0) {
-    const r = await refreshToken(cfg.meshToken);
+  if ((left !== null && left > 0) || cfg.meshRefresh) {
+    const r = await refreshToken(cfg.meshToken, cfg.meshRefresh);
     const newLeft = r.ok ? hoursLeft(r.token) : null;
-    if (r.ok && (newLeft === null || newLeft > left)) {
+    if (r.ok && (newLeft === null || left === null || newLeft > left)) {
       cfg.previousToken = cfg.meshToken;
       cfg.meshToken = r.token;
+      if (r.refresh) cfg.meshRefresh = r.refresh;
       cfg.refreshedAt = new Date().toISOString();
       writeCfg(cfg);
       log(`Токен продлён: действует ещё ${newLeft ? newLeft.toFixed(1) : '?'} ч`);
     } else {
-      log(`Продлить токен не удалось (${r.ok ? 'новый токен не дольше старого' : r.why}); осталось ${left.toFixed(1)} ч`);
+      log(`Продлить токен не удалось (${r.ok ? 'новый токен не дольше старого' : r.why}); осталось ${left !== null ? left.toFixed(1) : '?'} ч`);
     }
   } else if (left !== null) {
     log('Токен МЭШ уже истёк');

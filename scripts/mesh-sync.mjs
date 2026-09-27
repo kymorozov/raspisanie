@@ -75,20 +75,39 @@ async function api(token, path, profileId) {
   return r.json();
 }
 
-// Продление токена: по ещё действующему токену МЭШ выдаёт новый.
-// Возвращает {ok, token} или {ok:false, why}.
-export async function refreshToken(token) {
-  let r;
-  try {
-    r = await fetch('https://school.mos.ru/v2/token/refresh', {
-      headers: { 'Authorization': 'Bearer ' + token, 'accept': '*/*', 'user-agent': UA },
-      signal: AbortSignal.timeout(30000)
-    });
-  } catch (err) { return { ok: false, why: netError(err).message }; }
-  if (!r.ok) return { ok: false, why: 'HTTP ' + r.status };
-  const body = (await r.text()).trim().replace(/^"|"$/g, '');
-  if (!/^[\w-]+\.[\w-]+\.[\w-]+$/.test(body)) return { ok: false, why: 'неожиданный ответ' };
-  return { ok: true, token: body };
+// Продление токена. МЭШ выдаёт новый aupd_token по cookie aupd_refresh_token
+// (её видно рядом с aupd_token в DevTools → Application → Cookies).
+// Возвращает {ok, token, refresh?} или {ok:false, why}.
+function newCookie(r, name) {
+  const list = typeof r.headers.getSetCookie === 'function' ? r.headers.getSetCookie() : [r.headers.get('set-cookie') || ''];
+  for (const c of list) {
+    const m = c.match(new RegExp('(?:^|[;,]\\s*)' + name + '=([^;,\\s]+)'));
+    if (m) return m[1];
+  }
+  return null;
+}
+export async function refreshToken(token, refresh) {
+  const cookie = ['aupd_token=' + token, refresh ? 'aupd_refresh_token=' + refresh : ''].filter(Boolean).join('; ');
+  let why = 'нет ответа';
+  for (const q of ['?roleId=2&subsystem=2', '?roleId=1&subsystem=2', '']) {
+    let r;
+    try {
+      r = await fetch('https://school.mos.ru/v2/token/refresh' + q, {
+        headers: {
+          'Authorization': 'Bearer ' + token, 'Cookie': cookie,
+          'Accept': 'application/json, text/plain, */*', 'CrossDomain': 'true',
+          'Referer': 'https://school.mos.ru/auth/callback', 'user-agent': UA
+        },
+        signal: AbortSignal.timeout(30000)
+      });
+    } catch (err) { return { ok: false, why: netError(err).message }; }
+    if (!r.ok) { why = 'HTTP ' + r.status; continue; }
+    const body = (await r.text()).trim().replace(/^"|"$/g, '');
+    const tok = /^[\w-]+\.[\w-]+\.[\w-]+$/.test(body) ? body : newCookie(r, 'aupd_token');
+    if (!tok) { why = 'неожиданный ответ'; continue; }
+    return { ok: true, token: tok, refresh: newCookie(r, 'aupd_refresh_token') };
+  }
+  return { ok: false, why: refresh ? why : why + ', нет aupd_refresh_token' };
 }
 
 async function resolveKids(token, opts) {

@@ -74,6 +74,12 @@ IFS= read -rs MESH <&3 || true; echo
 MESH="$(printf '%s' "$MESH" | tr -d '[:space:]"')"
 [ -n "$MESH" ] || fail "Токен МЭШ не введён"
 
+say "Токен продления МЭШ"
+echo "Там же, строкой ниже или выше, — aupd_refresh_token. Скопируйте его значение и вставьте сюда"
+echo "(без него программа не сможет продлевать доступ сама; Enter — пропустить):"
+IFS= read -rs MREF <&3 || true; echo
+MREF="$(printf '%s' "$MREF" | tr -d '[:space:]"')"
+
 if [ -n "$OLD_GH" ]; then
   say "Ключ GitHub уже сохранён — нажмите Enter, чтобы оставить его, или вставьте новый:"
 else
@@ -86,13 +92,14 @@ GHT="$(printf '%s' "$GHT" | tr -d '[:space:]')"
 [ -n "$GHT" ] || fail "Ключ GitHub не введён"
 
 # Проверяем оба ключа, ничего не печатая из них
-MESH="$MESH" GHT="$GHT" GH_API="$GH_API" "$NODE" --input-type=module -e '
+MESH="$MESH" MREF="$MREF" GHT="$GHT" GH_API="$GH_API" "$NODE" --input-type=module -e '
   const t = process.env.MESH;
   let hours = null;
   try { const p = JSON.parse(Buffer.from(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"), "base64")); hours = (p.exp*1000 - Date.now())/3600e3; } catch {}
   if (hours === null) { console.log("⚠︎ Токен МЭШ выглядит необычно — проверьте, что скопировали значение целиком"); }
-  else if (hours <= 0) { console.error("✗ Этот токен МЭШ уже истёк — возьмите свежий"); process.exit(2); }
-  else console.log("✓ Токен МЭШ действует ещё " + hours.toFixed(1) + " ч — программа будет продлевать его сама");
+  else if (hours <= 0 && !process.env.MREF) { console.error("✗ Этот токен МЭШ уже истёк — возьмите свежий"); process.exit(2); }
+  else if (hours <= 0) console.log("Токен МЭШ истёк — попробую продлить по aupd_refresh_token");
+  else console.log("✓ Токен МЭШ действует ещё " + hours.toFixed(1) + " ч — " + (process.env.MREF ? "программа будет продлевать его сама" : "без aupd_refresh_token продлевать не получится"));
   try {
     const r = await fetch(process.env.GH_API + "/repos/kymorozov/raspisanie", { headers: { Authorization: "Bearer " + process.env.GHT, "User-Agent": "raspisanie-install" } });
     if (r.status === 401) { console.error("✗ Ключ GitHub не подходит или истёк"); process.exit(3); }
@@ -104,13 +111,13 @@ MESH="$MESH" GHT="$GHT" GH_API="$GH_API" "$NODE" --input-type=module -e '
 ' || fail "Исправьте и запустите установку ещё раз"
 
 umask 077
-MESH="$MESH" GHT="$GHT" "$NODE" -e '
+MESH="$MESH" MREF="$MREF" GHT="$GHT" "$NODE" -e '
   const fs = require("fs"), p = process.argv[1];
   let c = {}; try { c = JSON.parse(fs.readFileSync(p, "utf8")); } catch (e) {}
-  c.meshToken = process.env.MESH; c.ghToken = process.env.GHT; delete c.previousToken;
+  c.meshToken = process.env.MESH; if (process.env.MREF) c.meshRefresh = process.env.MREF; c.ghToken = process.env.GHT; delete c.previousToken;
   fs.writeFileSync(p, JSON.stringify(c, null, 2), { mode: 0o600 }); fs.chmodSync(p, 0o600);
 ' "$CFG"
-unset MESH GHT OLD_GH
+unset MESH MREF GHT OLD_GH
 
 # --- 4. Автозапуск: 7:40 и 19:10, при входе в систему и после сна --------
 cat > "$PLIST" <<EOF
