@@ -471,6 +471,7 @@
         <button class="addbtn" data-hwadd>📷 Добавить с листочка</button>
       </div>
       <div class="hwstatusSlot"></div>
+      <p class="sethelp" id="hwDoneNote" hidden></p>
 
       <div id="hwList"></div>
 
@@ -478,7 +479,7 @@
         <div class="cal-month-label">Подключения</div>
         <div id="hwMeshInfo"></div>
         <details class="opending">
-          <summary>Ключ GitHub — чтобы загружать фото с этого телефона</summary>
+          <summary>Ключ GitHub — для фото и общих отметок «сделано»</summary>
           <div class="setrow">
             <input type="password" id="ghTokenInput" placeholder="github_pat_…" autocomplete="off">
             <button class="smallbtn" id="ghTokenSave">Сохранить</button>
@@ -1336,10 +1337,80 @@
   function rawUrl(path){ return 'https://raw.githubusercontent.com/' + GH.owner + '/' + GH.repo + '/' + GH.branch + '/' + path; }
   function ghToken(){ return (lsGet('gh.token') || '').trim(); }
 
-  // ---- отметка «сделано» хранится на своём телефоне ----
+  // ---- отметка «сделано»: общая для всех телефонов ----
+  // Общие отметки лежат в data/homework-done.json ({id: {v, at}}).
+  // Локально хранятся только ещё не отправленные изменения (hw.done) —
+  // на телефоне без ключа GitHub они так и остаются только на нём.
+  var HW_DONE = {};
   function doneMap(){ try { return JSON.parse(lsGet('hw.done') || '{}'); } catch(e){ return {}; } }
-  function isDone(it){ var m = doneMap(); return (it.id in m) ? !!m[it.id] : !!it.done; }
-  function setDone(id, v){ var m = doneMap(); m[id] = !!v; lsSet('hw.done', JSON.stringify(m)); }
+  function isDone(it){
+    var m = doneMap();
+    if (it.id in m) return !!m[it.id];
+    if (HW_DONE[it.id]) return !!HW_DONE[it.id].v;
+    return !!it.done;
+  }
+  function setDone(id, v){
+    var m = doneMap(); m[id] = !!v; lsSet('hw.done', JSON.stringify(m));
+    scheduleDonePush();
+  }
+  function setSharedDone(obj){
+    HW_DONE = (obj && obj.marks) || {};
+    lsSet('hw.cache.done', JSON.stringify(obj || {}));
+    // локальные отметки, уже совпавшие с общими, больше не нужны
+    var m = doneMap(), changed = false;
+    Object.keys(m).forEach(function(id){ if (HW_DONE[id] && !!HW_DONE[id].v === !!m[id] && !donePushing) { delete m[id]; changed = true; } });
+    if (changed) lsSet('hw.done', JSON.stringify(m));
+  }
+  var donePushTimer = null, donePushing = false;
+  function scheduleDonePush(){
+    if (!ghToken()) { renderDoneNote(); return; }
+    clearTimeout(donePushTimer);
+    donePushTimer = setTimeout(pushDone, 1200);
+  }
+  function pushDone(){
+    var pending = doneMap(), ids = Object.keys(pending);
+    if (!ids.length || !ghToken() || donePushing) return Promise.resolve();
+    donePushing = true; renderDoneNote('Сохраняю отметки…');
+    var path = 'data/homework-done.json', now = new Date().toISOString();
+    function attempt(n){
+      return ghRequest('GET', '/contents/' + path + '?ref=' + GH.branch)
+        .then(function(j){ return {sha:j.sha, data:JSON.parse(b64ToUtf8(j.content))}; },
+              function(e){ if (e.status === 404) return {sha:null, data:{marks:{}}}; throw e; })
+        .then(function(cur){
+          var data = cur.data || {}; data.marks = data.marks || {};
+          ids.forEach(function(id){ data.marks[id] = {v: !!pending[id], at: now}; });
+          // старше 60 дней — убираем, чтобы файл не рос бесконечно
+          var cutoff = Date.now() - 60 * 864e5;
+          Object.keys(data.marks).forEach(function(id){ if (new Date(data.marks[id].at || 0).getTime() < cutoff) delete data.marks[id]; });
+          data.updatedAt = now;
+          var body = {message:'ДЗ: отметки «сделано» (' + ids.length + ')', content:utf8ToB64(JSON.stringify(data, null, 1) + '\n'), branch:GH.branch};
+          if (cur.sha) body.sha = cur.sha;
+          return ghRequest('PUT', '/contents/' + path, body).then(function(){ return data; });
+        })
+        .catch(function(e){ if ((e.status === 409 || e.status === 422) && n < 3) return attempt(n + 1); throw e; });
+    }
+    return attempt(0).then(function(data){
+      donePushing = false;
+      // снимаем из очереди только то, что не менялось, пока шла отправка
+      var m = doneMap();
+      ids.forEach(function(id){ if (id in m && !!m[id] === !!pending[id]) delete m[id]; });
+      lsSet('hw.done', JSON.stringify(m));
+      setSharedDone(data);
+      renderDoneNote();
+      if (Object.keys(m).length) scheduleDonePush();
+    }, function(e){
+      donePushing = false;
+      renderDoneNote('Отметки не сохранились: ' + e.message + '. Попробую ещё раз при следующем открытии.');
+    });
+  }
+  function renderDoneNote(msg){
+    var el = document.getElementById('hwDoneNote'); if (!el) return;
+    var n = Object.keys(doneMap()).length;
+    if (msg) el.textContent = msg;
+    else if (!ghToken() && n) el.textContent = 'Отметки видны только на этом телефоне — добавьте ключ GitHub внизу списка, и их увидят все.';
+    else el.textContent = '';
+    el.hidden = !el.textContent;
+  }
 
   function hwAll(){
     var a = [];
@@ -1393,13 +1464,16 @@
   function loadHwCache(){
     try { HW.mesh = JSON.parse(lsGet('hw.cache.mesh') || 'null'); } catch(e){}
     try { HW.manual = JSON.parse(lsGet('hw.cache.manual') || 'null'); } catch(e){}
+    try { HW_DONE = (JSON.parse(lsGet('hw.cache.done') || '{}').marks) || {}; } catch(e){}
   }
   function loadHomework(){
-    return Promise.all([fetchRepoJson('data/homework-mesh.json'), fetchRepoJson('data/homework-manual.json')])
+    return Promise.all([fetchRepoJson('data/homework-mesh.json'), fetchRepoJson('data/homework-manual.json'), fetchRepoJson('data/homework-done.json')])
       .then(function(r){
         if (r[0] !== undefined){ HW.mesh = r[0]; lsSet('hw.cache.mesh', JSON.stringify(r[0])); }
         if (r[1] !== undefined){ HW.manual = r[1]; lsSet('hw.cache.manual', JSON.stringify(r[1])); }
+        if (r[2] !== undefined) setSharedDone(r[2]);
         renderHwAll();
+        if (Object.keys(doneMap()).length) scheduleDonePush();
       });
   }
 
@@ -1584,10 +1658,11 @@
     if (info) info.innerHTML = meshStatusHtml(true) +
       '<p class="sethelp">Задания из МЭШ забирает программа на MacBook — в 7:40 и 19:10, пока Mac включён; если он спал, то при пробуждении. Она же каждый раз продлевает токен МЭШ. Если Mac был выключен больше суток, токен истечёт — программа покажет уведомление, и нужно будет запустить установку ещё раз со свежим токеном.</p>';
     var st = document.getElementById('ghTokenState');
-    if (st) st.textContent = ghToken() ? 'Ключ сохранён на этом телефоне ✓' : 'Ключ не задан — фото с этого телефона загрузить не получится.';
+    if (st) st.textContent = ghToken() ? 'Ключ сохранён на этом телефоне ✓' : 'Ключ не задан — с этого телефона не получится загрузить фото, а отметки «сделано» увидит только он.';
   }
 
   function renderHwAll(){
+    renderDoneNote();
     renderHwFilters();
     renderHwStatus();
     renderHwMonths();
@@ -1800,12 +1875,18 @@
       st.textContent = repo && repo.permissions && repo.permissions.push === false
         ? 'Ключ читает репозиторий, но не может записывать — нужно право Contents: Read and write'
         : 'Ключ сохранён на этом телефоне ✓';
+      scheduleDonePush();
     }, function(e){ st.textContent = e.message; });
   });
 
   loadHwCache();
   renderHwAll();
   loadHomework();
+  // вернулись в приложение — подтягиваем чужие отметки и новые задания
+  var lastHwLoad = Date.now();
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'visible' && Date.now() - lastHwLoad > 60000){ lastHwLoad = Date.now(); loadHomework(); }
+  });
 
 // Просмотр фото поверх страницы: на iPhone с экрана «Домой» ссылка в новое окно
 // открывается без кнопки «назад», поэтому показываем фото здесь же.
