@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T14:57:26.296Z",
+  "updatedAt": "2026-09-29T11:43:18.882Z",
   "items": [
     {
       "id": "p1",
@@ -41,6 +41,19 @@
         "hw/2026-10-01-s-pmujxzzlv-1.jpg"
       ],
       "createdAt": "2026-09-27T14:57:23.972Z"
+    },
+    {
+      "id": "pmumlxz7c",
+      "src": "photo",
+      "kid": "s",
+      "subject": "Алгебра",
+      "due": "2026-09-30",
+      "assigned": "2026-09-29",
+      "text": "",
+      "photos": [
+        "hw/2026-09-30-s-pmumlxz7c-1.jpg"
+      ],
+      "createdAt": "2026-09-29T11:43:13.272Z"
     }
   ]
 }
