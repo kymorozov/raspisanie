@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T06:56:35.154Z",
+  "updatedAt": "2026-10-01T14:37:32.191Z",
   "items": [
     {
       "id": "p1",
@@ -80,6 +80,19 @@
         "hw/2026-10-02-s-pmup6l0l5-1.jpg"
       ],
       "createdAt": "2026-10-01T06:56:32.825Z"
+    },
+    {
+      "id": "pmupn1sbg",
+      "src": "photo",
+      "kid": "s",
+      "subject": "Астрономия",
+      "due": "2026-10-08",
+      "assigned": "2026-10-01",
+      "text": "",
+      "photos": [
+        "hw/2026-10-08-s-pmupn1sbg-1.jpg"
+      ],
+      "createdAt": "2026-10-01T14:37:29.117Z"
     }
   ]
 }
