@@ -1,12 +1,15 @@
 {
-  "updatedAt": "2026-10-03T16:10:11.055Z",
+  "updatedAt": "2026-10-04T04:40:37.972Z",
   "range": {
-    "from": "2026-09-19",
-    "to": "2026-10-24"
+    "from": "2026-09-20",
+    "to": "2026-10-25"
   },
   "status": {
-    "ok": true,
-    "tokenExp": "2026-10-04T04:40:04.000Z",
+    "ok": false,
+    "error": "http_error",
+    "message": "МЭШ ответил HTTP 500",
+    "tokenExp": "2026-10-05T04:40:32.000Z",
+    "lastGood": "2026-10-03T16:10:11.055Z",
     "source": "mac"
   },
   "items": [
