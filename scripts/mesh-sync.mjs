@@ -55,7 +55,19 @@ function netError(err) {
   return e;
 }
 
+// Сбои на стороне МЭШ (HTTP 5xx, обрыв) бывают короткими — пробуем ещё дважды.
 async function api(token, path, profileId) {
+  for (let i = 0; ; i++) {
+    try { return await apiOnce(token, path, profileId); }
+    catch (e) {
+      const retry = (e.code === 'http_error' && e.status >= 500) || e.code === 'network';
+      if (!retry || i >= 2) throw e;
+      await new Promise(r => setTimeout(r, 20000 * (i + 1)));
+    }
+  }
+}
+
+async function apiOnce(token, path, profileId) {
   const headers = { 'auth-token': token, 'x-mes-subsystem': 'familymp', 'accept': 'application/json', 'user-agent': UA };
   if (profileId) headers['profile-id'] = String(profileId).trim();
   let r;
@@ -68,8 +80,9 @@ async function api(token, path, profileId) {
     throw e;
   }
   if (!r.ok) {
-    const e = new Error('МЭШ ответил HTTP ' + r.status);
+    const e = new Error('МЭШ ответил HTTP ' + r.status + (r.status >= 500 ? ' — сбой на стороне МЭШ' : ''));
     e.code = 'http_error';
+    e.status = r.status;
     throw e;
   }
   return r.json();
