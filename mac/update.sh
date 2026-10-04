@@ -1,6 +1,6 @@
 #!/bin/bash
 # Обновить программу МЭШ на Mac без повторного ввода ключей:
-# свежие файлы, расписание 7:40 / 13:10 / 19:10 / 22:10 и запуск прямо сейчас.
+# свежие файлы, расписание 7:40 / 13:10 / 17:10 / 19:10 и запуск прямо сейчас.
 #   curl -fsSL https://raw.githubusercontent.com/kymorozov/raspisanie/main/mac/update.sh | bash
 set -euo pipefail
 RAW="https://raw.githubusercontent.com/kymorozov/raspisanie/main"
@@ -14,13 +14,13 @@ curl -fsSL "$RAW/mac/mesh-mac.mjs"      -o "$APP/mesh-mac.mjs"
 /usr/libexec/PlistBuddy -c 'Delete :StartCalendarInterval' "$PLIST"
 /usr/libexec/PlistBuddy -c 'Add :StartCalendarInterval array' "$PLIST"
 i=0
-for t in 7:40 13:10 19:10 22:10; do
+for t in 7:40 13:10 17:10 19:10; do
   /usr/libexec/PlistBuddy -c "Add :StartCalendarInterval:$i dict" \
     -c "Add :StartCalendarInterval:$i:Hour integer ${t%%:*}" \
     -c "Add :StartCalendarInterval:$i:Minute integer ${t##*:}" "$PLIST"
   i=$((i+1))
 done
-echo "Node: $("$NODE" -v); расписание: 7:40, 13:10, 19:10, 22:10"
+echo "Node: $("$NODE" -v); расписание: 7:40, 13:10, 17:10, 19:10"
 LOG="$HOME/Library/Logs/raspisanie-mesh.log"
 BEFORE=$(wc -l < "$LOG" 2>/dev/null || echo 0)
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true

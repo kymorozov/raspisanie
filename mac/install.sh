@@ -123,7 +123,7 @@ MESH="$MESH" MREF="$MREF" GHT="$GHT" "$NODE" -e '
 ' "$CFG"
 unset MESH MREF GHT OLD_GH
 
-# --- 4. Автозапуск: 7:40, 13:10, 19:10 и 22:10, при входе в систему и после сна --------
+# --- 4. Автозапуск: 7:40, 13:10, 17:10 и 19:10, при входе в систему и после сна --------
 cat > "$PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -140,8 +140,8 @@ cat > "$PLIST" <<EOF
   <array>
     <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>40</integer></dict>
     <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>10</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>10</integer></dict>
     <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>10</integer></dict>
-    <dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>10</integer></dict>
   </array>
   <key>RunAtLoad</key><true/>
   <key>StandardOutPath</key><string>$LOG</string>
@@ -165,7 +165,7 @@ echo "────────────────────────�
 tail -n 12 "$LOG" 2>/dev/null || echo "(журнал пока пуст)"
 echo "────────────────────────────────"
 if grep -q 'Отправлено на сайт: заданий\|Изменений нет' "$LOG" 2>/dev/null; then
-  say "✓ Всё работает. Задания обновляются в 7:40, 13:10, 19:10 и 22:10, пока Mac включён; после сна — при пробуждении."
+  say "✓ Всё работает. Задания обновляются в 7:40, 13:10, 17:10 и 19:10, пока Mac включён; после сна — при пробуждении."
 else
   say "Что-то пошло не так — пришлите в чат строки выше (в них нет ни токенов, ни имён)."
 fi
