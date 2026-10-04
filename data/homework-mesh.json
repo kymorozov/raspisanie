@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-04T12:59:18.519Z",
+  "updatedAt": "2026-10-04T16:10:17.282Z",
   "range": {
     "from": "2026-09-20",
     "to": "2026-10-25"
   },
   "status": {
     "ok": false,
-    "error": "http_error",
-    "message": "МЭШ ответил HTTP 504 — сбой на стороне МЭШ",
+    "error": "network",
+    "message": "Нет соединения с school.mos.ru: TimeoutError",
     "tokenExp": "2026-10-05T04:40:32.000Z",
     "lastGood": "2026-10-03T16:10:11.055Z",
     "source": "mac"
