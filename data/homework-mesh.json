@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T04:40:37.972Z",
+  "updatedAt": "2026-10-04T12:59:18.519Z",
   "range": {
     "from": "2026-09-20",
     "to": "2026-10-25"
@@ -7,7 +7,7 @@
   "status": {
     "ok": false,
     "error": "http_error",
-    "message": "МЭШ ответил HTTP 500",
+    "message": "МЭШ ответил HTTP 504 — сбой на стороне МЭШ",
     "tokenExp": "2026-10-05T04:40:32.000Z",
     "lastGood": "2026-10-03T16:10:11.055Z",
     "source": "mac"
