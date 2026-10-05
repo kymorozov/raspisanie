@@ -1483,12 +1483,16 @@
     if (!HW.mesh) return '<div class="hwstatus">МЭШ: данных пока нет</div>';
     var s = HW.mesh.status || {};
     if (s.ok){
-      var warn = '';
-      if (s.tokenExp){
-        var d = (new Date(s.tokenExp) - Date.now()) / 864e5;
-        if (d < 3) warn = ' · <span class="warn">токен истекает ' + (d < 1 ? 'сегодня' : 'через ' + Math.ceil(d) + ' дн.') + '</span>';
-        else if (long) warn = ' · токен действует до ' + fmtShort(isoOf(new Date(s.tokenExp)));
-      }
+      // Токен живёт сутки и продлевается программой на Mac при каждом запуске,
+      // поэтому предупреждаем только о реальной проблеме: токен уже истёк
+      // или данные давно не обновлялись (Mac выключен / нет связи).
+      var warn = '', ageH = (Date.now() - new Date(HW.mesh.updatedAt)) / 3600e3;
+      if (s.tokenExp && new Date(s.tokenExp) < Date.now())
+        warn = ' · <span class="warn">токен истёк — откройте school.mos.ru в Safari на Mac</span>';
+      else if (ageH > 26)
+        warn = ' · <span class="warn">давно не обновлялось — проверьте, включён ли Mac</span>';
+      else if (long && s.tokenExp)
+        warn = ' · токен продлевается автоматически';
       return '<div class="hwstatus ok">МЭШ обновлён ' + fmtStamp(HW.mesh.updatedAt) + warn + '</div>';
     }
     if (s.error === 'not_configured')
