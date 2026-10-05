@@ -1,0 +1,20 @@
+# Окончания строк: в репозитории всегда LF — одинаково на Windows и Mac.
+* text=auto eol=lf
+
+# Скрипты Windows ломаются с LF — для них CRLF.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Двоичные файлы — не трогать.
+*.xlsx binary
+*.docx binary
+*.pptx binary
+*.pdf  binary
+*.mpp  binary
+*.png  binary
+*.jpg  binary
+*.7z   binary
+*.zip  binary
+*.pfx  binary
+*.db   binary

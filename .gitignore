@@ -1,0 +1,16 @@
+# Секреты — никогда в репозиторий (он публичный).
+.env
+.env.*
+*.pem
+*.key
+config.json
+
+# Зависимости и временное.
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# Личные настройки Claude Code.
+.claude/settings.local.json
+.claude/worktrees/
