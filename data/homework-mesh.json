@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T10:10:03.366Z",
+  "updatedAt": "2026-10-05T14:10:02.908Z",
   "range": {
     "from": "2026-09-21",
     "to": "2026-10-26"
@@ -1315,6 +1315,42 @@
       "done": false
     },
     {
+      "id": "m-s-5209136742",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-10-06",
+      "assigned": "2026-10-05",
+      "text": "SB. pages 16-17 (Module 2. Прочитать тексты, перевести, записать незнакомые слова, занести выделенные слова с переводом в словарь).",
+      "materials": [
+        {
+          "title": "Tale time. Bookworms. A classic read. Vanished. The Canterville Ghost",
+          "url": null
+        },
+        {
+          "title": "Past Simple and Present Perfect",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5209231737",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Русский язык",
+      "due": "2026-10-06",
+      "assigned": "2026-10-05",
+      "text": "РТ у.23",
+      "materials": [
+        {
+          "title": "Основные жанры публицистического стиля",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-v-5207137204",
       "src": "mesh",
       "kid": "v",
@@ -1388,6 +1424,33 @@
       "done": false
     },
     {
+      "id": "m-v-5208836795",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Химия",
+      "due": "2026-10-06",
+      "assigned": "2026-10-05",
+      "text": "ЦДЗ (по желанию).",
+      "materials": [
+        {
+          "title": "Алканы",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5209060937",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Обществознание",
+      "due": "2026-10-07",
+      "assigned": "2026-10-05",
+      "text": "пар 6 читать",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-5195558843",
       "src": "mesh",
       "kid": "v",
@@ -1408,6 +1471,22 @@
       "done": false
     },
     {
+      "id": "m-s-5209233265",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Русский язык",
+      "due": "2026-10-08",
+      "assigned": "2026-10-05",
+      "text": "у.",
+      "materials": [
+        {
+          "title": "Основные жанры публицистического стиля",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-v-5201414317",
       "src": "mesh",
       "kid": "v",
@@ -1418,6 +1497,22 @@
       "materials": [
         {
           "title": "Илья Обломов и Ольга Ильинская",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5209233999",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Русский язык",
+      "due": "2026-10-09",
+      "assigned": "2026-10-05",
+      "text": "у.",
+      "materials": [
+        {
+          "title": "Основные жанры публицистического стиля",
           "url": null
         }
       ],
