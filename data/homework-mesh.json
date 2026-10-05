@@ -1,15 +1,12 @@
 {
-  "updatedAt": "2026-10-04T16:10:17.282Z",
+  "updatedAt": "2026-10-05T04:40:15.266Z",
   "range": {
-    "from": "2026-09-20",
-    "to": "2026-10-25"
+    "from": "2026-09-21",
+    "to": "2026-10-26"
   },
   "status": {
-    "ok": false,
-    "error": "network",
-    "message": "Нет соединения с school.mos.ru: TimeoutError",
-    "tokenExp": "2026-10-05T04:40:32.000Z",
-    "lastGood": "2026-10-03T16:10:11.055Z",
+    "ok": true,
+    "tokenExp": "2026-10-06T04:40:10.000Z",
     "source": "mac"
   },
   "items": [
