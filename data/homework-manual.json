@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T06:12:22.580Z",
+  "updatedAt": "2026-10-08T05:36:34.472Z",
   "items": [
     {
       "id": "p1",
@@ -119,6 +119,19 @@
         "hw/2026-10-08-s-pmuxpn9g9-1.jpg"
       ],
       "createdAt": "2026-10-07T06:12:19.739Z"
+    },
+    {
+      "id": "pmuz3t2fd",
+      "src": "photo",
+      "kid": "s",
+      "subject": "Физика",
+      "due": "2026-10-13",
+      "assigned": "2026-10-08",
+      "text": "",
+      "photos": [
+        "hw/2026-10-13-s-pmuz3t2fd-1.jpg"
+      ],
+      "createdAt": "2026-10-08T05:36:31.369Z"
     }
   ]
 }
