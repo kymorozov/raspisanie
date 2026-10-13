@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T04:40:09.167Z",
+  "updatedAt": "2026-10-13T10:10:10.265Z",
   "range": {
     "from": "2026-09-29",
     "to": "2026-11-03"
@@ -1477,6 +1477,17 @@
       "done": false
     },
     {
+      "id": "m-v-5234905175",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-10-14",
+      "assigned": "2026-10-13",
+      "text": "пар 10 читать",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-5233514632",
       "src": "mesh",
       "kid": "v",
@@ -1555,6 +1566,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5235921595",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-10-15",
+      "assigned": "2026-10-13",
+      "text": "составить 7 предложений со словами - thrill-seeker, have a go, give smth a go, unwind, impove physical stamina, determination, patience, social type of sports, solitaty type of sports, demanding activity, recharge your batteries, efficient. Слова учить наизусть на диктант.",
+      "materials": [],
       "done": false
     },
     {
@@ -1727,6 +1749,22 @@
       "materials": [
         {
           "title": "Признаки глагола и прилагательного у причастия",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5234463063",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Биология",
+      "due": "2026-10-20",
+      "assigned": "2026-10-13",
+      "text": "доклады: липиды, нуклеиновые кислоты. Подготовиться к проверочной работе",
+      "materials": [
+        {
+          "title": "Белки",
           "url": null
         }
       ],
