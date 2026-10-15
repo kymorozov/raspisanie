@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T04:40:09.321Z",
+  "updatedAt": "2026-10-15T10:10:13.384Z",
   "range": {
     "from": "2026-10-01",
     "to": "2026-11-05"
@@ -1428,6 +1428,22 @@
       "done": false
     },
     {
+      "id": "m-s-5243788355",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-10-16",
+      "assigned": "2026-10-15",
+      "text": "Подготовиться к диктанту (будут фразы и короткие предложения), а также следующие слова: to overcome\nobstacles, powerful, snooze, to be relieved, neat appearance, obsession, psychology, investigation, gossip, to inspire, to solve crimes, mysterious cases, brilliant, imagination, underwater city.",
+      "materials": [
+        {
+          "title": "Досуг и увлечения (хобби) современного подростка: чтение, кино, театр, музей, спорт, музыка",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-s-5229271682",
       "src": "mesh",
       "kid": "s",
@@ -1494,7 +1510,7 @@
       "subject": "Русский язык",
       "due": "2026-10-16",
       "assigned": "2026-10-05",
-      "text": "У.",
+      "text": "У.30 РТ",
       "materials": [],
       "done": false
     },
