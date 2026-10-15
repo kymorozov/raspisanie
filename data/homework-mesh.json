@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-10-15T10:10:13.384Z",
+  "updatedAt": "2026-10-15T14:10:13.571Z",
   "range": {
     "from": "2026-10-01",
     "to": "2026-11-05"
   },
   "status": {
     "ok": true,
-    "tokenExp": "2026-10-15T14:10:05.000Z",
+    "tokenExp": "2026-10-16T14:10:05.000Z",
     "source": "mac"
   },
   "items": [
@@ -1444,6 +1444,22 @@
       "done": false
     },
     {
+      "id": "m-s-5245732163",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Информатика",
+      "due": "2026-10-16",
+      "assigned": "2026-10-15",
+      "text": "дз в файле",
+      "materials": [
+        {
+          "title": "ДЗ.txt",
+          "url": "https://school.mos.ru/ej/attachments/files/232/825/554/original/%D0%94%D0%97.txt"
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-s-5229271682",
       "src": "mesh",
       "kid": "s",
@@ -1512,6 +1528,22 @@
       "assigned": "2026-10-05",
       "text": "У.30 РТ",
       "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-v-5244786660",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Литература",
+      "due": "2026-10-16",
+      "assigned": "2026-10-15",
+      "text": "Дочитать роман Гончарова \"Обломов\" (4 часть).",
+      "materials": [
+        {
+          "title": "Подготовка к ЕГЭ. И. С. Тургенев. Роман \"Отцы и дети\"",
+          "url": null
+        }
+      ],
       "done": false
     },
     {
