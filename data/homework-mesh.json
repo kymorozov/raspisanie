@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T14:10:22.484Z",
+  "updatedAt": "2026-10-17T16:10:07.842Z",
   "range": {
     "from": "2026-10-03",
     "to": "2026-11-07"
@@ -1349,6 +1349,22 @@
         {
           "title": "1_ПЗ_ВсОШ_Информатика Робототехника.docx",
           "url": "https://school.mos.ru/ej/attachments/files/232/762/807/original/1_%D0%9F%D0%97_%D0%92%D1%81%D0%9E%D0%A8_%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0.docx"
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5251245899",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "География",
+      "due": "2026-10-19",
+      "assigned": "2026-10-17",
+      "text": "не задано",
+      "materials": [
+        {
+          "title": "Текущий контроль знаний по теме \"Главные закономерности природы Земли\"",
+          "url": null
         }
       ],
       "done": false
