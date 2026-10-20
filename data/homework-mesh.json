@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T04:40:09.128Z",
+  "updatedAt": "2026-10-20T10:10:13.770Z",
   "range": {
     "from": "2026-10-06",
     "to": "2026-11-10"
@@ -1588,6 +1588,17 @@
       "done": false
     },
     {
+      "id": "m-v-5257771118",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-10-21",
+      "assigned": "2026-10-20",
+      "text": "пар 12",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-5253701811",
       "src": "mesh",
       "kid": "v",
@@ -1652,6 +1663,17 @@
           "url": "https://school.mos.ru/ej/attachments/files/232/978/862/original/%D0%94%D0%97%20%D0%A0%D0%AF%2010%20%D0%BA%D0%BB.docx"
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-s-5257385016",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-10-22",
+      "assigned": "2026-10-20",
+      "text": "SB. page 23 ex. 1-4 (читаем, переводим, выполняем задания, выделенную лексику записываем в словарь).",
+      "materials": [],
       "done": false
     },
     {
