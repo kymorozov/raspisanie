@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T14:10:11.453Z",
+  "updatedAt": "2026-10-20T16:10:05.187Z",
   "range": {
     "from": "2026-10-06",
     "to": "2026-11-10"
@@ -1596,7 +1596,7 @@
       "assigned": "2026-10-20",
       "text": "пар 12",
       "materials": [],
-      "done": false
+      "done": true
     },
     {
       "id": "m-v-5253701811",
@@ -1616,7 +1616,7 @@
           "url": null
         }
       ],
-      "done": false
+      "done": true
     },
     {
       "id": "m-v-5238164986",
@@ -1643,7 +1643,7 @@
           "url": "https://school.mos.ru/ej/attachments/files/233/094/186/original/1_%D0%9F%D0%97_%D0%92%D1%81%D0%9E%D0%A8_%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0.docx"
         }
       ],
-      "done": false
+      "done": true
     },
     {
       "id": "m-v-5240488256",
@@ -1663,7 +1663,7 @@
           "url": "https://school.mos.ru/ej/attachments/files/232/978/862/original/%D0%94%D0%97%20%D0%A0%D0%AF%2010%20%D0%BA%D0%BB.docx"
         }
       ],
-      "done": false
+      "done": true
     },
     {
       "id": "m-s-5257385016",
@@ -1688,6 +1688,26 @@
         {
           "title": "Признаки глагола и прилагательного у причастия",
           "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5260214688",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Физика",
+      "due": "2026-10-22",
+      "assigned": "2026-10-20",
+      "text": "Решать задачи на плотности. Все решения через формулы.",
+      "materials": [
+        {
+          "title": "Масса и размер атомов и молекул",
+          "url": null
+        },
+        {
+          "title": "2026-10-20_17-21-45.png",
+          "url": "https://school.mos.ru/ej/attachments/files/233/169/405/original/2026-10-20_17-21-45.png"
         }
       ],
       "done": false
