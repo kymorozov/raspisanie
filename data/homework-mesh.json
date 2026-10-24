@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T04:40:10.728Z",
+  "updatedAt": "2026-10-24T10:10:10.569Z",
   "range": {
     "from": "2026-10-10",
     "to": "2026-11-14"
@@ -1391,6 +1391,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5270636016",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Информатика",
+      "due": "2026-11-02",
+      "assigned": "2026-10-24",
+      "text": "https://stepik.org/join-class/2061977c5ce8dc15411184c57fbc8757069ee79b\n\n1.1 -1.4 выполнить",
+      "materials": [],
       "done": false
     },
     {
