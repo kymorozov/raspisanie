@@ -1,15 +1,12 @@
 {
-  "updatedAt": "2026-10-25T14:10:11.433Z",
+  "updatedAt": "2026-10-25T16:10:07.624Z",
   "range": {
     "from": "2026-10-11",
     "to": "2026-11-15"
   },
   "status": {
-    "ok": false,
-    "error": 23,
-    "message": "The operation was aborted due to timeout",
+    "ok": true,
     "tokenExp": "2026-10-26T14:10:05.000Z",
-    "lastGood": "2026-10-25T04:40:10.279Z",
     "source": "mac"
   },
   "items": [
