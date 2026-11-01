@@ -193,6 +193,7 @@
   .hwstatus .warn{color:#a9432f}
   .cal-day.has-hw{cursor:pointer;background:#e8eef6;font-weight:700}
   .cal-day.has-hw.overdue{background:#fdeceb}
+  .cal-day.off:not(.has-hw){background:repeating-linear-gradient(135deg,transparent 0 4px,rgba(0,0,0,.05) 4px 6px);color:var(--muted)}
   .cal-day.has-hw.alldone{background:#eef2ef;color:var(--muted);font-weight:400}
   .cal-day .hwcount{position:absolute;top:2px;left:4px;font-size:9px;font-weight:800;color:#3b5a80;line-height:1}
   .cal-day.overdue .hwcount{color:#a9432f}
@@ -422,6 +423,7 @@
       <section class="notes">
         <h2>Сверка с дневником МЭШ</h2>
     <ul>
+      <li>26 октября – 1 ноября были осенние каникулы, 4 ноября (среда) — праздник, уроков нет. Задания, которые были на каникулярную неделю, перенесены на ближайшие уроки после неё.</li>
       <li>Расписание Саши — по новой доске 7А, действует с 2 ноября (после осенних каникул). У Вани — неделя 21–26 сентября по выгрузке из МЭШ.</li>
       <li>У Вани расписание полностью совпало с предыдущей неделей — за три выгрузки подряд оно устоялось. Первые 5–6 уроков стабильны всегда, а последние 1–3 (робототехника, проектная деятельность, осмысленное чтение, «Россия — мои горизонты», физкультура) программа перераспределяет по дням, поэтому время окончания стоит сверять по дневнику.</li>
       <li>Что поменялось у Саши с 2 ноября: вторник 3-й — история, 4-й — алгебра (каб. 131), физкультуры во вторник больше нет; пятница теперь: русский, физкультура, информатика, английский, география, биология, обед, литература; в четверг физика и геометрия в 253-м, обед в 448-м.</li>
@@ -1319,6 +1321,16 @@
   function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
   var TODAY_ISO = isoOf(today);
   var TOMORROW_ISO = isoOf(addDays(today, 1));
+
+  // Дни без уроков: каникулы и праздники. Сюда добавлять новые периоды.
+  var NO_SCHOOL = [
+    {from:'2026-10-24', to:'2026-11-01', label:'осенние каникулы'},
+    {from:'2026-11-04', to:'2026-11-04', label:'праздник — День народного единства'}
+  ];
+  function noSchool(iso){
+    for (var i = 0; i < NO_SCHOOL.length; i++) if (iso >= NO_SCHOOL[i].from && iso <= NO_SCHOOL[i].to) return NO_SCHOOL[i];
+    return null;
+  }
   var WD_FULL = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
 
   function fmtDayHead(iso){
@@ -1440,8 +1452,9 @@
   })();
   function nextLessonIso(kid, subj){
     var days = SUBJ_DAYS[kid] && SUBJ_DAYS[kid][subj];
-    for (var k = 1; k <= 14; k++){
+    for (var k = 1; k <= 28; k++){
       var d = addDays(today, k);
+      if (noSchool(isoOf(d))) continue;
       if (days ? days[d.getDay()] : (d.getDay() >= 1 && d.getDay() <= 5)) return isoOf(d);
     }
     return TOMORROW_ISO;
@@ -1601,6 +1614,8 @@
       var cell = document.createElement('button');
       cell.className = 'cal-day';
       if (iso === TODAY_ISO) cell.classList.add('today');
+      var ns = noSchool(iso);
+      if (ns){ cell.classList.add('off'); cell.title = ns.label; }
       cell.innerHTML = '<span>' + d + '</span>';
       var list = byDue[iso];
       if (list){
