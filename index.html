@@ -1422,10 +1422,23 @@
     el.hidden = !el.textContent;
   }
 
+  // Ручные поправки сроков для заданий из МЭШ (файл МЭШ перезаписывает робот,
+  // поэтому правим здесь): id задания → новый срок.
+  var HW_DUE_FIX = {
+    'm-s-5265113008': {due:'2026-11-03', note:'в МЭШ стоит 23 октября, но это ДЗ на каникулы — зачёт на первом уроке после них'}
+  };
   function hwAll(){
     var a = [];
     [HW.mesh, HW.manual].forEach(function(src){
-      if (src && src.items) src.items.forEach(function(i){ if (i && i.due && i.kid) a.push(i); });
+      if (src && src.items) src.items.forEach(function(i){
+        if (!i || !i.due || !i.kid) return;
+        var fix = HW_DUE_FIX[i.id];
+        if (fix && i.due !== fix.due){
+          var c = {}; for (var k in i) c[k] = i[k];
+          c.due = fix.due; c.dueFixNote = fix.note; i = c;
+        }
+        a.push(i);
+      });
     });
     return a;
   }
@@ -1564,6 +1577,7 @@
     }
     var meta = [];
     if (it.assigned) meta.push('задано ' + fmtShort(it.assigned));
+    if (it.dueFixNote) meta.push('<span class="guess">срок перенесён: ' + esc(it.dueFixNote) + '</span>');
     if (it.dueGuess) meta.push('<span class="guess">срок на листочке не указан — поставлен ближайший урок</span>');
     if (meta.length) h += '<div class="ometa">' + meta.join(' · ') + '</div>';
     h += '<div class="hwactions"><label class="donebox"><input type="checkbox" data-done="' + esc(it.id) + '"' + (done ? ' checked' : '') + '> сделано</label>';
