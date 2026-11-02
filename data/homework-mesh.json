@@ -1,12 +1,15 @@
 {
-  "updatedAt": "2026-11-02T04:40:10.113Z",
+  "updatedAt": "2026-11-02T10:10:04.978Z",
   "range": {
     "from": "2026-10-19",
     "to": "2026-11-23"
   },
   "status": {
-    "ok": true,
+    "ok": false,
+    "error": "network",
+    "message": "Нет соединения с school.mos.ru: ENOTFOUND",
     "tokenExp": "2026-11-03T04:40:05.000Z",
+    "lastGood": "2026-11-02T04:40:10.113Z",
     "source": "mac"
   },
   "items": [
