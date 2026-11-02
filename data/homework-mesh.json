@@ -1,15 +1,12 @@
 {
-  "updatedAt": "2026-11-02T10:10:04.978Z",
+  "updatedAt": "2026-11-02T14:10:02.636Z",
   "range": {
     "from": "2026-10-19",
     "to": "2026-11-23"
   },
   "status": {
-    "ok": false,
-    "error": "network",
-    "message": "Нет соединения с school.mos.ru: ENOTFOUND",
+    "ok": true,
     "tokenExp": "2026-11-03T04:40:05.000Z",
-    "lastGood": "2026-11-02T04:40:10.113Z",
     "source": "mac"
   },
   "items": [
@@ -754,13 +751,40 @@
       "done": false
     },
     {
+      "id": "m-s-5283357919",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-03",
+      "assigned": "2026-11-02",
+      "text": "Зачет по словам.",
+      "materials": [
+        {
+          "title": "Spotlight 7. Module 10. Lesson 10a. Phrasal verb \"to fall\"",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5280822245",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "История",
+      "due": "2026-11-03",
+      "assigned": "2026-11-02",
+      "text": "пар.12, читать, учить записи в тетр., термины и даты, выписать итоги и значение английской революции",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-s-5278412332",
       "src": "mesh",
       "kid": "s",
       "subject": "Русский язык",
       "due": "2026-11-03",
       "assigned": "2026-11-01",
-      "text": "У.",
+      "text": "У.194",
       "materials": [],
       "done": false
     },
@@ -894,6 +918,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-s-5283165398",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "География",
+      "due": "2026-11-06",
+      "assigned": "2026-11-02",
+      "text": "параграф 9, ответить на вопросы после параграфа (устно), найти в атласе карту, на которой показаны геологические эры",
+      "materials": [],
       "done": false
     },
     {
