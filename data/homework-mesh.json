@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T04:40:12.594Z",
+  "updatedAt": "2026-11-06T10:10:07.615Z",
   "range": {
     "from": "2026-10-23",
     "to": "2026-11-27"
@@ -661,8 +661,45 @@
       "subject": "Русский язык",
       "due": "2026-11-09",
       "assigned": "2026-11-01",
-      "text": "У.",
-      "materials": [],
+      "text": "У.205 письм., 206 устно",
+      "materials": [
+        {
+          "title": "Cтрадательные причастия настоящего и прошедшего времени",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5297035016",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Алгебра и начала математического анализа",
+      "due": "2026-11-09",
+      "assigned": "2026-11-06",
+      "text": "Решить 163,164",
+      "materials": [
+        {
+          "title": "СПО. Базовый и расширенный. Применение свойств степени с целым показателем в ходе преобразования и нахождения значения числового выражения",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5294913528",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Информатика",
+      "due": "2026-11-09",
+      "assigned": "2026-11-06",
+      "text": "https://informatics.msk.ru/mod/statements/view.php?id=11145#1\n\nM. Две одинаковые цифры рядом\nN. Все одинаковые цифры\nO. Две одинаковые цифры\nP. Степени числа 2\nQ. Ещё раз степени числа 2\nR. Алгоритм Евклида",
+      "materials": [
+        {
+          "title": "Компьютерная арифметика",
+          "url": null
+        }
+      ],
       "done": false
     },
     {
@@ -688,6 +725,17 @@
       "done": false
     },
     {
+      "id": "m-v-5296510354",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Физика",
+      "due": "2026-11-09",
+      "assigned": "2026-11-06",
+      "text": "решить в тетрадке для дом. работ № 18.29,18.32,18.33",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-s-5289260259",
       "src": "mesh",
       "kid": "s",
@@ -696,6 +744,22 @@
       "assigned": "2026-11-04",
       "text": "Передам через Родиона",
       "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-s-5296594465",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-10",
+      "assigned": "2026-11-06",
+      "text": "SB page 26 ex. 6 (Монолог по заданию: составить не менее 8-10\nФраз, также + 2-3 фразы (начало и конец: | would like to tell you\nabout..; Finally/In conclusion,.... That's all that I wanted to say.)\nImagine you are one of the teenagers...\n*   Talk about yourself.\n*   Say when and why you chose that hobby.\n*   Describe what happened.\nSB page 28 ех. 2 (изучить таблицу с лексикой, записать в словарь незнакомые слова).",
+      "materials": [
+        {
+          "title": "Accidents. Vocabulary and grammar",
+          "url": null
+        }
+      ],
       "done": false
     },
     {
@@ -805,6 +869,22 @@
       "done": false
     },
     {
+      "id": "m-v-5295506089",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Литература",
+      "due": "2026-11-12",
+      "assigned": "2026-11-06",
+      "text": "Выучить стихотворение Тютчева \"О, как убийственно мы любим...\". Принести тексты поэмы Некрасова \"Кому на Руси жить хорошо\" (к 13 ноября).",
+      "materials": [
+        {
+          "title": "Любовная лирика Ф.И. Тютчева",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-v-107566382",
       "src": "mesh",
       "kid": "v",
@@ -812,6 +892,17 @@
       "due": "2026-11-12",
       "assigned": "2026-11-05",
       "text": "Не задано",
+      "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-s-5294962656",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Биология",
+      "due": "2026-11-13",
+      "assigned": "2026-11-06",
+      "text": "П. 7 повторить, тетрадь, сообщения.",
       "materials": [],
       "done": false
     },
