@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T04:40:14.017Z",
+  "updatedAt": "2026-11-10T10:10:05.792Z",
   "range": {
     "from": "2026-10-27",
     "to": "2026-12-01"
@@ -849,6 +849,33 @@
       "done": false
     },
     {
+      "id": "m-s-5306859822",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "История",
+      "due": "2026-11-11",
+      "assigned": "2026-11-10",
+      "text": "пар.14-15.п.1 - пересказывать",
+      "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-v-5307122153",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-11-11",
+      "assigned": "2026-11-10",
+      "text": "пар 16 читать",
+      "materials": [
+        {
+          "title": "Начало Второй мировой войны",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-v-5304934859",
       "src": "mesh",
       "kid": "v",
@@ -930,6 +957,22 @@
       "assigned": "2026-11-01",
       "text": "У.",
       "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-v-5307777993",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Алгебра и начала математического анализа",
+      "due": "2026-11-12",
+      "assigned": "2026-11-10",
+      "text": "Решить задания из файла",
+      "materials": [
+        {
+          "title": "scaled_ce2dd356-2fe1-4051-9a36-ae9217d2fdc76950106415681635332.jpg",
+          "url": "https://school.mos.ru/ej/attachments/files/234/055/729/original/scaled_ce2dd356-2fe1-4051-9a36-ae9217d2fdc76950106415681635332.jpg"
+        }
+      ],
       "done": false
     },
     {
@@ -1100,6 +1143,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5305979661",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Биология",
+      "due": "2026-11-17",
+      "assigned": "2026-11-10",
+      "text": "Конспект 15 параграфа . Погодтовиться к устному опросу по этой теме",
+      "materials": [],
       "done": false
     },
     {
