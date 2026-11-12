@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T10:52:32.062Z",
+  "updatedAt": "2026-11-12T11:06:02.755Z",
   "items": [
     {
       "id": "p1",
@@ -197,6 +197,19 @@
         "hw/2026-11-05-s-pmvz53ovf-1.jpg"
       ],
       "createdAt": "2026-11-02T10:52:28.972Z"
+    },
+    {
+      "id": "pmwdfzlal",
+      "src": "photo",
+      "kid": "s",
+      "subject": "Геометрия",
+      "due": "2026-11-16",
+      "assigned": "2026-11-12",
+      "text": "",
+      "photos": [
+        "hw/2026-11-16-s-pmwdfzlal-1.jpg"
+      ],
+      "createdAt": "2026-11-12T11:05:59.950Z"
     }
   ]
 }
