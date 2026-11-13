@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T04:40:15.998Z",
+  "updatedAt": "2026-11-13T10:10:07.373Z",
   "range": {
     "from": "2026-10-30",
     "to": "2026-12-04"
@@ -1249,13 +1249,24 @@
       "subject": "Русский язык",
       "due": "2026-11-16",
       "assigned": "2026-11-12",
-      "text": "У.214",
+      "text": "У.215 доделать, у.216 + выучить исключения",
       "materials": [
         {
           "title": "Правописание гласных перед н и нн в полных причастиях",
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5319187052",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Обществознание",
+      "due": "2026-11-16",
+      "assigned": "2026-11-13",
+      "text": "пар 11 читать",
+      "materials": [],
       "done": false
     },
     {
@@ -1266,6 +1277,17 @@
       "due": "2026-11-16",
       "assigned": "2026-11-02",
       "text": "не задано",
+      "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-s-5320509509",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-17",
+      "assigned": "2026-11-13",
+      "text": "SB page 30 ex. 1-5 (читаем, переводим текст, выписываем выделенную лексику с переводом в словарь, упражнения устно.)",
       "materials": [],
       "done": false
     },
@@ -1304,6 +1326,17 @@
       "due": "2026-11-17",
       "assigned": "2026-11-12",
       "text": "life-threatening, locally grown, longevity, savour, burn calories, low in calories, health benefits,\nconcentration, high in proteins and vitamins, low-fat diet, prosper - учить\nслова наизусть, составлять свои предложения.",
+      "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-v-5319193350",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-11-17",
+      "assigned": "2026-11-13",
+      "text": "пар 17 читать",
       "materials": [],
       "done": false
     },
@@ -1363,6 +1396,17 @@
       "done": false
     },
     {
+      "id": "m-v-5320236053",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Литература",
+      "due": "2026-11-19",
+      "assigned": "2026-11-13",
+      "text": "Принести тексты поэмы Некрасова \"Кому на Руси жить хорошо\" (к 17 ноября). Подготовить индивидуальные задания.",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-107564716",
       "src": "mesh",
       "kid": "v",
@@ -1370,6 +1414,17 @@
       "due": "2026-11-19",
       "assigned": "2026-11-05",
       "text": "Не задано",
+      "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-s-5319240434",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Биология",
+      "due": "2026-11-20",
+      "assigned": "2026-11-13",
+      "text": "П. 8, тетрадь.",
       "materials": [],
       "done": false
     },
