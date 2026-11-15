@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T04:40:15.198Z",
+  "updatedAt": "2026-11-15T10:10:10.164Z",
   "range": {
     "from": "2026-11-01",
     "to": "2026-12-06"
@@ -1200,6 +1200,22 @@
       "assigned": "2026-11-13",
       "text": "параграф 12, записи в тетради выучить",
       "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-s-5324317649",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Геометрия",
+      "due": "2026-11-16",
+      "assigned": "2026-11-15",
+      "text": "Задание с фото",
+      "materials": [
+        {
+          "title": "IMG_20261112_142150.jpg",
+          "url": "https://school.mos.ru/ej/attachments/files/234/408/344/original/IMG_20261112_142150.jpg"
+        }
+      ],
       "done": false
     },
     {
