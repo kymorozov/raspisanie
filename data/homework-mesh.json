@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T04:40:13.599Z",
+  "updatedAt": "2026-11-17T10:10:08.066Z",
   "range": {
     "from": "2026-11-03",
     "to": "2026-12-08"
@@ -1410,6 +1410,33 @@
       "done": false
     },
     {
+      "id": "m-s-5331752071",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "История",
+      "due": "2026-11-18",
+      "assigned": "2026-11-17",
+      "text": "пар.16-17, п.1-2, читать, учить записи в тетр.",
+      "materials": [
+        {
+          "title": "Система государственного управления в начале XVI века",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5332258457",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-11-18",
+      "assigned": "2026-11-17",
+      "text": "пар 17 читать",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-5329431373",
       "src": "mesh",
       "kid": "v",
@@ -1451,6 +1478,46 @@
         {
           "title": "ДЗ РЯ 10 кл.docx",
           "url": "https://school.mos.ru/ej/attachments/files/233/904/950/original/%D0%94%D0%97%20%D0%A0%D0%AF%2010%20%D0%BA%D0%BB.docx"
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-v-5331822916",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Физика",
+      "due": "2026-11-18",
+      "assigned": "2026-11-17",
+      "text": "выполнить цдз",
+      "materials": [
+        {
+          "title": "Момент импульса материальной точки. Представление о сохранении момента импульса в центральных полях",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
+      "id": "m-s-5331065827",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-19",
+      "assigned": "2026-11-17",
+      "text": "Подготовиться к диктанту по словам из разделов За и 3с. (фото)\n+ повторить правила: порядок прилагательных; relative\npronouns and adverbs (who, which, that, whose, where, when,\nwhy); -ed VS -ing прилагательные.",
+      "materials": [
+        {
+          "title": "Accidents",
+          "url": null
+        },
+        {
+          "title": "Health Problems",
+          "url": null
+        },
+        {
+          "title": "Здоровый образ жизни: режим труда и отдыха, фитнес, сбалансированное питание",
+          "url": null
         }
       ],
       "done": false
@@ -1573,6 +1640,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5331833717",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Физика",
+      "due": "2026-11-20",
+      "assigned": "2026-11-17",
+      "text": "решить задачи с листочка № 7,8,9,10",
+      "materials": [],
       "done": false
     },
     {
