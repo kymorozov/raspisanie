@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T10:10:08.099Z",
+  "updatedAt": "2026-11-19T19:59:42.632Z",
   "range": {
     "from": "2026-11-05",
     "to": "2026-12-10"
@@ -1559,6 +1559,34 @@
       "done": false
     },
     {
+      "id": "m-s-5343560545",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-20",
+      "assigned": "2026-11-19",
+      "text": "SB page 31 ex. 1-4 устно (текст прочитать корректно, перевести); WB page 19 раздел 3С (page 19) ех. 1-3.",
+      "materials": [
+        {
+          "title": "Gifts for everyone!",
+          "url": null
+        },
+        {
+          "title": "Shopping time",
+          "url": null
+        },
+        {
+          "title": "Spotlight 7. Module 9. Lesson 6. Extensive reading",
+          "url": null
+        },
+        {
+          "title": "Spotlight 7. Module 9. Lesson 9a. Phrasal verb \"to take\"",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-s-5291435663",
       "src": "mesh",
       "kid": "s",
@@ -1745,6 +1773,17 @@
       "done": false
     },
     {
+      "id": "m-v-5343461906",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Обществознание",
+      "due": "2026-11-23",
+      "assigned": "2026-11-19",
+      "text": "пар 12 читать",
+      "materials": [],
+      "done": false
+    },
+    {
       "id": "m-v-105776566",
       "src": "mesh",
       "kid": "v",
@@ -1823,6 +1862,17 @@
           "url": null
         }
       ],
+      "done": false
+    },
+    {
+      "id": "m-v-5343476602",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "История",
+      "due": "2026-11-24",
+      "assigned": "2026-11-19",
+      "text": "пар 18  читать",
+      "materials": [],
       "done": false
     },
     {
