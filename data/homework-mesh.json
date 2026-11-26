@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T10:10:10.963Z",
+  "updatedAt": "2026-11-26T14:10:09.705Z",
   "range": {
     "from": "2026-11-12",
     "to": "2026-12-17"
@@ -1539,6 +1539,38 @@
       "done": false
     },
     {
+      "id": "m-s-5367699012",
+      "src": "mesh",
+      "kid": "s",
+      "subject": "Иностранный (английский) язык",
+      "due": "2026-11-27",
+      "assigned": "2026-11-26",
+      "text": "SB page 36 слова с урока и в словаре учим. WB page 23 4a ex. 1-4.",
+      "materials": [
+        {
+          "title": "Spotlight 7. Module 9 ABC test (Lessons 9a-9b-9c)",
+          "url": null
+        },
+        {
+          "title": "Покупки",
+          "url": null
+        },
+        {
+          "title": "Покупки",
+          "url": null
+        },
+        {
+          "title": "Покупки",
+          "url": null
+        },
+        {
+          "title": "Покупки",
+          "url": null
+        }
+      ],
+      "done": false
+    },
+    {
       "id": "m-s-5329921923",
       "src": "mesh",
       "kid": "s",
@@ -1626,6 +1658,22 @@
       "assigned": "2026-11-22",
       "text": "Домашнее задание отсутствует.",
       "materials": [],
+      "done": false
+    },
+    {
+      "id": "m-v-5366505229",
+      "src": "mesh",
+      "kid": "v",
+      "subject": "Литература",
+      "due": "2026-11-27",
+      "assigned": "2026-11-26",
+      "text": "Учить стихотворение Фета \"Старые письма\".",
+      "materials": [
+        {
+          "title": "Жизнь и творчество А.А. Фета",
+          "url": null
+        }
+      ],
       "done": false
     },
     {
