@@ -1,120 +1,15 @@
 {
-  "updatedAt": "2026-11-26T14:10:09.705Z",
+  "updatedAt": "2026-11-27T04:40:13.321Z",
   "range": {
-    "from": "2026-11-12",
-    "to": "2026-12-17"
+    "from": "2026-11-13",
+    "to": "2026-12-18"
   },
   "status": {
     "ok": true,
-    "tokenExp": "2026-11-26T16:40:19.000Z",
+    "tokenExp": "2026-11-27T16:40:05.000Z",
     "source": "mac"
   },
   "items": [
-    {
-      "id": "m-s-5309225113",
-      "src": "mesh",
-      "kid": "s",
-      "subject": "Иностранный (английский) язык",
-      "due": "2026-11-12",
-      "assigned": "2026-11-10",
-      "text": "SB page 28 ex. 3 (чтение, перевод - пункты а, b);\nGRAMMAR page 29 ex. 4, 5 устно разобрать правила и выполнить упражнения.\nЛист с раздаточным материалом доделать (выполняли на уроке).",
-      "materials": [
-        {
-          "title": "Healthy body, healthy mind. Stress free. Accident-prone. First conditional. Modal verb \"might\"",
-          "url": null
-        },
-        {
-          "title": "Remedies (2)",
-          "url": null
-        },
-        {
-          "title": "Здоровый образ жизни: режим труда и отдыха, фитнес, сбалансированное питание",
-          "url": null
-        }
-      ],
-      "done": false
-    },
-    {
-      "id": "m-s-5309714259",
-      "src": "mesh",
-      "kid": "s",
-      "subject": "Иностранный (английский) язык",
-      "due": "2026-11-12",
-      "assigned": "2026-11-10",
-      "text": "Готовиться к коррекционной работе по теме модуля 2 в ПЯТНИЦУ.",
-      "materials": [
-        {
-          "title": "Accidents. Vocabulary and grammar",
-          "url": null
-        }
-      ],
-      "done": false
-    },
-    {
-      "id": "m-s-5278420681",
-      "src": "mesh",
-      "kid": "s",
-      "subject": "Русский язык",
-      "due": "2026-11-12",
-      "assigned": "2026-11-01",
-      "text": "У.211",
-      "materials": [],
-      "done": false
-    },
-    {
-      "id": "m-v-5307777993",
-      "src": "mesh",
-      "kid": "v",
-      "subject": "Алгебра и начала математического анализа",
-      "due": "2026-11-12",
-      "assigned": "2026-11-10",
-      "text": "Решить задания из файла",
-      "materials": [
-        {
-          "title": "scaled_ce2dd356-2fe1-4051-9a36-ae9217d2fdc76950106415681635332.jpg",
-          "url": "https://school.mos.ru/ej/attachments/files/234/055/729/original/scaled_ce2dd356-2fe1-4051-9a36-ae9217d2fdc76950106415681635332.jpg"
-        }
-      ],
-      "done": false
-    },
-    {
-      "id": "m-v-5308729165",
-      "src": "mesh",
-      "kid": "v",
-      "subject": "Иностранный (английский) язык",
-      "due": "2026-11-12",
-      "assigned": "2026-11-10",
-      "text": "стр 40-41 текст читать (незнакомые слова перевести), упр 3 стр 40",
-      "materials": [],
-      "done": false
-    },
-    {
-      "id": "m-v-5295506089",
-      "src": "mesh",
-      "kid": "v",
-      "subject": "Литература",
-      "due": "2026-11-12",
-      "assigned": "2026-11-06",
-      "text": "Выучить стихотворение Тютчева \"О, как убийственно мы любим...\". Принести тексты поэмы Некрасова \"Кому на Руси жить хорошо\" (к 13 ноября).",
-      "materials": [
-        {
-          "title": "Любовная лирика Ф.И. Тютчева",
-          "url": null
-        }
-      ],
-      "done": false
-    },
-    {
-      "id": "m-v-107566382",
-      "src": "mesh",
-      "kid": "v",
-      "subject": "Осмысленное чтение 10Г",
-      "due": "2026-11-12",
-      "assigned": "2026-11-05",
-      "text": "Не задано",
-      "materials": [],
-      "done": false
-    },
     {
       "id": "m-s-5294962656",
       "src": "mesh",
